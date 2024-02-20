@@ -1,0 +1,15 @@
+Many-labs call/*
+Notes/*
+Paper/*
+Proposals/*
+data/*
+.DS_Store
+.png
+**/.DS_Store
+.pdf
+*.pdf
+*.csv
+*.png
+*.docx
+*.txt
+Analyses/*
