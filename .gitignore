@@ -13,3 +13,5 @@ data/*
 *.docx
 *.txt
 Analyses/*
+
+!Instructions/html/parameters.csv
