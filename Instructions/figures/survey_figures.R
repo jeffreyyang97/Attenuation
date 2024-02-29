@@ -200,8 +200,8 @@ ggsave(paste0(dir,"MUL_Horse_A.png"), gg, width = 6, height = 4, units = "in")
 
 
 # Create a data frame with values of B and corresponding costs
-data <- data.frame(B = seq(0, 165, by = 1),
-                   score = (165*165 - (165 - seq(0, 165, by = 1))^2))
+data <- data.frame(B = seq(0, 135, by = 1),
+                   score = (135*135 - (135 - seq(0, 135, by = 1))^2))
 
 # Create the ggplot with slightly increased margin for the title
 gg<-ggplot(data, aes(x = B, y = score)) +
@@ -282,8 +282,8 @@ ggsave(paste0(dir,"MUL_Horse_B.png"), gg, width = 6, height = 4, units = "in")
 
 
 # Create a data frame with values of B and corresponding costs
-data <- data.frame(B = seq(0, 165, by = 1),
-                   score = (seq(0, 165, by = 1) *(330 - seq(0, 165, by = 1))))
+data <- data.frame(B = seq(0, 135, by = 1),
+                   score = (seq(0, 135, by = 1) *(270 - seq(0, 135, by = 1))))
 
 # Create the ggplot with slightly increased margin for the title
 gg<-ggplot(data, aes(x = B, y = score)) +
@@ -307,8 +307,8 @@ gg
 ggsave(paste0(dir,"MUL_Horse_A.png"), gg, width = 6, height = 4, units = "in")
 
 # Create a data frame with values of B and corresponding costs
-data <- data.frame(B = seq(0, 165, by = 1),
-                   score = (165*165 - (165 - seq(0, 165, by = 1))^2))
+data <- data.frame(B = seq(0, 135, by = 1),
+                   score = (135*135 - (135 - seq(0, 135, by = 1))^2))
 
 # Create the ggplot with slightly increased margin for the title
 gg<-ggplot(data, aes(x = B, y = score)) +
@@ -424,3 +424,56 @@ ggsave(paste0(dir,"CMA_juice.png"),
        dpi = 300)   # Resolution in dots per inch
 
 
+
+# Create a vector containing the years from 2015 to 2023
+years <- 2015:2023
+
+# Initialize an empty list to store the counts
+file_counts <- list()
+
+# Loop through each year
+for (year in years) {
+  # Get the directory path for the current year
+  dir_path <- paste0("/Users/sebastianredl/Downloads/experimental economics/instructions/", year)
+  
+  # Get the list of files in the directory
+  files <- list.files(dir_path)
+  
+  # Initialize a counter for files with differing first 10 characters
+  differing_first_10_count <- 0
+  
+  # Loop through each file in the directory
+  unique_files <-c()
+  for (file in files) {
+    # Read the first 10 characters of the file name
+    first_10_chars <- substr(file, 1, 30)
+    unique_files <- c(unique_files, first_10_chars)
+  }
+  print(year)
+  print(unique_files)
+  unique_files <- unique(unique_files)
+    # Check if the first 10 characters differ
+
+      differing_first_10_count <- length(unique_files) + 1
+
+  
+  
+  # Store the count in the list
+  file_counts[[as.character(year)]] <- differing_first_10_count
+}
+
+# Print the total count of files with differing first 10 characters in each year
+for (year in years) {
+  cat("Year:", year, "| Total files with differing first 10 characters:", file_counts[[as.character(year)]], "\n")
+}
+
+# Calculate and print the overall total count of files with differing first 10 characters
+total_differing_first_10_count <- sum(unlist(file_counts))
+cat("Overall total files with differing first 10 characters:", total_differing_first_10_count)
+
+
+tmp <- read.csv("/Users/sebastianredl/Downloads/experimental economics/record_page_edited.csv")
+tmp %>% 
+  mutate(dummy <- year >= 2015) %>% 
+  group_by(dummy) %>% 
+  summarise(count = sum(downloaded))
