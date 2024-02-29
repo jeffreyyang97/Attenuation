@@ -1,0 +1,426 @@
+
+library(ggplot2)
+
+dir <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation/Instructions/figures/"
+
+
+#################################################################################
+#################################CMA######################################
+#################################################################################
+
+
+
+# Create a dataframe with gallons of milk ranging from 0 to 100
+data <- data.frame(gallons_of_milk = 0:1000/10)
+
+# Calculate happiness (square root of gallons of milk)
+data$happiness <- sqrt(data$gallons_of_milk)
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
+  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  labs(x = "Gallons of milk", y = "Happiness from milk") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+         axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CMA_milk.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
+  geom_line(color = "orange", linewidth=2) +  # Change line color to blue
+  labs(x = "Gallons of juice", y = "Happiness from juice") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CMA_juice.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+
+#################################################################################
+#################################PRO######################################
+#################################################################################
+
+
+
+# Create a dataframe with gallons of milk ranging from 0 to 100
+data <- data.frame(gallons_of_milk = 0:1000/10)
+
+# Calculate happiness (square root of gallons of milk)
+data$healthiness <- data$gallons_of_milk * (200 -data$gallons_of_milk)
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = healthiness)) +
+  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  labs(x = "Gallons of healthy drink bought", y = "Healthiness") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 10100)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"PRO_health.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
+  geom_line(color = "orange", linewidth=2) +  # Change line color to blue
+  labs(x = "Gallons of juice", y = "Happiness from juice") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CMA_juice.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+
+
+
+
+
+
+
+#################################################################################
+#################################MUL######################################
+#################################################################################
+# 
+# ### PILOT S4 Task 1
+# 
+# 
+# 
+# data <- data.frame(B = seq(0, 60, by = 1),
+#                    score = ((seq(0, 60, by = 1))^2))
+# 
+# # Create the ggplot with slightly increased margin for the title
+# gg<-ggplot(data, aes(x = B, y = score)) +
+#   geom_line(color = "red", size = 1) +  # Line plot with blue color and size 1
+#   #labs(x = bquote(alpha ~ "pounds of sand in Bucket A"), y = 'Points from Bucket B') +  # Labels for x and y axes
+#   labs(x = bquote("Liters of soda S produced"), y = 'Total cost of producing soda') +  # Labels for x and y axes
+#   theme_minimal() +  # Apply a minimal theme
+#   theme(
+#     # plot.title = element_text(size = 16, hjust = 0.5), # Set title font size to 16
+#     axis.title.x = element_text(size = 16), # Set X-axis label font size to 14
+#     axis.title.y = element_text(size = 16),  # Set Y-axis label font size to 14
+#     axis.line = element_line(color = "black"),
+#     panel.grid.major = element_blank(),
+#     panel.grid.minor = element_blank(),
+#     plot.margin = margin(10, 10, 10, 10, "pt")) +
+#   #  ggtitle("Prize money for Horse A") +  # Set the centered title
+#   scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2))  +  # Set x-axis to start at 0
+#   scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100))    # Set y-axis to start at 0
+# 
+# gg
+# ggsave(paste(path_,"Pilot_4_T1_C.png"), gg, width = 6, height = 4, units = "in")
+
+
+### PILOT S4 Task 2
+
+
+
+# Create a data frame with values of B and corresponding costs
+data <- data.frame(B = seq(0, 135, by = 1),
+                   score = (seq(0, 135, by = 1) * (270 - seq(0, 135, by = 1))))
+
+# Create the ggplot with slightly increased margin for the title
+gg<-ggplot(data, aes(x = B, y = score)) +
+  geom_line(color = rgb(112/255, 4/255, 112/255), size = 1) +  # Line plot with blue color and size 1
+  #labs(x = bquote(alpha ~ "gallons of water in Container A"), y = 'Points from Container A') +  # Labels for x and y axes
+  labs(x = bquote("Hours of practicing with Horse A"), y = 'Prize money for Horse A') +  # Labels for x and y axes
+  theme_minimal() +  # Apply a minimal theme
+  theme(
+    # plot.title = element_text(size = 16, hjust = 0.5), # Set title font size to 16
+    axis.title.x = element_text(size = 16), # Set X-axis label font size to 14
+    axis.title.y = element_text(size = 16),  # Set Y-axis label font size to 14
+    axis.line = element_line(color = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 10, 10, 10, "pt")) +
+  #  ggtitle("Prize money for Horse A") +  # Set the centered title
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2))  +  # Set x-axis to start at 0
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100))    # Set y-axis to start at 0
+
+gg
+ggsave(paste0(dir,"MUL_Horse_A.png"), gg, width = 6, height = 4, units = "in")
+
+
+# Create a data frame with values of B and corresponding costs
+data <- data.frame(B = seq(0, 165, by = 1),
+                   score = (165*165 - (165 - seq(0, 165, by = 1))^2))
+
+# Create the ggplot with slightly increased margin for the title
+gg<-ggplot(data, aes(x = B, y = score)) +
+  geom_line(color = rgb(10/255, 154/255, 176/255), size = 1)+  # Line plot with blue color and size 1
+  #labs(x = bquote(alpha ~ "gallons of water in Container A"), y = 'Points from Container B') +  # Labels for x and y axes
+  labs(x = bquote("Hours of practicing with Horse B"), y = 'Prize money for Horse B') +  # Labels for x and y axes
+  theme_minimal() +  # Apply a minimal theme
+  theme(
+    # plot.title = element_text(size = 16, hjust = 0.5), # Set title font size to 16
+    axis.title.x = element_text(size = 16), # Set X-axis label font size to 14
+    axis.title.y = element_text(size = 16),  # Set Y-axis label font size to 14
+    axis.line = element_line(color = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 10, 10, 10, "pt")) +
+  #  ggtitle("Prize money for Horse A") +  # Set the centered title
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2))  +  # Set x-axis to start at 0
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100))    # Set y-axis to start at 0
+gg
+ggsave(paste0(dir,"MUL_Horse_B.png"), gg, width = 6, height = 4, units = "in")
+
+
+
+
+
+# 
+# data <- data.frame(B = seq(0, 60, by = 1),
+#                    score = ((seq(0, 60, by = 1))^2))
+# 
+# # Create the ggplot with slightly increased margin for the title
+# gg<-ggplot(data, aes(x = B, y = score)) +
+#   geom_line(color = "red", size = 1) +  # Line plot with blue color and size 1
+#   #labs(x = bquote(alpha ~ "pounds of sand in Bucket A"), y = 'Points from Bucket B') +  # Labels for x and y axes
+#   labs(x = bquote("Number of widgets W produced"), y = 'Total cost of producing widgets') +  # Labels for x and y axes
+#   theme_minimal() +  # Apply a minimal theme
+#   theme(plot.title = element_text(hjust = 0.5), 
+#         axis.line = element_line(color = "black"),
+#         panel.grid.major = element_blank(),  # Remove major gridlines
+#         panel.grid.minor = element_blank(),
+#         plot.margin = margin(10, 10, 10, 10, "pt"), # Increase the margin slightly
+#         axis.ticks = element_line(color = "black")) + 
+#   ggtitle("Total cost of producing widgets") +  # Set the centered title
+#   scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2), breaks = seq(0, max(data$B) + 2, by = 5)) +
+#   scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100), breaks = seq(0, max(data$score) + 100, by = 500))
+# 
+# gg
+# ggsave(paste(path_,"Pilot_3_T1_C.png"), gg, width = 6, height = 4, units = "in")
+# 
+
+
+
+# no title 
+
+
+# data <- data.frame(B = seq(0, 60, by = 1),
+#                    score = ((seq(0, 60, by = 1))^2))
+# 
+# # Create the ggplot with slightly increased margin for the title
+# gg<-ggplot(data, aes(x = B, y = score)) +
+#   geom_line(color = "red", size = 1) +  # Line plot with blue color and size 1
+#   #labs(x = bquote(alpha ~ "pounds of sand in Bucket A"), y = 'Points from Bucket B') +  # Labels for x and y axes
+#   labs(x = bquote("Liters of soda S produced"), y = 'Total cost of producing soda') +  # Labels for x and y axes
+#   theme_minimal() +  # Apply a minimal theme
+#   theme(
+#     #plot.title = element_text(hjust = 0.5), 
+#     axis.line = element_line(color = "black"),
+#     panel.grid.major = element_blank(),  # Remove major gridlines
+#     panel.grid.minor = element_blank(),
+#     plot.margin = margin(10, 10, 10, 10, "pt"), # Increase the margin slightly
+#     axis.ticks = element_line(color = "black")) + 
+#   #ggtitle("Total cost of producing soda") +  # Set the centered title
+#   scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2), breaks = seq(0, max(data$B) + 2, by = 5)) +
+#   scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100), breaks = seq(0, max(data$score) + 100, by = 500))
+# 
+# gg
+# ggsave(paste(path_,"Pilot_4_T1_C_no_tit.png"), gg, width = 6, height = 4, units = "in")
+# 
+
+
+# Create a data frame with values of B and corresponding costs
+data <- data.frame(B = seq(0, 165, by = 1),
+                   score = (seq(0, 165, by = 1) *(330 - seq(0, 165, by = 1))))
+
+# Create the ggplot with slightly increased margin for the title
+gg<-ggplot(data, aes(x = B, y = score)) +
+  geom_line(color = rgb(112/255, 4/255, 112/255), size = 1) +  # Line plot with blue color and size 1
+  #labs(x = bquote(alpha ~ "gallons of water in Container A"), y = 'Points from Container A') +  # Labels for x and y axes
+  labs(x = bquote("Hours of practicing with Horse A"), y = 'Prize money for Horse A') +  # Labels for x and y axes
+  theme_minimal() +  # Apply a minimal theme
+  theme(
+    #plot.title = element_text(hjust = 0.5), 
+    axis.line = element_line(color = "black"),
+    panel.grid.major = element_blank(),  # Remove major gridlines
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 10, 10, 10, "pt"),
+    axis.ticks = element_line(color = "black")) +  # Increase the margin slightly
+  # ggtitle("Prize money for Horse A") +  # Set the centered title
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2), breaks = seq(0, max(data$B) + 2, by = 15)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100), breaks = seq(0, max(data$score) + 100, by = 2000))
+
+gg
+
+ggsave(paste0(dir,"MUL_Horse_A.png"), gg, width = 6, height = 4, units = "in")
+
+# Create a data frame with values of B and corresponding costs
+data <- data.frame(B = seq(0, 165, by = 1),
+                   score = (165*165 - (165 - seq(0, 165, by = 1))^2))
+
+# Create the ggplot with slightly increased margin for the title
+gg<-ggplot(data, aes(x = B, y = score)) +
+  geom_line(color = rgb(10/255, 154/255, 176/255), size = 1)+  # Line plot with blue color and size 1
+  #labs(x = bquote(alpha ~ "gallons of water in Container A"), y = 'Points from Container B') +  # Labels for x and y axes
+  labs(x = bquote("Hours of practicing with Horse B"), y = 'Prize money for Horse B') +  # Labels for x and y axes
+  theme_minimal() +  # Apply a minimal theme
+  theme(
+    #plot.title = element_text(hjust = 0.5), 
+    axis.line = element_line(color = "black"),
+    panel.grid.major = element_blank(),  # Remove major gridlines
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 10, 10, 10, "pt"),
+    axis.ticks = element_line(color = "black")) +  # Increase the margin slightly
+  # ggtitle("Prize money for Horse B") +  # Set the centered title
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(data$B) + 2), breaks = seq(0, max(data$B) + 2, by = 15)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(data$score) + 100), breaks = seq(0, max(data$score) + 100, by = 2000))
+gg
+ggsave(paste0(dir,"MUL_Horse_B.png"), gg, width = 6, height = 4, units = "in")
+
+
+
+# Step 1: Load the CSV file
+data <- read.csv("/Users/sebastianredl/Dropbox (Harvard University)/Organizational_Files_BE_SR/coding_challenge/data.csv")
+
+
+  data[is.na(data)] <- 0
+  View(data)
+  
+data <- data %>% 
+  mutate(EV_a = x_a_1 * p_a_1 + x_a_2 * p_a_2 + x_a_3 * p_a_3 + x_a_4 * p_a_4 + x_a_5 * p_a_5 + x_a_6 * p_a_6 + x_a_7 * p_a_7) %>% 
+  mutate(EV_b = x_b_1 * p_b_1 + x_b_2 * p_b_2 + x_b_3 * p_b_3 + x_b_4 * p_b_4 + x_b_5 * p_b_5 + x_b_6 * p_b_6 + x_b_7 * p_b_7) %>% 
+  mutate(EV_prox = EV_a - EV_b) %>% 
+  mutate(frac_a = (num_chose_a/(num_chose_a + num_chose_b))) %>% 
+  mutate(high_complex = median(oac) < oac)
+
+model <- lm(frac_a ~ EV_prox, data = data)
+
+summary(model)
+
+# Print the regression summary
+summary(model)
+
+
+
+# Plot with linear regression lines for each level of high_complex
+ggplot(data, aes(x = EV_prox, y = frac_a, color = high_complex)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "EV_prox", y = "frac_a", color = "high_complex") +
+  ggtitle("Scatter Plot of frac_a on EV_prox with regression fit")
+
+
+#################################################################################
+#################################PRS######################################
+#################################################################################
+
+
+
+# Create a dataframe with gallons of milk ranging from 0 to 100
+data <- data.frame(gallons_of_milk = 0:1000/10)
+
+# Calculate happiness (square root of gallons of milk)
+data$happiness <- sqrt(data$gallons_of_milk)
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
+  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  labs(x = "Points in pot", y = "Earnings from pot") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"PRS.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
+  geom_line(color = "orange", linewidth=2) +  # Change line color to blue
+  labs(x = "Gallons of juice", y = "Happiness from juice") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CMA_juice.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
