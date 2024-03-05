@@ -13,6 +13,6 @@ data/*
 *.docx
 *.txt
 Analyses/*
-
+Instructions/figures/REC/*
 !Instructions/html/parameters.csv
 !Instructions/html/compq.csv
