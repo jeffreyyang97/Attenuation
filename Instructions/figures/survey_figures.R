@@ -474,6 +474,54 @@ cat("Overall total files with differing first 10 characters:", total_differing_f
 
 tmp <- read.csv("/Users/sebastianredl/Downloads/experimental economics/record_page_edited.csv")
 tmp %>% 
-  mutate(dummy <- year >= 2015) %>% 
+  mutate(dummy = year >= 2015) %>% 
   group_by(dummy) %>% 
   summarise(count = sum(downloaded))
+
+
+options(encoding = "")
+tmp_ra <- read.csv("/Users/sebastianredl/Dropbox (Harvard University)/Text/Complexity_experiments/Instructions/RA/experimental economics/record_page_edited_RA.csv")
+options(encoding = "UTF-8")
+tmp_me <- read.csv("/Users/sebastianredl/Documents/Experimental_Complexity/data/web/experimental economics/record_page_edited_utf8.csv",
+                   encoding="UTF-8")
+names(tmp_ra)
+tmp_ra <- tmp_ra %>% 
+  select(article_link, extractable, downloaded, Rating)
+
+tmp_me <- tmp_me %>% select(
+ -downloaded, -extractable, 
+)
+
+tmp_ra <- tmp_ra %>% 
+  left_join(., tmp_me, by = "article_link")
+
+write.csv(tmp_ra, "/Users/sebastianredl/Dropbox (Harvard University)/Text/Complexity_experiments/Instructions/RA/experimental economics/record_page_edited_baiyun.csv",fileEncoding = "UTF-8")
+
+
+# Specify the path to the directory
+directory_path <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation/Instructions/figures/REC"
+
+# Get all names of files and directories within the directory
+directory_contents <- list.files(directory_path)
+
+
+
+company_names <- c("LionBloom Technologies","PandaPetal Cosmetics", "FalconFlight Aviation", "TigerThrive Fitness", "ElephantRoot Consulting", "RavenLeaf Apparel", "DolphinWave Aquatics", "ButterflyBloom Education", "WolfWeave Textiles", "OwlSage Publishing", "GiraffeGrove Renewable Energy", "FoxFern Fashion", "HawkHaven Real Estate")
+company_names_shot <- c("LionBloom","PandaPetal", "FalconFlight", "TigerThrive", "ElephantRoot", "RavenLeaf", "DolphinWave", "ButterflyBloom", "WolfWeave", "OwlSage", "GiraffeGrove Renewable", "FoxFern", "HawkHaven Real")
+filenames <- sub("\\.png", "", directory_contents)
+filenames
+
+# Read CSV file into a data frame
+data <- read.csv("/Users/sebastianredl/Dropbox (Harvard University)/Attenuation/Instructions/html/REC.csv")
+
+printing <- function(data_col){
+  paste0('[', paste(data_col, collapse = '","', ']'))
+}
+selected_column <- data$id
+
+# Join cells in the selected column into a single string
+joined_string <- paste(selected_column, collapse = '","')
+
+# Print the resulting string
+print(joined_string)
+
