@@ -199,7 +199,7 @@ REC,q12a1,The different rounds in this study are independent of each other and I
 REC,q12a2,"The different rounds in this study depend on each other, hence my decisions in later rounds should factor in how I decided in earlier rounds.",
 REC,q22,2. Which one of the following statements is true?,
 REC,q22a1,I will be given 10 pieces of news about a company and my task is to guess the current stock price based on these news.,
-REC,q22a2,Whatever amount I invest into the investment fund gets allocated to stock B.,
+REC,q22a2,I will be given 10 pieces of news about a company and my task is to guess the next pieces of news about the company.,
 REC,q33,3. Which one of the following statements is true?,
 REC,q33a1,The stock price is affected both by the number of positive and negative news.,
 REC,q33a2,The stock price is only affected by the number of negative news.,
