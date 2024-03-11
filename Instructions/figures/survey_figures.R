@@ -515,13 +515,14 @@ filenames
 data <- read.csv("/Users/sebastianredl/Dropbox (Harvard University)/Attenuation/Instructions/html/REC.csv")
 
 printing <- function(data_col){
-  paste0('[', paste(data_col, collapse = '","', ']'))
+  joined_string <- paste0('["', paste(data_col, collapse = '","'), '"]')
+  print(joined_string)
 }
-selected_column <- data$id
 
-# Join cells in the selected column into a single string
-joined_string <- paste(selected_column, collapse = '","')
+printing(data$id)
+printing(data$name)
 
-# Print the resulting string
-print(joined_string)
 
+["IM_6mNjL68nTkn30tu","IM_62xm7Qfmi5QTMua","IM_I1AnOLFqwpxMsUc","IM_iKuwugjPImtSxI3","IM_3uJLaZojlWDtAIJ","IM_j3FBa8qL3HHXOBu","IM_56Iks5n9liH1Jo7","IM_C6EyeESDpy9mKkF","IM_0Grj9A9RMuMUdCt","IM_mUM56RsziSBk0VL","IM_V7AwEpLnQaqWF5a","IM_twYiS6KIIDyQceN","IM_UINcDcJohTsQvJB"]
+["ButterflyBloom Education","DolphinWave Aquatics","ElephantRoot Consulting","FalconFlight Aviation","FoxFern Fashion","GiraffeGrove Renewable Energy","HawkHaven Real Estate","LionBloom Technologies","OwlSage Publishing","PandaPetal Cosmetics","RavenLeaf Apparel","TigerThrive Fitness","WolfWeave Textiles"]"
+["ButterflyBloom_Education","DolphinWave_Aquatics","ElephantRoot_Consulting","FalconFlight_Aviation","FoxFern_Fashion","GiraffeGrove_Renewable_Energy","HawkHaven_Real_Estate","LionBloom_Technologies","OwlSage_Publishing","PandaPetal_Cosmetics","RavenLeaf_Apparel","TigerThrive_Fitness","WolfWeave_Textiles"]
