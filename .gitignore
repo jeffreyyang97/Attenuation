@@ -15,4 +15,5 @@ data/*
 Analyses/*
 Instructions/figures/REC/*
 !Instructions/html/parameters.csv
+!Instructions/html/CHT.csv
 !Instructions/html/compq.csv
