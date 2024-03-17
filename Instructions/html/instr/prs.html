@@ -7,71 +7,74 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this part of the study, you <b>will choose how to split 100 points between two pots, Pot 1 and Pot 2, in order to maximize your earnings.</b>
+    In this part of the study, we ask you to imagine that <b>you are a farmer who needs to split water for irrigation between the two growing seasons</b> this year. You have a <b>fixed amount of water in a reservoir</b>. <b>Your objective is to maximize your happiness, which depends on your crop yield in the two growing seasons.</b> The challenge lies in the unpredictability of the weather in the second growing season.
     <ul>
     <li>
-        The points in each pot separately generate earnings according to the following figure and formula: 
+        Your water reservoir <b>contains a total of 100 barrels of water</b> that you can only use in the two growing seasons of the current year. There is no point in saving water for later years because rain will fill up the reservoir after the second season anyways.
     </li>
+ 
+    <li>
+        Specifically, in each season the crop yield is determined by the following formula
+    
     <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
         <div style="width: 100%; text-align: center;">
             <img style=" width: 40%; height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_p7ldK9V3Mq3BpC2" alt="Plot 2"/>
             <div>
                 <b>
-                    Earnings from pot = <span style="white-space: nowrap">
-                        &radic;<span style="text-decoration:overline">&nbsp;Points in pot&nbsp;</span>
+                    Crop yield in a given season = <span style="white-space: nowrap">
+                        <span style="font-size: 30px;">&radic;</span><span style="text-decoration:overline">&nbsp;Barrels of Water&nbsp;</span>
                         </span>
                 </b>
             </div>
         </div>
     </div>
     <br>
-    <li>
-        <b>The more points that end up in a given pot, the more money you get.</b> However, <b>each additional point in a pot earns you less and less additional money.</b>
     <ul>
         <li>
-            For example, while the earnings from 45 points in a given pot are higher than the earnings from 40 points, the earnings boost derived from those 5 additional points is much smaller than the earnings boost thats result from having 5 versus 0 points in that pot. 
+            <b>The more water you allocate to a season, the higher the crop yield in that season.</b> However, while the first barrels of water allocated to a season have a large yield, <b>the additional yield from allocating more and more water in the season get smaller.</b>
         </li>
         <li>
-            This means that in order to maximize your earnings you should make sure that you always have a certain number of points in both pots.
+            For example, while the crop yield from 45 barrels of water in a given season is higher than the crop yield from 40 barrels of water, the yield boost derived from those additional 5 barrels is much smaller than the yield boost that results from using 5 versus 0 barrels of water. 
         </li>
     </ul>
     </li>
     <li>
-        How many points end up in each pot depends on the number of points you allocate to either pot, as well as the outcome of a lottery. 
+        This means: it is important <b>that you have some water available in both periods.</b>
     </li>
     <li>
-        The lottery will <b>either add or remove a specific number of points X from Pot 2. </b>
+        In the first season, the weather is perfectly predictable. Your challenge is <b>the weather in the second season: There’s a 50% chance of experiencing a drought,</b> in which case <b>some of the water in your reservoir dries up</b> and cannot be used for irrigation. Conversely, there's also a <b>50% chance of rain, adding some water to your reservoir</b> in the second season.
+    </li>
+    <li>
+        This means: how much total crop yield you end up with <b>depends on the amount of water you allocate to each season, as well as the random outcome of a weather “lottery” in the second season. </b>
+    </li>
+    <li>
+        The weather lottery will either add or remove a specific amount of water to whatever water is left in the reservoir for the second season. 
         <ul>
             <li>
-                With 50% chance, X points will be <b>added</b> to your Pot 2, increasing your earnings from Pot 2. 
+               <b> With 50% chance, X barrels of water will be added,</b> increasing your yield in the second season. 
             </li>
             <li>
-                With the remaining 50% chance, X points will be <b>removed</b> from your Pot 2, decreasing your earnings from Pot 2. If you allocated fewer than or equal to X points to Pot 2, there will be zero points left in Pot 2 in this case.
+               <b> With the remaining 50% chance, X barrels will be removed,</b> decreasing your yield in the second season (you cannot have less than 0 barrels of water in the reservoir).
+            </li>
+            <li>
+                This means that the lottery changes how much yield you will have in the second season.
             </li>
         </ul>
     </li>
     <li>
-        Your total earnings are equal to the following equation: 
+        Your goal is to maximize your happiness from the crop yield in both seasons. Your total happiness is given by the following equation:         
         <center>
             <div class="formula_li" style="font-weight: bold;">
-                Earnings = <span style="white-space: nowrap">
-                    &radic;<span style="text-decoration:overline">&nbsp;Points allocated to Pot 1&nbsp;</span> + 0.9 &#x2715;
-                    &radic;<span style="text-decoration:overline">&nbsp;Points allocated to Pot 2 +/- points added or removed by lottery&nbsp;</span>
-                    </span>
+                Happiness  = First season yield + <u>90%</u> of second season yield
             </div>
         </center>
     </li>
     <li>
-        Because the earnings generated by the points in Pot 2 are multiplied by 0.9, the points allocated to Pot 2 generate earnings at a slightly lower rate than points allocated to Pot 1.
-    </li>
+        This reflects that the crop yield in the second season is worth a bit less to you because it only accrues in the future.    </li>
     <li>
-        Your task is to split your 100 points between Pot 1 and Pot 2.
-    </li>
+        In each round, <b>you will be told the number, X, of water that the weather lottery either adds or removes from the reservoir</b> in the second period. You will then decide how you allocate your water.    </li>
     <li>
-        In each round, you will <b>be told the number, X, of points that the lottery either adds or removes from Pot 2.</b> You will then decide how you allocate your points.
-    </li>
-    <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the number of points that the lottery can add or remove varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in that one round will determine your bonus. 
+        In total, you will complete 13 rounds of this task. Across these rounds, the amount of water that the weather lottery adds or removes varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in that one round will determine your bonus. 
     </li>
 </div>
 <br>
@@ -82,13 +85,13 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, the computer will play the lottery and determine whether points are added or removed from your allocation to Pot 2 in that round. We will then calculate earnings as described above. Your bonus then equals         
+    Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, the computer will play the lottery and determine whether water is added or removed from your allocation to the second season. We will then calculate your earnings as described above. Your bonus then equals 
     <center>
         <div class="formula">
-            Bonus (in $) = 6 + 1/200 &#x2715; Earnings 
+            Bonus (in $) =  &#x2715; Happiness/2
         </div>
     </center>
-    This means is that it is in your best interest to allocate your points in a way that maximizes your earnings.
+    This means is that it is in your best interest to allocate your points in a way that maximizes your happiness.
 </div>
 <div style="width: 100%; text-align: right" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -108,10 +111,10 @@
     <br>
     <ul>
         <li>
-            In this example, the number of points that get randomly added or removed to Pot 2 is 10.
+            In this example, the amount of water that gets randomly added to or removed from what’s left in your reservoir in the second season is 10 m^3.
         </li>
         <li>
-            You then need to decide how to split your 100 points between Pot 1 and Pot 2. 
+            You then need to decide how to split your 100 barrels of water between the two periods.
         </li>
     </ul>
 </div>
@@ -128,10 +131,10 @@
     <br>
    <ul>
        <li>
-        You will decide how to split your points between Pot 1 and Pot 2.  
+        You will decide how to split the water between the two periods.
     </li>
        <li>
-        We will ask you <b>how certain</b> you are (in percentage terms) that the decision you made reflects the optimal decision.  When we say “optimal decision”, we mean the decision that maximizes your bonus.
+        We will ask you <b>how certain</b> you are are (in percentage terms) that the decision you made reflects the best decision you can take, given your personal preferences and the available information.
        </li>
    </ul>
 </div>
