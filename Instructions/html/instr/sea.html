@@ -6,24 +6,50 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this part of the study, <b>you will decide between two hypothetical payments.</b>
+    In this part of the study, the computer <b>will repeatedly draw poker chips from a digital bag</b> to determine your bonus.     
     <ul>
+            <li>
+                The bag contains 100 poker chips, each worth a different number of points.
+                <ul>
+                    <li>
+                        The least valuable chip in the bag is worth 1 point and the most valuable is worth 100 points and there is a chip in the bag worth each point value in-between. 
+                    </li>
+                    <li>
+                        Every point is worth 10 cent to you for your bonus.
+                    </li>
+                </ul>   
+            </li>
     <li>
-        The <b>“future payment”</b> pays <b>$100 with a specific delay. </b>
+        The computer will <b>repeatedly draw a poker chip from the bag (replacing the chip in the bag after each draw) until it gets one that is higher than some minimum value.</b>  Your job is to tell the computer <b>what you would like this minimum value to be:</b>   <b>the first chip that the computer draws that is larger than the minimum value will determine your base bonus.</b>
     </li>
     <li>
-        The <b>“immediate payment”</b> pays <b>a specific amount now.</b>
+        Your task is to set the minimum value. Setting this minimum value has two effects: 
+        <ul>
+            <li>
+                First, <b>the higher the minimum value you set the more valuable the chip that will determine your base bonus.</b>
+            </li>
+            <li>
+                Second, <b>the higher your minimum, the larger the number of times (on average)</b> the computer will have to draw from the bag before getting a chip that is large enough,<b> meaning a higher cost.</b>
+            </li>
+        </ul> 
     </li>
     <li>
-        For all hypothetical payments in this part of the study, <b>please treat them as if you know you will receive them with certainty,</b> even if they are delayed. That is, please assume there is no risk that you wouldn’t actually get paid.  
+        In each round, <b>you will be told the cost </b>the computer will charge each time it draws a chip from the bag.  You will then decide on the minimum chip value (between 1 and 100) you would like the computer to use to decide when to stop drawing chips from the bag.
     </li>
     <li>
-        In each decision, you will be told the <b>delay of the future payment as well as the amount of the immediate payment.</b> You will then decide between the two payments.
-    </li>
-    <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the delay of the future payment will vary. These rounds are completely independent from one another. 
+        In total, you will complete 13 rounds of this task. Across these rounds, the cost charged per draw from the bag varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
     </li>
 </ul>
+</div>
+<br>
+<hr>
+<br>
+<h2>
+<u>Your bonus payment:</u>
+</h2>
+<div style="padding-left: 30px;">
+    <br>
+    Your decisions in this part of the study may affect your bonus payment.  If a decision in this part is selected for payment, you will earn a number of points equal to the final poker chip drawn by the computer, minus the total cost from the number of draws taken by the computer.  You will earn 10 cents for each resulting point (there is no chance of losing money based on your choice).  Instead of calculating this once, we will have the computer make its draws several million times, and pay you your average earning over all of these draws.  This means there is no risk in this study and also that the decision that maximizes the average earnings also maximizes your bonus.    
 </div>
 <div style="width: 100%; text-align: right" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -43,31 +69,10 @@
     <br>
     <ul>
         <li>
-            In this example, the delay of the future payment is 3 months.
+            In this example, the computer will charge you 10 points every time it draws a poker chip from the bag.
         </li>
         <li>
-            You then need to decide whether your prefer this delayed payment or a given immediate payment.
-        </li>
-        <li>
-            You will see choice lists such as the one below, where each row is a separate choice.
-        </li>
-    </ul>
-    [ example choice list ] 
-    <ul>
-        <li>
-            In every list, the right-hand option (Option B) is a delayed payment that is identical in all rows. The left-hand option (Option A) is an immediate payment. The immediate payment increases as you go down the list. 
-        </li>
-        <li>
-            To make a choice just click on the option you prefer for each choice (i.e. for each row), <span style="background-color: yellow;">highlighting your choice yellow. </span>
-        </li>
-        <li>
-            <b>An effective way to complete these choice lists is to determine in which row you would prefer to switch from choosing Option A to choosing Option B.</b> You can click on that row and we will automatically fill out the rest of the list for you, by selecting Option A in all rows above and Option B in all rays below your selected row. 
-        </li>
-        <li>
-            Based on where you switch from Option A to Option B in this list, we assess which immediate payment (Option A) you value as much as the future payment (Option B). 
-        </li>
-        <li>
-            For example, in the choice list above, you would value the future payment as much as an immediate payment between ?? and ??, because this is where switching occurs.
+            You then need to decide on the minimum poker chip value, between 0 and 1000, that the computer should use to decide when to stop drawing chips from the bag.
         </li>
     </ul>
 </div>
@@ -84,10 +89,10 @@
     <br>
    <ul>
        <li>
-        You will decide between a future payment and different immediate payments. We will use these decisions to assess how much the delayed payment is worth to you. 
+        You will decide on the minimum value of a poker chip the computer can use to decide when to stop drawing chips from the bag.
     </li>
        <li>
-        We will ask you <b>how certain</b> you are (in percentage terms) that your guess is correct.
+        We will ask you <b>how certain</b> you are (in percentage terms) that the decision you made reflects the optimal decision.  When we say “optimal decision”, we mean the decision that maximizes your bonus.
        </li>
    </ul>
 </div>
