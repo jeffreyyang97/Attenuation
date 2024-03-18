@@ -377,7 +377,7 @@ data$happiness <- sqrt(data$gallons_of_milk)
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   geom_line(color = "blue", linewidth=2) +  # Change line color to blue
-  labs(x = "Points in pot", y = "Earnings from pot") +  
+  labs(x = "Barrels of water", y = "Crop yield in a given season") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
   coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
@@ -521,6 +521,79 @@ printing <- function(data_col){
 
 printing(data$id)
 printing(data$name)
+
+
+# FOR 
+
+increment <-50
+sigma<- 17
+mu1<- 10 
+mu2 <- 50
+step <- 1
+
+
+
+pnorm(10, mean = mu1, sd = sigma)
+
+data_stock1 <- data.frame(
+  stock = seq(from = mu1 -increment, to =mu1 +increment , by=step)
+)
+
+data_stock1 <- data_stock1 %>% 
+  mutate(chance = pnorm(stock + step/2, mean = mu1, sd = sigma) - pnorm(stock -step/2, mean = mu1, sd = sigma)
+         ) %>% 
+  mutate(chance = chance + 2*pnorm(min(stock), mean = mu1, sd = sigma)/nrow(data_stock1)) %>% 
+  mutate(level = "low")
+
+data_stock2 <- data.frame(
+  stock = seq(from = mu2 -increment, to =mu2 +increment , by=step)
+)
+
+data_stock2 <- data_stock2 %>% 
+  mutate(chance = pnorm(stock + step/2, mean = mu2, sd = sigma) - pnorm(stock -step/2, mean = mu2, sd = sigma)
+  ) %>% 
+  mutate(chance = chance + 2*pnorm(min(stock), mean = mu2, sd = sigma)/nrow(data_stock2))%>% 
+  mutate(level = "high")
+
+data_stock <- rbind(data_stock1, data_stock2)
+
+stocks <- unique(data_stock$stock)
+stocks1 <- unique(data_stock1$stock)
+stocks2 <- unique(data_stock2$stock)
+
+stocks1_not <- stocks[!stocks %in% stocks1]
+stocks2_not <- stocks[!stocks %in% stocks2]
+
+stocks1_extension <- data.frame(
+  stock = stocks1_not,
+  chance = 0,
+  level = "low"
+)
+
+stocks2_extension <- data.frame(
+  stock = stocks2_not,
+  chance = 0,
+  level = "high"
+)
+
+data_stock<- rbind(data_stock, stocks1_extension, stocks2_extension) %>% 
+  mutate(chance = chance*100)
+
+
+
+ggplot(data_stock, aes(x = factor(stock), y = chance, fill = level)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+  scale_fill_discrete(name = "Stock Level", labels = c("Bad Frims", "Good Firms")) +  # Change legend text and title
+  labs(x = "Possible growth of stock price in ($)", y = "Chances (%)") +  # Change axis labels
+  scale_x_discrete(breaks = seq(min(stocks), max(stocks), by = 10), labels = seq(min(stocks), max(stocks), by = 10))+  # Adjust x-axis ticks and labels
+  ggtitle("Probability by Stock Level") +
+  theme_minimal()
+
+
+#
+
+
+
 
 
 ["IM_6mNjL68nTkn30tu","IM_62xm7Qfmi5QTMua","IM_I1AnOLFqwpxMsUc","IM_iKuwugjPImtSxI3","IM_3uJLaZojlWDtAIJ","IM_j3FBa8qL3HHXOBu","IM_56Iks5n9liH1Jo7","IM_C6EyeESDpy9mKkF","IM_0Grj9A9RMuMUdCt","IM_mUM56RsziSBk0VL","IM_V7AwEpLnQaqWF5a","IM_twYiS6KIIDyQceN","IM_UINcDcJohTsQvJB"]

@@ -1,4 +1,33 @@
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* Add a dotted border bottom */
+        cursor: help; /* Change cursor to a help icon */
+    }
 
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 300px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -150px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 
 <br>
 <h2>
@@ -6,23 +35,52 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this part of the study, <b>you will decide between two hypothetical payments.</b>
+    In this part of the study, <b>you will choose between money for yourself and reducing carbon dioxide (CO2) emissions in the atmosphere.</b> There are always two options: Option A and Option B. 
     <ul>
     <li>
-        The <b>“future payment”</b> pays <b>$100 with a specific delay. </b>
+        Option A gives you a<b> monetary payment. </b>
     </li>
     <li>
-        The <b>“immediate payment”</b> pays <b>a specific amount now.</b>
+       <b>Option B does not give you a monetary payment,</b> but <b>choosing Option B reduces the amount of CO2 emissions in the atmosphere.</b> Specifically, we will actually implement these reductions in emissions by purchasing carbon offsets. Carbon offsets work by funding real projects that lower CO2 emissions (click here for more information on carbon offsets).
     </li>
     <li>
-        For all hypothetical payments in this part of the study, <b>please treat them as if you know you will receive them with certainty,</b> even if they are delayed. That is, please assume there is no risk that you wouldn’t actually get paid.  
+        In each round, you will be told the amount of CO2 emissions reduced by choosing Option B. You will then decide between the two options. You will make this decision for a range of different amounts of money paid by Option A. 
     </li>
     <li>
-        In each decision, you will be told the <b>delay of the future payment as well as the amount of the immediate payment.</b> You will then decide between the two payments.
+        In total, you will complete 13 rounds of this task. Across these rounds, the amount of CO2 emissions reduced by choosing Option B varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
     </li>
-    <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the delay of the future payment will vary. These rounds are completely independent from one another. 
-    </li>
+</ul>
+</div>
+<br>
+<hr>
+<br>
+<h2>
+<u>Your bonus payment:</u>
+</h2>
+<div style="padding-left: 30px;">
+    <br>
+    Your decisions in this part of the study may affect your bonus and the reduction of CO2 emissions. If a round in this part of the study is selected for payment, the computer will randomly select one of your choices.
+    <ul>
+        <li>
+            If you chose Option A, you will receive the monetary payment provided by that option. 
+        </li>
+        <li>
+            If you chose Option B, we will purchase carbon offsets that equal the amount of CO2 emissions reduced by that option. We will purchase these offsets from the United Nations Carbon Offset Platform, which certifies carbon reduction project (click 
+            <a target=”_blank” href=https://offset.climateneutralnow.org/UNcertification">
+                here
+            </a>
+            for more information on the UN Carbon Offset Platform).
+        </li>
+    </ul> 
+    This means that it is in your best interest <b>to choose the option you actually prefer in each case.</b>
+    <div class="tooltip">
+        How do carbon offsets work?
+        <span class="tooltiptext">
+            Carbon offsets are tradable “rights” or certificates linked to activities that lower the amount of carbon dioxide (CO2) in the atmosphere. By buying these certificates, a person or group can fund projects that fight climate change, instead of taking actions to lower their own carbon emissions. 
+    
+            Carbon offsets fund specific projects that either lower CO2 emissions, or “sequester” CO2, meaning they take some CO2 out of the atmosphere and store it. Some common examples of projects include reforestation, building renewable energy, carbon-storing agricultural practices, and waste and landfill management. Reforestation in particular is one of the most popular types of projects to produce carbon offsets. Carbon offsets are granted to project owners, who sell them to third parties like companies that want to balance the CO2 they put into the atmosphere by paying to remove CO2 from somewhere else.
+        </span>
+    </div>
 </div>
 <div style="width: 100%; text-align: right" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -36,41 +94,36 @@
 </h2>
 <br>
 <center>
-    <img class="example_image" style="margin: 5px; border: 2px solid lightgray; width: 90%;" alt="Example iage">
+    <img class="example_image" style="margin: 5px; border: 2px solid lightgray; width: 90%;" alt="Example image">
 </center>
 <div style="padding-left: 30px;">
     <br>
     <ul>
         <li>
-            In this example, the delay of the future payment is 3 months.
-        </li>
-        <li>
-            You then need to decide whether your prefer this delayed payment or a given immediate payment.
-        </li>
-        <li>
-            You will see choice lists such as the one below, where each row is a separate choice.
+            You will see choice lists such as the one below, where each row is a separate choice.        
         </li>
     </ul>
-    [ example choice list ] 
+    <center>
+        <img style="width: 630px;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_xduaI4yAE8IlIAm" alt="">
+    </center>
     <ul>
         <li>
-            In every list, the right-hand option (Option B) is a delayed payment that is identical in all rows. The left-hand option (Option A) is an immediate payment. The immediate payment increases as you go down the list. 
+            In every list, the right-hand option (Option B) is identical in all rows. The left-hand option (Option A) gives you a monetary gain. This monetary gain increases as you go down the list. 
         </li>
         <li>
             To make a choice just click on the option you prefer for each choice (i.e. for each row), <span style="background-color: yellow;">highlighting your choice yellow. </span>
         </li>
         <li>
-            <b>An effective way to complete these choice lists is to determine in which row you would prefer to switch from choosing Option A to choosing Option B.</b> You can click on that row and we will automatically fill out the rest of the list for you, by selecting Option A in all rows above and Option B in all rays below your selected row. 
+            <b>An effective way to complete these choice lists is to determine in which row you would prefer to switch from choosing Option B to choosing Option A.</b> You can click on that row and we will automatically fill out the rest of the list for you, by selecting Option B in all rows above and Option A in all rows below your selected row.
         </li>
         <li>
-            Based on where you switch from Option A to Option B in this list, we assess which immediate payment (Option A) you value as much as the future payment (Option B). 
+            Based on where you switch from Option B to Option A in this list, we assess which amount of monetary gain you value as much as reducing a certain amount of CO2 emissions. 
         </li>
         <li>
-            For example, in the choice list above, you would value the future payment as much as an immediate payment between ?? and ??, because this is where switching occurs.
+            For example, in the choice list above, you would value reducing CO2 emissions by 20 kilograms as much as a monetary gain between $17 and $20, because this is where switching occurs.
         </li>
     </ul>
 </div>
-
 <br>
 <hr>
 <br>    
@@ -91,3 +144,4 @@
    </ul>
 </div>
 </div>
+
