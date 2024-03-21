@@ -304,7 +304,7 @@ EGI,q12a1,The different rounds in this study are independent of each other and I
 EGI,q12a2,"The different rounds in this study depend on each other, hence my decisions in later rounds should factor in how I decided in earlier rounds.",
 EGI,q22,2. Which one of the following statements is true?,
 EGI,q22a1,"If I decide to donate to the charity, the experimenters really will donate the specified amount to the charity.",
-EGI,q2a2,"If I decide to donate to the charity, the experimenters will not actually donate the specified amount to the charity.",
+EGI,q22a2,"If I decide to donate to the charity, the experimenters will not actually donate the specified amount to the charity.",
 EGI,q32,3. Which one of the following statements is true?,
 EGI,q32a1,"If I decide to donate to the charity, I will pay nothing (the experimenters will pay the specified amount), but I will forego a bonus of $1.",
 EGI,q32a2,"If I decide to donate to the charity, I will have to pay that amount to the charity myself.",
