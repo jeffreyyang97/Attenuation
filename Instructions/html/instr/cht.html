@@ -12,7 +12,7 @@
         In total, there are <b>100 companies, 50 of which have high and 50 of which have low earnings.</b> The computer secretly and randomly selects one of these companies, each with equal probability.
     </li>
     <li>
-        Your task is to guess <b>what the selected company’s earnings are.</b> Specifically, you have to indicate the <b>the percentage change that you think that the company’s earnings are high.</b>
+        Your task is to guess <b>what the selected company’s earnings are.</b> Specifically, you have to indicate the <b>the percentage chance that you think that the company’s earnings are high.</b>
     </li>
     <li>
         Before making your guess, you <var>may receive a message from another participant.</var> This other participant either <b>sees the company’s actual earnings or does not get to see them.</b> If they see them, they can choose between revealing this information to you and not revealing it. If they choose to reveal, you receive a message revealing the actual earnings. This means: the other participant cannot lie about earnings, should they choose to send a message. The other participant’s earnings depend on your guess: they make more money the higher your guess.
@@ -66,7 +66,7 @@
         In each round, you will be told <b>the other participant’s chance of observing the company’s earnings</b>. Your will then make your guess.
     </li>
     <li>
-        You can also guess fractions of percentage changes, such as 6.78%.
+        You can also guess fractions, such as 6.78%.
     </li>
     <li>
         In total, you will complete 13 rounds of this task. Across these rounds, the other’s chance of observing actual earnings will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
@@ -91,17 +91,18 @@
             <center>
                 <div style="margin-left: auto; margin-right: auto; display: flex; justify-content: center;">
                     <div class="formula_li" style="display: flex; align-items: flex-start; text-align: left; font-weight: bold;">
-                        <div>Your chance of winning (in %):</div>
+                        <div>Your chance of winning (in %) = </div>
                         <div>
-                            = 100 - 0.01 &#x2715; (Your guess - Truth) &#x2715; (Your guess - Truth)
+                            100 - 0.01 &#x2715; (Your guess - Truth) &#x2715; (Your guess - Truth)
                             <br>
-                            where Truth=100 if earnings are hight, and Truth=0 if earnings are low.
+                            
                         </div>
                     </div>
                 </div>
             </center>
         </li>
    </ul>
+   where Truth=100 if earnings are hight, and Truth=0 if earnings are low.
    While this formula might look complicated, all this means is that you should <b>provide your best guess of how likely you think it is that earnings are high when you didn’t receive a message.</b>
 </div>
 <div style="width: 100%; text-align: right" class="instr_button_div">
