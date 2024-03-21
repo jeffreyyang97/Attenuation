@@ -6,69 +6,70 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-        In this part of the study, you <b>will guess a secret number after getting advice from another participant. </b>
-<ul>
-    <li>
-        The <b>secret number will be randomly determined</b> by the computer, where each whole number between 1 and 9 is equally likely. You will not see the secret number. 
-    </li>
-    <li>
-        Your task is to guess what the secret number is. The better your guess, the lower your penalty:
-    </li>
-    <div style="margin-left: auto; margin-right: auto; display: flex; justify-content: center;">
-        <div class="formula_li" style="display: flex; align-items: flex-start; text-align: left; font-weight: bold;">
-            <div>Penalty&nbsp;</div>
-            <div>
-                = Distance between your guess and the secret number
-                <br>
-                = | your guess – secret number | 
-            </div>
-        </div>
-    </div>
-  
-    <li>
-        <b>Your penalty is zero if you correctly guess the secret number. The closer your guess is to the true number, the lower your penalty.</b> 
-    </li>
-    <li>
-        Before making your guess, you <b>will receive a hint from another participant. </b>
+        In this part of the study, you <b>will guess whether a company’s earnings are high or low after getting advice from another participant.</b> 
         <ul>
-            <li>
-                The hint is a number between 1 and 9. 
-            </li>
-            <li>
-                The other participant sees the secret number before giving their hint. 
-            </li>
-            <li>
-                The other participant’s penalty also depends on your guess. However, the way in which the other particpant’s penalty is determined may be different from how yours is determined: 
-                <div style="margin-left: auto; margin-right: auto; display: flex; justify-content: center;">
-                    <div class="formula_li" style="display: flex; align-items: flex-start; text-align: left; font-weight: bold;">
-                        <div>Other participant’s penalty&nbsp;</div>
-                        <div>
-                            = Distance between “your guess plus X” and the secret number
-                            <br>
-                            = | your guess + X – secret number |
-                        </div>
+    <li>
+        In total, there are <b>100 companies, 50 of which have high and 50 of which have low earnings.</b> The computer secretly and randomly selects one of these companies, each with equal probability.
+    </li>
+    <li>
+        Your task is to guess <b>what the selected company’s earnings are.</b> Specifically, you have to indicate the <b>the percentage change that you think that the company’s earnings are high.</b>
+    </li>
+    <li>
+        Before making your guess, you <var>may receive a message from another participant.</var> This other participant either <b>sees the company’s actual earnings or does not get to see them.</b> If they see them, they can choose between revealing this information to you and not revealing it. If they choose to reveal, you receive a message revealing the actual earnings. This means: the other participant cannot lie about earnings, should they choose to send a message. The other participant’s earnings depend on your guess: they make more money the higher your guess.
+    </li>
+    <ul>
+        <li>
+            Whether the other participant observes the actual earnings <b>is decided by a random computer draw.</b> With some percentage chance, the other participant observes the earnings. With the remaining percentage chance, they observe nothing.
+        </li>
+        <li>
+            You will <b>know this percentage chance, but you will not be informed whether the other participant was actually randomly selected to observe the company’s earnings.</b>
+        </li>
+        <li>
+            If the other participant observes the earnings, they can choose <b>to either Reveal or Not Reveal the actual earnings to you.</b> 
+            <ul>
+                <li>
+                    If the participant chooses <b>Reveal</b>, you will <b>get a message that truthfully tells you what the company’s actual earnings are.</b>
+                </li>
+                <li>
+                    If the participant chooses to <b>Not Reveal</b>, you will not get any message. 
+                </li>
+            </ul>
+        </li>
+        <li>
+            This means: if you do not get a message, it is <b>either because the other participant was not selected</b> to observe the company’s earnings, or because they were selected to observe the earnings but decided to Not Reveal to you.
+        </li>
+        <li>
+            The other participant’s reward <b>depends on your guess</b>. Specifically, the other participant’s <b>chances of winning $20 increases in your guess about how likely it is that the company’s earnings are high.</b> 
+                <center>
+                    <div class="formula">
+                        Other’s chance of winning $20 (in %): 100-0.01 &#x2715; (100-Your guess) &#x2715; (100-Your guess)
                     </div>
-                </div>
-            </li>
-            <li>
-                This means that <b>their penaly is zero if you guess a number that is X higher than the secret number.</b> The closer your guess is to the true number plus X, the lower the other participant’s penalty.
-            </li>
-            <li>
-                We call X the <b>“preference difference”</b> between you and the other participant in this game.
-            </li>
-            <li>
-                When choosing their hint, the other participant knows that you know about the preference difference.
-            </li>
-        </ul>
+                </center>
+        </li>
+        <li>
+            This means: <b>The higher your guess, the higher their chances of winning money.</b> 
+        </li>
+        <li>
+            When choosing to Reveal or Not Reveal, the other participant knows that you know about their percentage chance of observing the earnings.
+        </li>
+    </ul>
+    <li>
+        Your task is to guess whether the selected <b>company’s earnings are high or low after potentially receiving a message from the other participant.</b>
     </li>
     <li>
-        Your task is to guess the secret number after receiving the hint from the other participant.
+        Whenever you do receive a message from the other participant, <b>you will know the company’s actual earnings with certainty,</b> and hence it is straightforward to make your guess. We will not ask you for your guess in those rounds. 
     </li>
     <li>
-        In each round, you will be told the preference difference between you and the other participant and see their hint. You will then try to guess the secret number.
+        Instead, we will only ask for your guess in rounds <b>in which you don’t receive a message from the other participant.</b>
     </li>
     <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the preference difference between you and the other participant will differ. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+        In each round, you will be told <b>the other participant’s chance of observing the company’s earnings</b>. Your will then make your guess.
+    </li>
+    <li>
+        You can also guess fractions of percentage changes, such as 6.78%.
+    </li>
+    <li>
+        In total, you will complete 13 rounds of this task. Across these rounds, the other’s chance of observing actual earnings will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
     </li>
 </ul>
 </div>
@@ -76,17 +77,33 @@
     <hr>
     <br>
 <h2>
-        <u>Your bonus payment:</u>
+<u>Your bonus payment:</u>
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, your penalty will determine your bonus.     <center>
-            <div class="formula">
-                Bonus (in $) = 10 - 1/7  &#x2715; Penalty &#x2715; Penalty
-            </div>
-        </center>
-        While this formula might look complicated, all this means is that you should thruthfully <b>provide your best guess of the secret number to maximize your bonus.</b>
-    </div>
+    Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, you may win a bonus of $10. Your chances of winning that bonus depend on whether a round with or without a message gets selected.
+   <ul>
+        <li>
+            <b>If round with message selected:</b> This means the other participant was selected to observe the company’s earnings and decided to Reveal. In this scenario, you will win the $10 with certainty. Recall that we will simply skip these rounds when asking about your guesses.
+        </li>
+        <li>
+            <b>If round without message selected:</b> This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. These are the 13 rounds in which we ask for your guesses. Your chance of winning the bonus is then higher the closer your guess to the truth:  
+            <center>
+                <div style="margin-left: auto; margin-right: auto; display: flex; justify-content: center;">
+                    <div class="formula_li" style="display: flex; align-items: flex-start; text-align: left; font-weight: bold;">
+                        <div>Your chance of winning (in %):</div>
+                        <div>
+                            = 100 - 0.01 &#x2715; (Your guess - Truth) &#x2715; (Your guess - Truth)
+                            <br>
+                            where Truth=100 if earnings are hight, and Truth=0 if earnings are low.
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </li>
+   </ul>
+   While this formula might look complicated, all this means is that you should <b>provide your best guess of how likely you think it is that earnings are high when you didn’t receive a message.</b>
+</div>
 <div style="width: 100%; text-align: right" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
 </div>
@@ -105,10 +122,13 @@
     <br>
     <ul>
         <li>
-            In this example, the preference difference between you and the other participant is 2, and their hint is 9.
+            In this example, the other participant’s chance of observing the actual answer was 70%.
         </li>
         <li>
-            You then need to guess the secret number.
+            You then tell us how likely it is the firm has high earnings, given that you did not receive a message from the other participant.
+        </li>
+        <li>
+            Remember that we will only ask for your guess in rounds where you didn’t get a message.
         </li>
     </ul>
 </div>
@@ -120,11 +140,11 @@
 </h2>
 <div style="padding-left: 30px;">
    <br>
-    You will make your guess of the secret number.        
+   In each round, we will ask you two questions:      
     <br>
    <ul>
        <li>
-    How much money will be in the savings account.
+            You will make your guess that earnings are high. 
     </li>
        <li>
         We will ask you <b>how certain</b> you are (in percentage terms) that the decision you made reflects the best decision you can take, given your personal preferences and the available information.
