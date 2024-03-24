@@ -1,12 +1,12 @@
 <style>
-    .tooltip {
+    .tooltip_ext {
         position: relative;
         display: inline-block;
         border-bottom: 1px dotted black; /* Add a dotted border bottom */
         cursor: help; /* Change cursor to a help icon */
     }
 
-    .tooltip .tooltiptext {
+    .tooltip_ext .tooltiptext {
         visibility: hidden;
         width: 300px;
         background-color: #555;
@@ -23,7 +23,7 @@
         transition: opacity 0.3s;
     }
 
-    .tooltip:hover .tooltiptext {
+    .tooltip_ext:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
     }
@@ -41,7 +41,7 @@
         Option A gives you a<b> monetary payment. </b>
     </li>
     <li>
-       <b>Option B does not give you a monetary payment,</b> but <b>choosing Option B reduces the amount of CO2 emissions in the atmosphere.</b> Specifically, we will actually implement these reductions in emissions by purchasing carbon offsets. Carbon offsets work by funding real projects that lower CO2 emissions (click here for more information on carbon offsets).
+       <b>Option B does not give you a monetary payment,</b> but <b>choosing Option B reduces the amount of CO2 emissions in the atmosphere.</b> Specifically, we will actually implement these reductions in emissions by purchasing carbon offsets. Carbon offsets work by funding real projects that lower CO2 emissions (click <a target="_blank" href="https://offset.climateneutralnow.org/">here</a> for more information on carbon offsets).
     </li>
     <li>
         In each round, you will be told the amount of CO2 emissions reduced by choosing Option B. You will then decide between the two options. You will make this decision for a range of different amounts of money paid by Option A. 
@@ -73,7 +73,7 @@
         </li>
     </ul> 
     This means that it is in your best interest <b>to choose the option you actually prefer in each case.</b>
-    <div class="tooltip">
+    <div class="tooltip_ext">
         How do carbon offsets work?
         <span class="tooltiptext">
             Carbon offsets are tradable “rights” or certificates linked to activities that lower the amount of carbon dioxide (CO2) in the atmosphere. By buying these certificates, a person or group can fund projects that fight climate change, instead of taking actions to lower their own carbon emissions. 
