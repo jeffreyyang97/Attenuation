@@ -44,7 +44,7 @@ CMA,q33a3,I can potentially buy more than 100 gallons of juice and more than 100
 POA,q12,1. Which one of the following statements is true?,
 POA,q12a1,The different rounds in this study are independent of each other and I should make my decision in each round independently of all other rounds.,
 POA,q12a2,"The different rounds in this study depend on each other, hence my decisions in later rounds should factor in how I decided in earlier rounds.",
-POA,q23,2. Suppose you invest $500 in both the Stock Account and the Bank Account. Which of the following statements is true?,
+POA,q23,2. Suppose you invest $50 in both the Stock Account and the Bank Account. Which of the following statements is true?,
 POA,q23a1,My final wealth will depend on the returns of both the Stock Account and the Bank Account. ,
 POA,q23a2,My final wealth will depend only on the return of the Stock Account.,
 POA,q23a3,My final wealth will depend only on the return of the Bank Account.,
