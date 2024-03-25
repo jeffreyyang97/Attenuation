@@ -133,7 +133,7 @@ PRS,q23a2,The crop yield increase from having 10 barrels instead of 9 barrels in
 PRS,q23a3,The crop yield increase from having 10 barrels instead of 9 barrels in a given season is larger than the crop yield increase from having 3 m barrels instead of 2 barrels.,
 PRS,q32,3. Which one of the following statements is true?,
 PRS,q32a1,"Because the crop yield increase from additional water in the first season gets smaller and smaller the more water is already allocated to the first season, it can make sense to allocate water to the second season even though the yield from the second season only increases my happiness with a weight of 90%.",
-PRS,q32a2,"Because the crop yield increase from additional water in the first season gets smaller and smaller the more water is already allocated to the first season, it never makes sense to allocate water to the second season, becayse the yield from the second season only increases my happiness with a weight of 90%.",
+PRS,q32a2,"Because the crop yield increase from additional water in the first season gets smaller and smaller the more water is already allocated to the first season, it never makes sense to allocate water to the second season, because the yield from the second season only increases my happiness with a weight of 90%.",
 PAC,q12,1. Which one of the following statements is true?,
 PAC,q12a1,The different rounds in this study are independent of each other and I should make my decision in each round independently of all other rounds.,
 PAC,q12a2,"The different rounds in this study depend on each other, hence my decisions in later rounds should factor in how I decided in earlier rounds.",
