@@ -82,7 +82,7 @@ data$healthiness <- data$gallons_of_milk * (200 -data$gallons_of_milk)
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = healthiness)) +
   geom_line(color = "blue", linewidth=2) +  # Change line color to blue
-  labs(x = "Gallons of healthy drink bought", y = "Healthiness") +  
+  labs(x = "Gallons of healthy drink consumed", y = "Health") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
   coord_cartesian(x = c(0, 100), y = c(0, 10100)) + 
@@ -529,7 +529,7 @@ increment <-50
 sigma<- 17
 mu1<- 10 
 mu2 <- 50
-step <- 1
+step <- 5
 
 
 
@@ -580,17 +580,33 @@ data_stock<- rbind(data_stock, stocks1_extension, stocks2_extension) %>%
   mutate(chance = chance*100)
 
 
-
-ggplot(data_stock, aes(x = factor(stock), y = chance, fill = level)) +
+gg <- ggplot(data_stock, aes(x = factor(stock), y = chance, fill = level)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  scale_fill_discrete(name = "Stock Level", labels = c("Bad Frims", "Good Firms")) +  # Change legend text and title
+  scale_fill_manual(values = c("#097969", "#FF5733"), labels = c("Good Firms", "Bad Firms")) +  # Set fill colors and labels
   labs(x = "Possible growth of stock price in ($)", y = "Chances (%)") +  # Change axis labels
-  scale_x_discrete(breaks = seq(min(stocks), max(stocks), by = 10), labels = seq(min(stocks), max(stocks), by = 10))+  # Adjust x-axis ticks and labels
-  ggtitle("Probability by Stock Level") +
-  theme_minimal()
+  scale_x_discrete(breaks = seq(min(stocks), max(stocks), by = 10), labels = seq(min(stocks), max(stocks), by = 10)) +  # Adjust x-axis ticks and labels
+  coord_cartesian(ylim = c(0, max(data_stock$chance) + 0.3), expand = FALSE) +  # Set origin at (0,0)
+  theme(
+    panel.grid.major = element_blank(),  # Remove major gridlines
+    panel.grid.minor = element_blank(),  # Remove minor gridlines
+    axis.line = element_line(color = "black"),  # Ensure axis lines are visible
+    axis.ticks.length = unit(0.25, "cm"),  # Set the length of the ticks
+    legend.title = element_blank(),
+    panel.background = element_rect(fill = "white", colour="white")  # Set background color to white
+  )
+
+gg
 
 
-#
+
+gg
+ggsave(paste0(dir,"FOR.png"), plot = gg, width = 6, height = 4, units = "in")
+
+
+
+
+
+ #
 
 
 
