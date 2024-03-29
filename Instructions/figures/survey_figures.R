@@ -583,7 +583,7 @@ data_stock<- rbind(data_stock, stocks1_extension, stocks2_extension) %>%
 gg <- ggplot(data_stock, aes(x = factor(stock), y = chance, fill = level)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
   scale_fill_manual(values = c("#097969", "#FF5733"), labels = c("Good Firms", "Bad Firms")) +  # Set fill colors and labels
-  labs(x = "Possible growth of stock price in ($)", y = "Chances (%)") +  # Change axis labels
+  labs(x = "Possible growth of stock price in ($)", y = "Likelihood (%)") +  # Change axis labels
   scale_x_discrete(breaks = seq(min(stocks), max(stocks), by = 10), labels = seq(min(stocks), max(stocks), by = 10)) +  # Adjust x-axis ticks and labels
   coord_cartesian(ylim = c(0, max(data_stock$chance) + 0.3), expand = FALSE) +  # Set origin at (0,0)
   theme(
@@ -600,13 +600,13 @@ gg
 
 
 gg
-ggsave(paste0(dir,"FOR.png"), plot = gg, width = 6, height = 4, units = "in")
+ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
 
 
 
 
 
- #
+ c#
 
 
 
