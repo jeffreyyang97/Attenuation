@@ -156,7 +156,7 @@ FAI,q23a3,The percentage chance that the winner is selected based on the coin fl
 FAI,q33,3. Which one of the following statements is true?,
 FAI,q33a1,I do not know for sure who translates the most sequences. ,
 FAI,q33a2,"The more points I transfer, the more points go to the person who translates the most sequences.",
-FAI,q33a3,"The more points I transfer, the less points go to the person who translated the most sequences.",
+FAI,q33a3,"The more points I transfer, the less points go to the person who translates the most sequences.",
 BEU,q12,1. Which one of the following statements is true?,
 BEU,q12a1,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that my estimate of the percentage chance that Bag A was selected is correct.",
 BEU,q12a2,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that Bag A was selected.",
