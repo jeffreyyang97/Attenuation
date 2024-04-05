@@ -132,7 +132,7 @@ PRS,q12a2,"When I’m asked to indicate my certainty about my decision, the stud
 PRS,q23,Which one of the following statements is true?,
 PRS,q23a1,The crop yield increase from having 10 barrels instead of 9 barrels in a given season is smaller than the crop yield increase from having 3 barrels instead of 2 barrels.,
 PRS,q23a2,The crop yield increase from having 10 barrels instead of 9 barrels in a given season is exactly as large as the crop yield increase from having 3 barrels instead of 2 barrels.,
-PRS,q23a3,The crop yield increase from having 10 barrels instead of 9 barrels in a given season is larger than the crop yield increase from having 3 m barrels instead of 2 barrels.,
+PRS,q23a3,The crop yield increase from having 10 barrels instead of 9 barrels in a given season is larger than the crop yield increase from having 3 barrels instead of 2 barrels.,
 PRS,q32,Which one of the following statements is true?,
 PRS,q32a1,"Because the crop yield increase from additional water in the first season gets smaller and smaller the more water is already allocated to the first season, it can make sense to allocate water to the second season even though the yield from the second season only increases my happiness with a weight of 90%.",
 PRS,q32a2,"Because the crop yield increase from additional water in the first season gets smaller and smaller the more water is already allocated to the first season, it never makes sense to allocate water to the second season, because the yield from the second season only increases my happiness with a weight of 90%.",
