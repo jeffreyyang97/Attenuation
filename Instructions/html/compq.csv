@@ -11,7 +11,7 @@ SAV,q33a1,"If I save 50 points and the interest rate is 10%, then I will receive
 SAV,q33a2,"If I save 50 points and the interest rate is 10%, then I will receive 5 points in six months.",
 SAV,q33a3,"If I save 50 points and the interest rate is 10%, then I will receive 50 points in six months.",
 DIG,q13,Which one of the following statements is true?,
-DIG,q13a1,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that I took the decision that actually reflects my own preferences.",
+DIG,q13a1,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that the decision I made is actually my best decision, given my personal preferences.",
 DIG,q13a2,"When I'm asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that the points I sent will actually be received by the other participant",
 DIG,q13a3,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that I chose the option that actually maximizes my own payoff.",
 DIG,q23,Which one of the following statements is true?,
