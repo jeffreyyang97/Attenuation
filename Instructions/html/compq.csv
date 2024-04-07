@@ -352,7 +352,7 @@ POL,q22a2,"If the proposed cancer research bill does not pass, the money goes to
 POL,q33,Which one of the following statements is true?,
 POL,q33a1,"Happiness researchers and politicians from across the aisle estimate that the proposed cancer research bill is very effective at making Americans happier. However, because there are administrative costs associated with it, some of the money may go to waste.",
 POL,q33a2,"Happiness researchers and politicians from across the aisle estimate that the proposed cancer research bill is very effective at making Americans happier. Moreover, because there are administrative costs associated with it, all of the money will definitely actually be used for research.",
-POL,q33a3,Happiness researchers and politicians from across the aisle estimate that the proposed cancer research bill is very ineffective at Americans happier.,
+POL,q33a3,Happiness researchers and politicians from across the aisle estimate that the proposed cancer research bill is very ineffective at making Americans happier.,
 GPT,q12,Which one of the following statements is true?,
 GPT,q12a1,"When I'm asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that the decision I made is actually my best decision, given my personal preferences.",
 GPT,q12a2,"When I'm asked to indicate my certainty about my decision, the people running this study are interested in how certain I am what the true price of the product is.",
