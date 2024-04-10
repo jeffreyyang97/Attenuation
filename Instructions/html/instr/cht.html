@@ -1,4 +1,33 @@
+<style>
+    .tooltip_ext {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* Add a dotted border bottom */
+        cursor: help; /* Change cursor to a help icon */
+    }
 
+    .tooltip_ext .tooltiptext {
+        visibility: hidden;
+        width: 600px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -600px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip_ext:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 
 <br>
 <h2>
@@ -85,7 +114,31 @@
             <b>If round with message selected:</b> This means the other participant was selected to observe the company’s earnings and decided to Reveal. In this scenario, you will win the $10 with certainty. Recall that we will simply skip these rounds when asking about your guesses.
         </li>
         <li>
-            <b>If round without message selected:</b> This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. These are the 13 rounds in which we ask for your guesses. You win the bonus of $10 if your guess is not more than 5 percentage points away from the correct guess. All this means is that you should <b>provide your best guess of how likely you think it is that the company's earnings are high when you didn’t receive a message.</b>
+            <b>If round without message selected:</b> This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. 
+            These are the 13 rounds in which we ask for your guesses. 
+            In this case, your chance of winning the $10 bonus is given by the accuracy of your guess: 
+            <ul>
+                <li>
+                    If the company <b>had high earnings</b>, your chances of receiving the bonus are greater if you guessed a <b>higher</b> likelihood of high earnings. 
+                </li>
+                <li>
+                    If the company instead <b>had low earnings</b>, your chances of receiving the bonus are greater if you guessed a <b>lower</b> likelihood of high earnings. 
+                </li>
+            </ul>
+            If interested, you can <div class="tooltip_ext">
+                hover here to read the specific procedure that determines your bonus payment.
+                <span class="tooltiptext">
+                    Bonus details:
+                <ul>
+                    <li>
+                        If the company had high earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100 &#x2715; (Your guess – 100)&#178;)%
+                    </li>
+                    <li>
+                        If the company had low earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100 &#x2715; (Your guess)&#178;)%
+                    </li>
+                </ul>  
+                </span>
+            </div>
         </li>
 
    </ul> 
