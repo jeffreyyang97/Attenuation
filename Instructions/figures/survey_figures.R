@@ -22,7 +22,7 @@ g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   labs(x = "Gallons of milk", y = "Happiness from milk") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
-  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  coord_cartesian(x = c(0, 100), y = c(0, 10)) + 
   geom_hline(yintercept = 0) +  # Change axes line color to blue
   geom_vline(xintercept = 0) +  # Change axes line color to blue
   theme_minimal() + 
@@ -612,6 +612,14 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
 
 
 
-["IM_6mNjL68nTkn30tu","IM_62xm7Qfmi5QTMua","IM_I1AnOLFqwpxMsUc","IM_iKuwugjPImtSxI3","IM_3uJLaZojlWDtAIJ","IM_j3FBa8qL3HHXOBu","IM_56Iks5n9liH1Jo7","IM_C6EyeESDpy9mKkF","IM_0Grj9A9RMuMUdCt","IM_mUM56RsziSBk0VL","IM_V7AwEpLnQaqWF5a","IM_twYiS6KIIDyQceN","IM_UINcDcJohTsQvJB"]
-["ButterflyBloom Education","DolphinWave Aquatics","ElephantRoot Consulting","FalconFlight Aviation","FoxFern Fashion","GiraffeGrove Renewable Energy","HawkHaven Real Estate","LionBloom Technologies","OwlSage Publishing","PandaPetal Cosmetics","RavenLeaf Apparel","TigerThrive Fitness","WolfWeave Textiles"]"
-["ButterflyBloom_Education","DolphinWave_Aquatics","ElephantRoot_Consulting","FalconFlight_Aviation","FoxFern_Fashion","GiraffeGrove_Renewable_Energy","HawkHaven_Real_Estate","LionBloom_Technologies","OwlSage_Publishing","PandaPetal_Cosmetics","RavenLeaf_Apparel","TigerThrive_Fitness","WolfWeave_Textiles"]
+#["IM_6mNjL68nTkn30tu","IM_62xm7Qfmi5QTMua","IM_I1AnOLFqwpxMsUc","IM_iKuwugjPImtSxI3","IM_3uJLaZojlWDtAIJ","IM_j3FBa8qL3HHXOBu","IM_56Iks5n9liH1Jo7","IM_C6EyeESDpy9mKkF","IM_0Grj9A9RMuMUdCt","IM_mUM56RsziSBk0VL","IM_V7AwEpLnQaqWF5a","IM_twYiS6KIIDyQceN","IM_UINcDcJohTsQvJB"]
+#["ButterflyBloom Education","DolphinWave Aquatics","ElephantRoot Consulting","FalconFlight Aviation","FoxFern Fashion","GiraffeGrove Renewable Energy","HawkHaven Real Estate","LionBloom Technologies","OwlSage Publishing","PandaPetal Cosmetics","RavenLeaf Apparel","TigerThrive Fitness","WolfWeave Textiles"]"
+#["ButterflyBloom_Education","DolphinWave_Aquatics","ElephantRoot_Consulting","FalconFlight_Aviation","FoxFern_Fashion","GiraffeGrove_Renewable_Energy","HawkHaven_Real_Estate","LionBloom_Technologies","OwlSage_Publishing","PandaPetal_Cosmetics","RavenLeaf_Apparel","TigerThrive_Fitness","WolfWeave_Textiles"]
+
+ ["RSPG","RSPT","RSPH","RSPS","RSPU","RSPN","RSPM","RSPD","RSPR","RSPF","IBB","SOXQ","PPA"]
+
+
+
+["energy sector (Ticker: RSPG)","technology sector (Ticker: RSPT)","health care sector (Ticker: RSPH)","consumer staples sector (Ticker: RSPS)","utilities sector (Ticker: RSPU)","industrials sector (Ticker: RSPN)","materials sector (Ticker: RSPM)","consumer discretionary sector (Ticker: RSPD)","real estate sector (Ticker: RSPR)","financial sector (Ticker: RSPF)","biotechnology sector (Ticker: IBB)","semiconductor sector (Ticker: SOXQ)","aerospace and defense sector (Ticker: PPA)"]
+
+
