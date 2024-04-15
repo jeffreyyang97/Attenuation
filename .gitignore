@@ -5,11 +5,13 @@ IRB/*
 Proposals/*
 data/*
 .DS_Store
+*.DS_Store
 .png
 **/.DS_Store
 .pdf
 *.pdf
 *.csv
+*.xlsx
 *.png
 *.docx
 *.txt
