@@ -6,7 +6,7 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, the computer <b>will repeatedly draw poker chips from a digital bag</b> to determine your bonus. You need to decide for how long you want the computer to keep drawing.     
+    In this study, the computer <b>will repeatedly draw poker chips from a digital bag</b> to determine your score. You need to decide for how long you want the computer to keep drawing.     
     <ul>
             <li>
                 The bag contains 100 poker chips, each worth a different number of points.
@@ -14,22 +14,19 @@
                     <li>
                         The least valuable chip in the bag is worth 1 point and the most valuable is worth 100 points and there is a chip in the bag worth each point value in-between. 
                     </li>
-                    <li>
-                        Every point is worth $0.10 to you for your bonus.
-                    </li>
                 </ul>   
             </li>
     <li>
-        The computer will <b>repeatedly draw a poker chip from the bag (replacing the chip in the bag after each draw) until it gets one that is higher than some minimum value.</b>  Your job is to tell the computer <b>what you would like this minimum value to be:</b>   <b>the first chip that the computer draws that is at least as large as the minimum value will determine your base bonus.</b>
+        The computer will <b>repeatedly draw a poker chip from the bag (replacing the chip in the bag after each draw) until it gets one that is higher than some minimum value.</b>  Your job is to tell the computer <b>what you would like this minimum value to be:</b>   <b>the first chip that the computer draws that is at least as large as the minimum value will determine your base score.</b>
     </li>
     <li>
-        However, <b>each time</b> the computer draws a chip from the bag, it will <b>charge you some cost that will be subtracted</b> from your base bonus to determine your overall bonus. 
+        However, <b>each time</b> the computer draws a chip from the bag, it will <b>charge you some cost that will be subtracted</b> from your base score to determine your overall score. 
     </li>
     <li>
         Your task is to set the minimum value. Setting this minimum value has two effects: 
         <ul>
             <li>
-                First, <b>the higher the minimum value you set, the more valuable the chip that will determine your base bonus.</b>
+                First, <b>the higher the minimum value you set, the more valuable the chip that will determine your base score.</b>
             </li>
             <li>
                 Second, <b>the higher your minimum, the larger the number of times (on average)</b> the computer will have to draw from the bag before getting a chip that is large enough,<b> meaning a higher cost.</b>
@@ -52,8 +49,24 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions in this study may affect your bonus payment.  If a decision in this study is selected for payment, you will <b>earn a number of points equal to the final poker chip drawn by the computer, minus the total cost from the number of draws taken by the computer.</b>  You will earn $0.10 for each resulting point (there is no chance of losing money based on your choice).  
-    <b>Instead of calculating this once, we will have the computer make the full set of draws 1 million times, and pay you your average earnings over all of these repetitions of the problem.  This means there is no risk in this study and also that the decision that maximizes the average earnings also maximizes your bonus.</b>    
+    Your decisions in this study may affect your bonus payment.  
+    If a decision in this study is selected for payment, 
+        you will receive $10 if your answer is within +/- 2 points of the the minimum value that 
+        generates the maximum average score. With maximum average score we mean that
+        we will have the computer make the full set of draws 1 million times, and calculate
+        the average score over all of these repetitions of the problem.  
+        
+    <!--
+
+
+    Your decisions in this study may affect your bonus payment.  
+    If a decision in this study is selected for payment, you will 
+    <b>earn a number of points equal to the final poker chip drawn by the computer, minus the total cost from the number of draws taken by the computer.</b>  
+    You will earn $0.10 for each resulting point (there is no chance of losing money based on your choice).  
+    <b>Instead of calculating this once, we will have the computer make the full set of draws 1 million times, 
+        and pay you your average earnings over all of these repetitions of the problem.  
+        This means there is no risk in this study and also that the decision that maximizes the average earnings also maximizes your bonus.</b>    
+            -->
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
