@@ -129,8 +129,8 @@ EFF,q33a2,"I should select a larger number of tasks than what I would actually b
 EFF,q33a3,"I should select a smaller number of tasks than what I would actually be willing to work, because I can just work more if I want to and receive additional payment for the additional tasks I complete.",
 EFF,q43,"    How many 1s are in the following table:
     <center>
-        <div class=""formula_li"">
-           <img style=""width: 540px;"" src=""https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_ERqr94AuM59gloR"" alt="""">
+        <div>
+           <img width=540px; src=https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_ERqr94AuM59gloR>
         </div>
     </center>",
 EFF,q43a1,7,
