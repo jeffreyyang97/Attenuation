@@ -27,6 +27,35 @@
         visibility: visible;
         opacity: 1;
     }
+
+    .tooltip_ext {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* Add a dotted border bottom */
+        cursor: help; /* Change cursor to a help icon */
+    }
+
+    .tooltip_ext1 .tooltiptext1 {
+        visibility: hidden;
+        width: 500px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -300px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip_ext1:hover .tooltiptext1 {
+        visibility: visible;
+        opacity: 1;
+    }
 </style>
 
 <br>
@@ -35,69 +64,60 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-        In this study, you <b>will guess whether a company’s earnings are high or low after getting advice from another participant.</b> 
+    In this study, you will <b>guess whether a company’s earnings are high or low after getting advice from another participant. </b>
         <ul>
     <li>
-        In total, there are <b>100 companies, 50 of which have high and 50 of which have low earnings.</b> The computer secretly and randomly selects one of these companies. Each company is equally likely to be selected.
+     In total, there are b100 companies, 50 of which have high and 50 of which have low earnings. The computer <b>secretly and randomly selects one of these companies,</b> each with equal probability.
     </li>
     <li>
-        Your task is to guess <b>what the selected company’s earnings are.</b> Specifically, you have to indicate <b>the percentage chance that you think the company’s earnings are high.</b>
+        Your task is <b>to guess what the selected company’s earnings are.</b> Specifically, you have to indicate the percentage chance that you think that the company’s earnings are high.
     </li>
     <li>
-        Before making your guess, you <b>may receive a message from another participant.</b> This other participant either <b>sees the company’s actual earnings or does not get to see them.</b> 
-        If the subject chooses to reveal this to you, you will receive a message revealing the company’s actual earnings. This means: the other participant cannot lie about the company's earnings, should they choose to send a message. However, the other participant can choose to not send you a message even though they know what the company's earnings are. <b>The other participant’s earnings depend on your guess: they make more money the higher your guess.</b>
+        Before making your guess, you <b>may receive a message from another participant. </b>
     </li>
     <ul>
         <li>
-            Whether the other participant observes the actual earnings <b>is decided by a random computer draw.</b> With some percentage chance, the other participant observes the earnings. With the remaining percentage chance, they observe nothing.
+            This other participant <b>potentially</b> sees the company’s actual earnings. If they do observe those earnings, they can <b>choose to either Reveal or Not Reveal the actual earnings to you.</b> The other participant <b>cannot lie</b> about the earnings, <b>but they can choose to Not Reveal to you what they’ve seen. </b>
         </li>
         <li>
-            You will <b>know this percentage chance, but you will not be informed whether the other participant was actually randomly selected to observe the company’s earnings.</b>
+            The bonus of this other participant depends on your guess about whether the company has high earnings: <b>the higher your guess, the more money the other participant receives</b> 
+            <div class="tooltip_ext1">
+                (hover here in case you’re interested in the details).
+                <span class="tooltiptext1">
+                    The other participant’s chances of winning $20 increases in your guess about how likely it is that the company’s earnings are high.
+                    <br> 
+                    Other’s chance of winning $20 (in %): 100-0.01 &#x2715; (100-Your guess)&sup2;	                    
+                </span>
+            </div>
         </li>
         <li>
-            If the other participant observes the earnings, they can choose <b>to either Reveal or Not Reveal the actual earnings to you.</b> 
-            <ul>
-                <li>
-                    If the participant chooses <b>Reveal</b>, you will <b>get a message that truthfully tells you what the company’s actual earnings are.</b>
-                </li>
-                <li>
-                    If the participant chooses to <b>Not Reveal</b>, you will <b>not get any message. </b>
-                </li>
-            </ul>
+            This means: the other participant has an opportunity to get you to guess that the company’s earnings are high by selectively revealing the earnings to you.
         </li>
         <li>
-            This means: if you do not get a message, it is <b>either because the other participant was not selected</b> to observe the company’s earnings, or because they were <b>selected to observe the earnings but decided to Not Reveal to you.</b>
+            Whether or not the other participant actually observes the company’s earnings is decided by a random computer draw. With some percentage chance, the other participant observes the earnings. With the remaining percentage chance, they observe nothing.
         </li>
         <li>
-            The other participant’s reward <b>depends on your guess</b>. Specifically, the other participant’s <b>chances of winning $20 increases in your guess about how likely it is that the company’s earnings are high.</b> 
-                <center>
-                    <div class="formula_li">
-                        Other’s chance of winning $20 (in %): 100-0.01 &#x2715; (100-Your guess) &#x2715; (100-Your guess)
-                    </div>
-                </center>
+            This means: if you do not get a message from the other participant, it is either because the other participant was not selected to observe the company’s earnings, or because they were selected to observe the earnings but decided to Not Reveal to you.
         </li>
         <li>
-            This means: <b>The higher your guess, the higher their chances of winning money.</b> 
-        </li>
-        <li>
-            When choosing to Reveal or Not Reveal, the other participant knows that you know about their percentage chance of observing the earnings.
+            When choosing to Reveal or Not Reveal, the other participant knows that you know their percentage chance of observing the earnings.
         </li>
     </ul>
    
     <li>
-        Whenever you do receive a message from the other participant, <b>you will know the company’s actual earnings with certainty,</b> and hence it is straightforward to make your guess. We will not ask you for your guess in those rounds. 
+        Whenever you do receive a message from the other participant, you will know the company’s actual earnings with certainty, and hence it is straightforward to make your guess. We will not ask you for your guess in those rounds. 
     </li>
     <li>
-        Instead, we will only ask for your guess in rounds <b>in which you don’t receive a message from the other participant.</b>
+        Instead, we will only ask for your guess in rounds in which you don’t receive a message from the other participant.
     </li>
     <li>
-        In each round, you will be told <b>the other participant’s chance of observing the company’s earnings</b>. Your will then make your guess.
+        In each round, you will be told the other participant’s chance of observing the company’s earnings. Your will then make your guess.
     </li>
     <li>
         You can also guess fractions, such as 6.78%.
     </li>
     <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the other’s chance of observing actual earnings will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+        In total, you will complete 13 rounds of this task. Across these rounds, the other participant’s chance of observing the actual earnings will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
     </li>
 </ul>
 </div>
@@ -109,37 +129,31 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions  may affect your bonus. If a round in this study is selected for payment, you may win a bonus of $10. Your chances of winning that bonus depend on whether a round with or without a message gets selected.
+    Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, you may win a bonus of $10. Your chances of winning that bonus depend on whether a round with or without a message gets selected.
    <ul>
         <li>
-            <b>If round with message selected:</b> This means the other participant was selected to observe the company’s earnings and decided to Reveal. In this scenario, you will win the $10 with certainty. Recall that we will simply skip these rounds when asking about your guesses.
+            <b>If round with message selected:</b> This means the other participant was selected to observe the company’s earnings and decided to Reveal. In this scenario, you will win the $10 with certainty since you know the truth. Recall that we will simply skip these rounds when asking about your guesses.
         </li>
         <li>
-            <b>If round without message selected:</b> This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. 
-            These are the 13 rounds in which we ask for your guesses. 
-            In this case, your chance of winning the $10 bonus is given by the accuracy of your guess: 
-            <ul>
-                <li>
-                    If the company <b>had high earnings</b>, your chances of receiving the bonus are greater if you guessed a <b>higher</b> likelihood of high earnings. 
-                </li>
-                <li>
-                    If the company instead <b>had low earnings</b>, your chances of receiving the bonus are greater if you guessed a <b>lower</b> likelihood of high earnings. 
-                </li>
-            </ul>
-            If interested, you can <div class="tooltip_ext">
-                hover here to read the specific procedure that determines your bonus payment.
+            <b>If round without message selected:</b> 
+            This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. These are the 13 rounds in which we ask for your guesses. In this case, your chance of winning the $10 bonus is given by the accuracy of your guess. If you’re interested, you can 
+            hover here 
+            <div class="tooltip_ext">
+                hover here to read the specific procedure that determines your bonus payment. 
                 <span class="tooltiptext">
                     Bonus details:
                 <ul>
                     <li>
-                        If the company had high earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100 &#x2715; (Your guess – 100)&#178;)%
+                        If the company had high earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100  &#x2715; (Your guess – 100)&#178;)%
                     </li>
                     <li>
-                        If the company had low earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100 &#x2715; (Your guess)&#178;)%
+                    	If the company had low earnings, your chance of receiving the bonus  of  $10 is  (100 – 1/100 &#x2715; (Your guess)&#178;)%
                     </li>
                 </ul>  
                 </span>
-            </div>
+            </div>  
+            This procedure might seem complicated, but all this means is that you should <b>provide your best guess of how likely you think it is that earnings are high when you didn’t receive a message.</b>
+           
         </li>
 
    </ul> 
@@ -163,13 +177,10 @@
     <br>
     <ul>
         <li>
-            In this example, the other participant’s chance of observing the actual earnings was 60%.
+            In this example, the other participant’s chance of observing the actual earnings was 70%.
         </li>
         <li>
-            You then tell us how likely it is the firm has high earnings, given that you did not receive a message from the other participant.
-        </li>
-        <li>
-            Remember that we will only ask for your guess in rounds where you didn’t get a message.
+            You then tell us how likely you think it is the firm has high earnings, given that you did not receive a message from the other participant.
         </li>
     </ul>
 </div>
@@ -185,10 +196,10 @@
     <br>
    <ul>
        <li>
-        You will indicate the percent chance you think the company's earnings are high.
+        You will make your guess that the firm’s earnings are high. 
     </li>
        <li>
-        We will ask you <b>how certain</b> you are about your guess. Specifically, we are interested in how likely you think it is (in percentage terms) that your guess is actually the best guess, given your personal preferences and the available information.
+        We will ask you <b>how certain</b> you are about your guess. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible guess, given the information you have.
     </li>
    </ul>
 </div>
