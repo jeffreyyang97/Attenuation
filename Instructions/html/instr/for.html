@@ -6,89 +6,42 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, <b>your task is to forecast the future stock price growth of several fictional firms, based on the current earnings of each firm.</b>
+    In this  study, <b>your task is to forecast the end-of-year earnings of a fictional firm</b> for the year 2024, based on the firm’s earnings over the previous two years.
     <ul>
     <li>
-        There are <b>two types</b> of firms: <b>Good</b> firms and <b>Bad</b> <b>firms</b>. Good firms have an <b>average stock price growth of</b> <b>$50</b>, while <b>Bad firms have an average stock price growth of $10.</b>
-    <ul>
-        <li>
-            Because these numbers are averages, it is possible for a firm to deliver a stock price growth above or below the average.
-        </li>
-        <li>
-            The graphic below plots the likelihood of each level of stock price growth for the two types of firms:
-        </li>
-    </ul>
-        <center>
-            <img style="width: 600px" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_GFHbMZKNMpa2ilv" alt="">
-            <div style="display: block; width: 800px; padding: 25px 0px 25px 0px; border: 1px solid black;">
-                <div style="display: flex; flex-direction: row; align-items: center; justify-content:space-evenly;">
-                    <div style="display: block; border: 1px solid black; padding: 10px; width: 360px;">
-                        <b style="color: #FF5733;">
-                            40 Bad firms
-                        </b>
-                        <br>
-                        (average stock price growth: $10)
-                    </div>
-                    <div style="display: block; border: 1px solid black; padding: 10px; width: 360px;">
-                        <b style="color: #097969;">
-                            60 Good firms
-                        </b>
-                        <br>
-                        (average stock price growth: $50)
-                    </div>
-                </div>    
-            </div>
-            <div style="display: flex; justify-content: center;"><img width="700" style="width: 400px; height: 50px;" src="https://harvard.az1.qualtrics.com/CP/Graphic.php?IM=IM_38bveJ6pXKt7gAS" height="279"></div>
-            <div style="display: flex; justify-content: center;">
-                <div style="width: 300px; border: 1px solid black; padding: 10px; text-align: center; margin-right: 25px;">
-                    <b style="color: #FF5733;">
-                        Bad firms
-                    </b>
-                  <div style="color: ;"><b class="">X%</b><u><b></b></u> large</div>
-                  <div style="color: ;"><b class="">(100 - X)%</b><u><b></b></u> small</div>
-                </div>
-                <div style="width: 300px; border: 1px solid black; padding: 10px; text-align: center; margin-left: 25px;">
-                    <b style="color: #097969;">
-                        Good firms
-                    </b>
-                  <div style="color: ;"><u><b class=""></b></u><b>(100 - X)%</b> large</div>
-                  <div style="color: ;"><u><b class=""></b></u><b>X%</b> small</div>
-                </div>
-              </div>
-              <br>
-              <div style="text-align: center;">
-                <span style="display: inline-block; font-size: 70px; color: #c1c1c1;">↓</span>
-              </div>
-<br>
-              <div style="width: 550px; border: 1px solid black; padding: 10px; text-align: center; margin: 0 auto;">
-                A firm was randomly drawn from the group of 100 and its size is revealed. This firm is <u><b class="">small</b></u>.
-            </div>
-            <br> 
-              
-        </center>
-    </li>
-    <li>
-        Each firm you forecast will be randomly drawn from a group of 100 firms, of which 60 are Good and 40 are Bad. 
+        The 2024 earnings of the firm are partly predictable. 
+        Specifically, the change in the firm’s earnings between 2023 and 2024 is determined by two components:
         <ul>
             <li>
-                Good firms are <b>more</b> than 50% likely to be large (<b>X%</b> in the figure above), and 
+                A <b>predictable change</b> equal to the previous change in the firm’s earnings between 2022 and 2023.
             </li>
             <li>
-                Bad firms are <b>less</b> than 50% likely to be large (<b>(100 - X)%</b> in the figure above).
-            </li>
-            <li>
-                The exact likelihood (<b>X%</b>) that Good vs. Bad firms are large will vary from round to round. For each firm you forecast, you will be told these probabilities.
+                An <b>unpredictable change</b> that will be a random draw from the numbers 
+                <center>
+                    (-8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8),
+                </center>
+                where each number is <b>equally likely to be drawn.</b>
             </li>
         </ul>
     </li>
     <li>
-        The <b>future increase in the stock price depends only on whether the firm is Good or Bad</b> and not directly on its size.
+        The relative importance of these two components is given by the predictability level  P, a fraction between 0 and 1. In particular, the earnings change is given by the formula
+        <center>
+            <div class="formula">
+                Earnings change from 2023 to 2024 = 
+                    <br>
+                    <b>P</b> &#x2715; (Previous earnings change from 2022 to 2023) +  (1 – <b>P</b>) &#x2715; (Unpredictable change).
+            </div>
+        </center>
     </li>
     <li>
-        In each round, you will be asked to forecast the stock growth of a different firm.  To help you make your forecast, we <b>will tell you whether the firm is large and the likelihood that Good vs. Bad firms are large.</b>
+        If you know the change in the firm’s earnings between 2023 and 2024, the earnings of the firm in 2024 is simply the firm’s earnings in 2023 plus the change in earnings. 
     </li>
     <li>
-        In total, you will complete 13 rounds of the task.  Across these rounds, the likelihood Good vs. Bad firms are large will vary.  These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
+        In each round, you will be given a different firm to forecast. You will be told the earnings of that firm over the last two years, as well as the predictability level P. Your task is to <b>forecast the earnings of the firm in 2024.</b>
+    </li>
+    <li>
+        In total, you will complete 13 rounds of this task. Across these rounds, the predictability level P will vary. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
     </li>
     </ul>
 </div>
@@ -100,9 +53,8 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions  may affect your bonus payment. 
-    For each round, there will be a statistically correct forecast of the stock price growth of the firm. 
-    If a decision in this study is selected for payment, you will recieve $10 if your answer is within +/- $1 of the statistically correct forecast, and nothing otherwise. 
+    Your decisions may affect your bonus payment. For each round, there will be a statistically correct forecast of the earnings of the firm. 
+    If a decision in this part is selected for payment, you will receive $10 if your answer is within +/- $1 of the statistically correct forecast, and nothing otherwise. 
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -122,15 +74,11 @@
     <br>
     <ul>
         <li>
-            In this example, the probability that good firms are large is 10%.
+            In this example, the predictability level is 0.8, and the firm’s earnings over the last two years (2023 and 2022) are $130 and $112, repectively. 
         </li>
         <li>
-            A large firm was drawn.
+            You would give your forecast of the 2024 earnings of this firm, based on the information provided.
         </li>
-        <li>
-            You then need to give your forecast of the stock price growth of this firm.
-        </li>
-  
     </ul>
 
 </div>
@@ -147,7 +95,7 @@
     <br>
    <ul>
        <li>
-        You will forecast the stock price growth of the firm.     
+        You will forecast the 2024 earnings of the firm. 
     </li>
        <li>
         We will ask you <b>how certain</b> you are about your forecast. Specifically, we are interested in how likely you think it is (in percentage terms) that your forecast is actually the statistically correct forecast.
