@@ -13,6 +13,7 @@ data/*
 *.csv
 *.xlsx
 *.png
+*.jpeg
 *.docx
 *.txt
 Analyses/*
