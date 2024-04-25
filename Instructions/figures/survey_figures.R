@@ -47,7 +47,7 @@ g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   labs(x = "Gallons of juice", y = "Happiness from juice") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
-  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
+  coord_cartesian(x = c(0, 100), y = c(0, 15)) + 
   geom_hline(yintercept = 0) +  # Change axes line color to blue
   geom_vline(xintercept = 0) +  # Change axes line color to blue
   theme_minimal() + 
