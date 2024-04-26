@@ -208,7 +208,7 @@ for (i in 1:nrow(tasks_df)) {
 
     "&value=",
     value1,
-    "&PROLIFIC_PID=123&STUDY_ID=456&SESSION_ID=6789"
+    "&PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}"
   ))
   
 }
