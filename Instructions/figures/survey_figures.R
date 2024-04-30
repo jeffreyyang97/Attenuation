@@ -77,7 +77,7 @@ ggsave(paste0(dir,"CMA_juice.png"),
 data <- data.frame(gallons_of_milk = 0:1000/10)
 
 # Calculate happiness (square root of gallons of milk)
-data$healthiness <- data$gallons_of_milk * (200 -data$gallons_of_milk)
+data$healthiness <- 5/9*data$gallons_of_milk * (200 -data$gallons_of_milk)
 
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = healthiness)) +
