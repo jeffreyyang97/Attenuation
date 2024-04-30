@@ -88,7 +88,7 @@ EXT,q33a2,I should always switch in the first row of the choice list so that I g
 EXT,q33a3,I should always switch in the last row of the choice list. ,
 FOR,q12,Which one of the following statements is true?,
 FOR,q12a1,"When I'm asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that my forecast of the firm’s stock price growth is statistically correct, given the available information. ",
-FOR,q12a2,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that they will actually pay me the bonus that I’ve earned.",
+FOR,q12a2,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how predictable I think the firm’s earnings will be.",
 FOR,q22,Which one of the following statements is true?,
 FOR,q22a1,"The unpredictable change is a random draw from the numbers between -8 and +8, with each number equally likely to be drawn.  ",
 FOR,q22a2,"The unpredictable change is a random draw from the numbers between -8 and +8, with positive numbers more likely to be drawn than negative numbers.",
