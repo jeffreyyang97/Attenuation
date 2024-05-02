@@ -64,65 +64,56 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, you will <b>guess whether a company’s earnings are high or low after getting advice from another participant. </b>
+    In this study, you will <b>guess whether a coin toss came up Heads or Tails after getting advice from another participant.</b> This other participant may try to get you to guess that the coin came up Heads.
         <ul>
     <li>
-     In total, there are 100 companies, 50 of which have high and 50 of which have low earnings. The computer <b>secretly and randomly selects one of these companies,</b> each with equal probability.
+        The computer tosses a coin that comes up Heads or Tails with equal probability. Your task is to allocate <b>100 points between “Heads” and “Tails” to indicate how likely you think it is the coin came up Heads or Tails.</b>
+        <ul>
+            <li>
+                The <b>more</b> points you allocate to the actual outcome, the <b>higher your bonus earnings will be, on average.</b>
+            </li>
+        </ul>
     </li>
     <li>
-        Your task is <b>to guess what the selected company’s earnings are.</b> Specifically, you have to indicate the percentage chance that you think that the company’s earnings are high.
+        Before allocating your points, you may receive a message from another participant. 
+        This other participant <b>sees the outcome of the coin toss</b> and <b>chooses between revealing this information to you and not revealing it.</b>
+        <ul>
+            <li>
+                If the participant chooses <b>Reveal</b>, you will be told the outcome of the coin toss. 
+            </li>
+            <li>
+                If the participant chooses to <b>Not Reveal</b>, you will not get any message. 
+            </li>
+        </ul> 
     </li>
     <li>
-        Before making your guess, you <b>may receive a message from another participant. </b>
-    </li>
-    <ul>
-        <li>
-            This other participant <b>potentially</b> sees the company’s actual earnings. If they do observe those earnings, they can <b>choose to either Reveal or Not Reveal the actual earnings to you.</b> The other participant <b>cannot lie</b> about the earnings, <b>but they can choose to Not Reveal to you what they’ve seen. </b>
-        </li>
-        <li>
-            The bonus of this other participant depends on your guess about whether the company has high earnings: <b>the higher your guess, the more money the other participant receives</b> 
-            <div class="tooltip_ext1">
-                (hover here in case you’re interested in the details).
-                <span class="tooltiptext1">
-                    The other participant’s chances of winning $20 increases in your guess about how likely it is that the company’s earnings are high.
-                    <br> 
-                    Other’s chance of winning $20 (in %): 100-0.01 &#x2715; (100-Your guess)&sup2;	                    
-                </span>
-            </div>
-        </li>
-        <li>
-            This means: the other participant <b>has an opportunity to get you to guess that the company’s earnings are high by selectively revealing the earnings</b> to you.
-        </li>
-        <li>
-            Whether or not the other participant actually observes the company’s earnings is decided by a <b>random computer draw</b>. With some percentage chance, the other participant observes the earnings. With the remaining percentage chance, they observe nothing.
-        </li>
-        <li>
-            This means: if you do not get a message from the other participant, it is either because <b>the other participant was not selected to observe the company’s earnings</b>, or because they were <b>selected to observe the earnings but decided to Not Reveal to you.</b>
-        </li>
-        <li>
-            When choosing to Reveal or Not Reveal, the other participant knows that you know their percentage chance of observing the earnings.
-        </li>
-    </ul>
-    <li>
-        Whenever you do receive a message from the other participant, you will know the company’s actual earnings with certainty, and <b>hence it is straightforward to make your guess. We will not ask you for your guess in those rounds. </b>
+        <b>The other participant’s decision about whether or not to reveal may be influenced by how they get paid: for each point that you allocate to “Heads”, they get an amount $x.</b>
+        We call this number x the “<b>bonus multiplier</b>.”
     </li>
     <li>
-        Instead, we will <b>only ask for your guess in rounds in which you don’t receive a message from the other participant.</b>
+        <ul>
+            <li>
+                For example: if you allocate 70 points to “Heads” and the bonus multiplier is 6 cents, the other participant gets 70 &#x2715; $0.06 = $4.20.
+            </li>
+            <li>
+                This means: The <b>higher</b> the bonus multiplier, the <b>more the other participant benefits from you allocating points to “Heads”.</b>
+            </li>
+            <li>
+                When choosing to Reveal or Not Reveal, <b>the other participant knows that you know how their bonus is determined.</b>
+            </li>
+        </ul>
     </li>
     <li>
-        The figure below sums up the above explained
-    </li>
-    <center>
-        <img width="700px" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_02Sh8yzZGCGnkYU" alt="">
-    </center>
-    <li>
-        In each round, you will be told the <b>other participant’s chance of observing the company’s earnings</b> which is chance <b>p</b> in the figure above. Your will then make your guess.
+        In each round, you will be told the other participant’s bonus multiplier before you allocate your points.
     </li>
     <li>
         You can also guess fractions, such as 6.78%.
     </li>
     <li>
-        In total, you will complete 13 rounds of this task. Across these rounds, the other participant’s chance of observing the actual earnings will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+        Whenever the other participant chooses Reveal, <b>you will know the outcome of the coin toss, and hence your decision is straightforward. We will not ask you for your decision in those rounds. </b>
+    </li>
+    <li>
+        In total, you will complete 13 rounds of this task. Across these rounds, the other participant’s bonus multiplier will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
     </li>
 </ul>
 </div>
@@ -137,28 +128,26 @@
     Your decisions in this part of the study may affect your bonus. If a round in this part is selected for payment, you may win a bonus of $10. Your chances of winning that bonus depend on whether a round with or without a message gets selected.
    <ul>
         <li>
-            <b>If round with message selected:</b> This means the other participant was selected to observe the company’s earnings and decided to Reveal. In this scenario, you will win the $10 with certainty since you know the truth. Recall that we will simply skip these rounds when asking about your guesses.
+            <b>If round with message selected:</b> This means the other participant decided to Reveal. In this scenario, you will win the $10 with certainty. Recall that we will simply skip these rounds when asking about your decision.
         </li>
         <li>
             <b>If round without message selected:</b> 
-            This means that either the other participant was not selected to observe earnings, or they were selected to observe earnings but chose to Not Reveal. These are the 13 rounds in which we ask for your guesses. In this case, your chance of winning the $10 bonus is given by the accuracy of your guess. If you’re interested, you can 
-            hover here 
+            This means that the other participant chose to Not Reveal. These are the 11 rounds in which we ask for your guesses. In this case, your chance of winning the $10 bonus is given by how many points you allocate to the correct outcome. If you’re interested, you can  
             <div class="tooltip_ext">
                 hover here to read the specific procedure that determines your bonus payment. 
                 <span class="tooltiptext">
                     Bonus details:
                 <ul>
                     <li>
-                        If the company had high earnings, your chance of receiving the bonus  of $10 is  (100 – 1/100  &#x2715; (Your guess – 100)&#178;)%
+                        If the coin came up Heads, your chance of receiving the bonus  of  $10 is  (100 – 1/100  &#x2715; (Your guess – 100)&#178;)%
                     </li>
                     <li>
-                    	If the company had low earnings, your chance of receiving the bonus  of  $10 is  (100 – 1/100 &#x2715; (Your guess)&#178;)%
+                        If the coin came up Tails, your chance of receiving the bonus  of  (100 – 1/100 &#x2715; (Your guess)&#178;)%
                     </li>
                 </ul>  
                 </span>
             </div>  
-            This procedure might seem complicated, but all this means is that you should <b>provide your best guess of how likely you think it is that earnings are high when you didn’t receive a message.</b>
-           
+            This procedure might seem complicated, but all this means is that you should <b>provide your best guess of how likely you think it is that the coin came up Heads when you didn’t receive a message.</b>
         </li>
 
    </ul> 
@@ -182,10 +171,13 @@
     <br>
     <ul>
         <li>
-            In this example, the other participant’s chance of observing the actual earnings was 55%.
+            In this example, the other participant’s bonus multiplier for the points you allocate to “Heads” is $0.04, and they decided to not reveal the outcome of the coin toss to you.
         </li>
         <li>
-            You then tell us how likely you think it is the firm has high earnings, given that you did not receive a message from the other participant.
+            You then tell us how likely you think it is the coin came up Heads by allocating 100 points.
+        </li>
+        <li>
+            Remember that we will only ask for your decision in rounds where you didn’t get a message.
         </li>
     </ul>
 </div>  
@@ -197,14 +189,14 @@
 </h2>
 <div style="padding-left: 30px;">
    <br>
-   In each round, we will ask you two questions:      
-    <br>
+   In each round, we will ask you two questions:
+       <br>
    <ul>
        <li>
-        You will make your guess that the firm’s earnings are high. 
+        You will allocate 100 points to express how likely you think it is the coin came up Heads. 
     </li>
        <li>
-        We will ask you <b>how certain</b> you are about your guess. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible guess, given the information you have.
+        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given the information available to you.
     </li>
    </ul>
 </div>
