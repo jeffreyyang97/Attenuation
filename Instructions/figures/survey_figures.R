@@ -630,15 +630,15 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
  
 
  
- a <- 100
- t<-5
- py<-1 
+ a <- 200
+ t<-19
+ py<-5
  
  # Create a dataframe with x values
- df <- data.frame(px = seq(0.1, 15, by = 0.1))
+ df <- data.frame(px = seq(0, 10, by = 0.1))
  
  # Define a vector of different values for c
- c_values <- c(1:5)
+ c_values <- c(1:3)
  
  # Create a list to store ggplot objects
  plots <- list()
@@ -649,7 +649,6 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
 
    df[[paste0("c", c)]] <-  (a/(2*c)) - (t/(2*c*py))*df$px
    
-
 
  }
  
@@ -664,6 +663,67 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
         x = "px",
         y = paste0("(",a,"/(2*c)) - (",t,"/(2*c*",py,"))*px)")) +
    theme_minimal()
-
+  
+ c<-1
  
+  print(paste0("Plot of utility ",a,"*x - ",c,"x*x + ",t,"y",""))
+  
+  
+  pjuice<-5
+df <- data.frame(pmilk = seq(1, 10, by = 0.1))
+df$milk <- 100*pjuice/(df$pmilk*pjuice + df$pmilk*df$pmilk)
+df$line <- "optimal"
+
+
+df_max <- data.frame(pmilk = seq(1, 10, by = 0.1))
+df_max$milk <- 100/df_max$pmilk
+
+df_max$line <- "max_possible"
+
+df<-rbind(df, df_max)
+
+ggplot(df, aes(x = pmilk, y = milk, color =line)) +
+  geom_line()
+
+
+
+
+
+# Create a dataframe with x values
+df <- data.frame()
+
+# Define a vector of different values for c
+pjuices <- c(3, 5, 7)
+
+# Loop through each value of c and create a ggplot object
+for (pjuice in pjuices) {
+  df_tmp <- data.frame(pmilk = seq(1, 10, by = 0.1))
+  df_max <- data.frame(pmilk = seq(1, 10, by = 0.1))
+  df_tmp$pjuice <- pjuice
+  df_max$pjuice <- pjuice
+  
+  df_tmp$milk <- 100 * pjuice / (df_tmp$pmilk * pjuice + df_tmp$pmilk * df_tmp$pmilk)
+  df_tmp$line <- "optimal"
+  df_max$milk <- 100 / df_max$pmilk
+  df_max$line <- "max_possible"
+  
+  df <- rbind(df, rbind(df_tmp, df_max))
+}
+
+# Plot all lines in a single plot
+ggplot(df, aes(x = pmilk, y = milk, color = as.factor(pjuice), linetype = line)) +
+  geom_line() +
+  labs(title = "Plot of Milk Production",
+       x = "pmilk",
+       y = "milk") +
+  theme_minimal()
+
+
+c<-1
+
+print(paste0("Plot of utility ",a,"*x - ",c,"x*x + ",t,"y",""))
+
+
+  
+  
   
