@@ -85,7 +85,7 @@ g <- ggplot(data, aes(x = gallons_of_milk, y = healthiness)) +
   labs(x = "Gallons of healthy drink consumed", y = "Health") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
-  coord_cartesian(x = c(0, 100), y = c(0, 10100)) + 
+  coord_cartesian(x = c(0, 100), y = c(0, 6000)) + 
   geom_hline(yintercept = 0) +  # Change axes line color to blue
   geom_vline(xintercept = 0) +  # Change axes line color to blue
   theme_minimal() + 
@@ -623,3 +623,47 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
 ["energy sector (Ticker: RSPG)","technology sector (Ticker: RSPT)","health care sector (Ticker: RSPH)","consumer staples sector (Ticker: RSPS)","utilities sector (Ticker: RSPU)","industrials sector (Ticker: RSPN)","materials sector (Ticker: RSPM)","consumer discretionary sector (Ticker: RSPD)","real estate sector (Ticker: RSPR)","financial sector (Ticker: RSPF)","biotechnology sector (Ticker: IBB)","semiconductor sector (Ticker: SOXQ)","aerospace and defense sector (Ticker: PPA)"]
 
 
+ 
+ 
+ 
+
+ 
+
+ 
+ a <- 100
+ t<-5
+ py<-1 
+ 
+ # Create a dataframe with x values
+ df <- data.frame(px = seq(0.1, 15, by = 0.1))
+ 
+ # Define a vector of different values for c
+ c_values <- c(1:5)
+ 
+ # Create a list to store ggplot objects
+ plots <- list()
+ 
+ # Loop through each value of c and create a ggplot object
+ for (c in c_values) {
+   # Calculate y values for the function c*x
+
+   df[[paste0("c", c)]] <-  (a/(2*c)) - (t/(2*c*py))*df$px
+   
+
+
+ }
+ 
+ 
+ # Reshape the data from wide to long format for ggplot
+ df_long <- reshape2::melt(df, id.vars = "px", variable.name = "c", value.name = "y")
+ 
+ # Plot all lines in a single plot
+ ggplot(df_long, aes(x = px, y = y, color = c)) +
+   geom_line() +
+   labs(title = paste0("Plot of utility ",a,"*x - cx*x + ",t,"y"," by different c"),
+        x = "px",
+        y = paste0("(",a,"/(2*c)) - (",t,"/(2*c*",py,"))*px)")) +
+   theme_minimal()
+
+ 
+  
