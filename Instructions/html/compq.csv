@@ -328,7 +328,7 @@ STO,q12a1,"When I’m asked to indicate my certainty about my decision, the peop
 STO,q12a2,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that I have as much information about the asset as a financial market analyst.",
 STO,q22,Which one of the following statements is <b>NOT</b> true?,
 STO,q22a1,I will be asked to forecast inflation.,
-STO,q22a2,I will be asked to forecast the growth of different  financial assets.,
+STO,q22a2,I will be asked to forecast the growth of different  financial assets. ,
 STO,q32,Suppose the time horizon is 9 months and the asset is a fund replicating the S&P500. Which one of the following statements is true?,
 STO,q32a1,I will be asked to forecast total growth of the fund replicating the  S&P500 over the next nine months.,
 STO,q32a2,I will be asked to forecast total growth of the fund replicating the  S&P500 ETF over the next nine months and then annualize this number.,
