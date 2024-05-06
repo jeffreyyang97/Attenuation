@@ -319,7 +319,7 @@ DIS,q23,Suppose there are 10 Payers. Remember each Payer starts out with 100 poi
 DIS,q23a1,"If I award 10 points to myself, then each Payer ends up with 96 points because for each point I transfer 0.4 points get deducted from each Payer.",
 DIS,q23a2,"If I award 10 points to myself, then each Payer ends up with 100 points.",
 DIS,q23a3,"If I award 10 points to myself, then each Payer ends up with 99.6 points because they share the cost.",
-DIS,q33,Suppose there are 10 Payers. Remember each Payer starts out with 100 points. Which of the following statements is true?,
+DIS,q33,Which one of the following statements is true?,
 DIS,q33a1,"For every point I award to myself, 0.4 points will be subtracted from the points of each of the Payers but not from my points.",
 DIS,q33a2,"For every point I award to myself, 0.4 points will be subtracted from my points, but not from the points of the Payers.",
 DIS,q33a3,"For every point I award to myself, 0.4 points will be subtracted from my points and from the points of each of the Payers.",
