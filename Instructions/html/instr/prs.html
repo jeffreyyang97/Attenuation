@@ -7,15 +7,14 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, we ask you to imagine that <b>you are a farmer who needs to split water for irrigation between the two growing seasons</b> this year. You have a <b>fixed amount of water in a reservoir</b>. <b>Your objective is to maximize your happiness, which depends on your crop yield in the two growing seasons.</b> The challenge lies in the unpredictability of the weather in the second growing season.
+    In this study you are a farmer who needs <b>to split 100 barrels of water for irrigating your crops between two growing seasons:  Spring and Summer.</b>  Your job is to allocate the water between seasons <b> to maximize your total crop yield.</b>
     <ul>
     <li>
-        Your water reservoir <b>contains a total of 100 barrels of water</b> that you can only use over the course of the two growing seasons of the current year. There is no point in saving water for later years because rain will fill up the reservoir after the second season anyways.
+        Your total crop yield is equal to all of your Spring crop yield plus 90% of your Summer crop yield (some of your crop goes bad in the Summer months).
     </li>
- 
     <li>
-        Specifically, in each season the crop yield is determined by the following formula
-    
+        Your crop yield in each season depends on how much water you allocate to that season.   Specifically in each season your yield is determined by the following formula.
+     
     <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
         <div style="width: 100%; text-align: center;">
             <img style=" width: 40%; height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_p7ldK9V3Mq3BpC2" alt="Plot 2"/>
@@ -36,50 +35,39 @@
         <li>
             For example, while the crop yield from 45 barrels of water in a given season is higher than the crop yield from 40 barrels of water, the yield boost derived from those additional 5 barrels is much smaller than the yield boost that results from using 5 versus 0 barrels of water. 
         </li>
+        <li>
+            This makes it valuable to allocate water <b>to both seasons.</b>
+        </li>
     </ul>
     </li>
     <li>
-        This means: it is important <b>that you have some water available in both seasons.</b>
-    </li>
-    <li>
-        In the first season, the weather is perfectly predictable. Your challenge is <b>the weather in the second season: There’s a 50% chance of experiencing a drought,</b> in which case <b>some of the water in your reservoir dries up</b> and cannot be used for irrigation. Conversely, there's also a <b>50% chance of rain, adding some water to your reservoir</b> in the second season.
-    </li>
-    <li>
-        This means: how much total crop yield you end up with <b>depends on the amount of water you allocate to each season, as well as the random outcome of a weather “shock” in the second season.</b>
+        In the Spring, the amount of water that determines the crop yield is exactly the amount you allocate.  But <b>in the Summer there will be a weather shock that either increases or decreases the water</b> you allocate to the season:
         <ul>
             <li>
-               <b> With 50% chance, a certain amount of water will be added,</b> increasing your yield in the second season. 
+               <b> With 50% chance, a certain amount of water will be added,</b> increasing your yield in the Summer.
             </li>
             <li>
-               <b> With the remaining 50% chance, a certain amount of water will be removed,</b> decreasing your yield in the second season (you cannot have less than 0 barrels of water in the reservoir).
+               <b> With the remaining 50% chance, a certain amount of water will be removed,</b> decreasing your yield in the Summer (though you cannot have less than 0 barrels of water).
             </li>
             <li>
-                The <b>amount of water that gets added or removed</b> (the size of the weather shock) <b>varies</b> across the rounds in this study. In some rounds, the weather is very volatile such that large amounts of water can get added or removed, while in other rounds the weather is more stable, so that relatively little water can get added or removed.
+                In each round, you will be told <b>the size of the weather shock: the amount of water that gets either added to or removed from the reservoir in the Summer.</b>  You will then decide how you allocate your water between the Spring and Summer.
             </li>
-            <li>
-                When you make your decision, <b>you will not know whether the weather shock adds or removes water</b>. All you will know is how volatile the weather is (how much water would get added or removed).
-            </li>
+
         </ul>
-    </li>
-    <li>
-            Your goal is <b>to maximize your total happiness</b> from the crop yield in <b>both</b> seasons. Your total happiness is given by the following equation: 
-        <center>
-            <div class="formula_li" style="font-weight: bold;">
-                Happiness  = First season yield + <u>90%</u> of second season yield
-            </div>
-        </center>
-    </li>
-    <li>
-        This reflects that the crop yield in the second season is worth a bit less to you because it only accrues in the future.
-    </li>
-    <li>
-        In each round, you will be told <b>the amount of water that the weather shock either adds or removes from the reservoir</b> in the second growing season. You will then decide how you allocate your water.
+        <li>
+            The size of the weather shock is an important consideration for how you allocate your water:
+            <ul>
+                <li>
+                    <b>If the weather shock is large, you run the risk of having only very little water in the Summer,</b> which would have a large negative effect on your expected crop yield.
+                </li>
+            </ul>
+        </li>
     </li>
     <li>
         You can also allocate fractions of Barrels, such as 6.7 Barrels.
     </li>
     <li>
-        In total, you will complete 11 rounds of this task. Across these rounds, the size of  the weather shock varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in that one round will determine your bonus. 
+        In total, you will complete 13 rounds of this task. Across these rounds, the size of the weather shock varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in that one round will determine your bonus.
     </li>
 </ul>
 </div>
@@ -94,10 +82,10 @@
     Your decisions  may affect your bonus. If a round in this study is selected for payment, the computer will randomly determine the outcome of the weather shock. We will then calculate your earnings as described above. Your bonus then equals 
     <center>
         <div class="formula">
-            Bonus (in $) = Happiness/2
+            Bonus (in $) = Total yield/2
         </div>
     </center>
-    What this means is that it is in your best interest <b>to allocate your points in a way that maximizes the farmer’s happiness.</b>
+    What this means is that it is in your best interest <b>to allocate your points in a way that maximizes the total crop yield.</b>
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -117,7 +105,7 @@
     <br>
     <ul>
         <li>
-            In this example, the amount of water that gets randomly added to or removed from what’s left in your reservoir in the second season is 23 barrels.
+            In this example, the amount of water that gets randomly added to or removed from what’s left in your reservoir in the Summer is 23 barrels.
         </li>
         <li>
             You then need to decide how to split your 100 barrels of water between the two seasons.
