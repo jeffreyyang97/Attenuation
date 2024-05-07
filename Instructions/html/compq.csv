@@ -342,55 +342,68 @@ TAX,q12a2,"When I’m asked to indicate my certainty about my decision, the peop
 TAX,q22,Which one of the following statements is true?,
 TAX,q22a1,"When Fred’s income jumps to a higher tax bracket, he pays the higher rate only on the portion of his income in that tax bracket. ",
 TAX,q22a2,"When Fred’s income jumps to a higher tax bracket, he pays the higher rate on his entire income. ",
-TAX,q33,"Below is the federal income tax schedule. Which one of the following statements is true about the federal income tax Fred would owe if his income is $60,000?
+TAX,q33,"
+<style>
+table{
+    border-collapse: collapse; margin: 10px;
+}
+tr{
+    border-collapse: collapse; border-bottom: 1px solid black;
+}
+td{
+    border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;
+}
+</style>
+
+Below is the federal income tax schedule. Which one of the following statements is true about the federal income tax Fred would owe if his income is $60,000?
 <br>
 <center>
-    <table style=""border-collapse: collapse; margin: 10px;"">
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+    <table>
+        <tr >
+            <td >
                 Federal Tax Rate
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 Income Bracket
             </td>
         </tr>
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+        <tr >
+            <td >
                 12%
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 $0 to $20,000
             </td>
         </tr>
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+        <tr >
+            <td >
                 18%
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 $20,000 to $50,000
             </td>
         </tr>
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+        <tr >
+            <td >
                 26%
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 $50,000 to $80,000
             </td>
         </tr>
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+        <tr >
+            <td >
                 32%
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 $80,000 to $120,000
             </td>
         </tr>
-        <tr style=""border-collapse: collapse; border-bottom: 1px solid black;"">
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+        <tr >
+            <td >
                 42%
             </td>
-            <td style=""border-collapse: collapse; padding: 5px 10px 5px 10px; text-align: center;"">
+            <td >
                 $120,000 and above
             </td>
         </tr>
