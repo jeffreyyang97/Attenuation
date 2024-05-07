@@ -1,24 +1,103 @@
 
+<style>
+    .table{
+        border-collapse: collapse;
+        margin: 10px;
 
+    }
+    .tr{
+        border-collapse: collapse;
+        border-bottom: 1px solid black;
+        
+    }
+    .td{
+        border-collapse: collapse;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        
+    }
+</style>
 <br>
 <h2>
     <u>Your task:</u>
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, <b>you will estimate the income taxes owed by a hypothetical taxpayer named Fred. </b>
+    In this study, <b>you will estimate the income taxes owed by a hypothetical taxpayer named Fred.  </b>
     <ul>
     <li>
-        Fred is a 32-year-old U.S. citizen. Fred is filing his 2023 U.S. Federal Tax Return for income earned over 2023 (filing in spring 2024), claiming a Single filing status with <b>no dependents </b> and <b>claiming the standard deduction.</b>
+        Fred’s income is subject to two taxes: a <b>federal tax</b> and <b>a state tax.</b>
     </li>
     <li>
-        Fred’s tax computation is particularly simple, since <b>all of his taxable income comes from his annual salary.</b> He has <b> no other sources of taxable income,</b> and is <b>not claiming additional credits, deductions, or exemptions</b> (beyond the standard deduction).
+        The federal income tax contains 5 tax brackets:
+        <center>
+            <table class="table">
+                <tr class="tr">
+                    <td class="td">Federal Tax Rate</td>
+                    <td class="td">Income Bracket</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">12%</td>
+                    <td class="td">$0 to $20,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">18%</td>
+                    <td class="td">$20,000 to $50,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">26%</td>
+                    <td class="td">$50,000 to $80,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">32%</td>
+                    <td class="td">$80,000 to $120,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">42%</td>
+                    <td class="td">$120,000 and above</td>
+                </tr>
+            </table>
+        </center>
     </li>
     <li>
-            In each round, we will ask you to estimate the <b>total federal income tax</b> Fred would have to pay for <b>different levels of his annual salary.</b>
+        The state income tax contains 3 tax brackets:
+        <center>
+            <table class="table">
+                <tr class="tr">
+                    <td class="td">State Tax Rate</td>
+                    <td class="td">Income Bracket</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">3%</td>
+                    <td class="td">$0 to $30,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">7%</td>
+                    <td class="td">$30,000 to $70,000</td>
+                </tr>
+                <tr class="tr">
+                    <td class="td">10%</td>
+                    <td class="td">$70,000 and above</td>
+                </tr>
+            </table>
+        </center>
     </li>
     <li>
-        In total, you will complete 11 rounds of this task. Across these rounds, the annual salary of Fred varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
+            These brackets work just as actual U.S. tax brackets do. Specifically, when Fred’s income jumps to a higher tax bracket, he doesn't pay the higher rate on his entire income. <b>He pays the higher rate only on the portion of his income that's in the new tax bracket.</b>
+            <ul>
+                <li>
+                    For instance, if Fred’s income is $35,000, he would pay federal taxes equal to 12% on the $20,000 portion of his income in the first bracket, plus 18% on the $15,000 portion of his income in the second bracket. 
+                </li>
+                <li>
+                    Similarly, in the scenario above Fred would pay state taxes equal to 3% on the $30,000 portion of his income in the first bracket, plus 7% on the $5,000 portion of his income in the second bracket. 
+                </li>
+            </ul>
+    </li>
+    <li>
+        In each round, we will ask you to estimate the total income tax Fred would have to pay for different levels of income.
+    </li>
+    <li>
+        In total, you will complete 11 rounds of this task. Across these rounds, the income of Fred varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
     </li>
 </ul>
 </div>
@@ -30,7 +109,7 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions  may affect your bonus payment. If a decision in this study is selected for payment, you earn $10 if you are within $200 of the correct answer. 
+    Your decisions in this part of the study may affect your bonus payment. If a decision in this part is selected for payment, you will receive $10 if your answer is within +/-$300 of the correct answer. 
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -50,10 +129,10 @@
     <br>
     <ul> 
         <li>
-            In this example, Fred’s annual salary is $70,000.        
+            In this example, Fred’s income is $65,000.
         </li>
         <li>
-            You then need to estimate how much Fred would have to pay in federal income taxes.
+            You then need to estimate how much Fred would have to pay in total income taxes.
         </li>
     </ul>
 </div>
@@ -70,7 +149,7 @@
     <br>
    <ul>
        <li>
-        You will estimate how much Fred would have to pay in federal income taxes. 
+        	You will estimate how much Fred would have to pay in total income taxes. 
     </li>
        <li>
         We will ask you <b>how certain</b> you are about your answer. Specifically, we are interested in how likely you think it is (in percentage terms) that your answer is actually correct.
