@@ -7,14 +7,20 @@
     }
     .tr{
         border-collapse: collapse;
-        border-bottom: 1px solid black;
         
     }
     .td{
         border-collapse: collapse;
         padding: 5px 10px 5px 10px;
-        text-align: center;
+        border: 1px solid black;
         
+    }
+
+    .th{
+        border-collapse: collapse;
+        padding: 5px 10px 5px 10px;
+        border: 1px solid black;
+        text-align: center; 
     }
 
     
@@ -35,8 +41,8 @@
         <center>
             <table class="table">
                 <tr class="tr">
-                    <td class="td">Federal Tax Rate</td>
-                    <td class="td">Income Bracket</td>
+                    <td class="th">Federal Tax Rate</td>
+                    <td class="th">Income Bracket</td>
                 </tr>
                 <tr class="tr">
                     <td class="td">12%</td>
@@ -66,8 +72,8 @@
         <center>
             <table class="table">
                 <tr class="tr">
-                    <td class="td">State Tax Rate</td>
-                    <td class="td">Income Bracket</td>
+                    <td class="th">State Tax Rate</td>
+                    <td class="th">Income Bracket</td>
                 </tr>
                 <tr class="tr">
                     <td class="td">3%</td>
@@ -96,7 +102,7 @@
             </ul>
     </li>
     <li>
-        In each round, we will ask you to estimate the total income tax Fred would have to pay for different levels of income.
+        In each round, we will ask you to estimate the total income tax <b>(state plus federal)</b> that Fred would have to pay for different levels of income.
     </li>
     <li>
         In total, you will complete 11 rounds of this task. Across these rounds, the income of Fred varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
@@ -134,7 +140,7 @@
             In this example, Fred’s income is $65,000.
         </li>
         <li>
-            You then need to estimate how much Fred would have to pay in total income taxes.
+            You then need to estimate how much Fred would have to pay in total income taxes (state income taxes plus federal income taxes).
         </li>
     </ul>
 </div>
