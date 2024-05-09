@@ -47,7 +47,7 @@ g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   labs(x = "Gallons of juice", y = "Happiness from juice") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
-  coord_cartesian(x = c(0, 100), y = c(0, 15)) + 
+  coord_cartesian(x = c(0, 100), y = c(0, 10)) + 
   geom_hline(yintercept = 0) +  # Change axes line color to blue
   geom_vline(xintercept = 0) +  # Change axes line color to blue
   theme_minimal() + 
@@ -376,20 +376,23 @@ data$happiness <- sqrt(data$gallons_of_milk)
 
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
-  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  geom_line(color = "blue", linewidth=2) +  
   labs(x = "Barrels of water", y = "Crop yield in a given season") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
-  coord_cartesian(x = c(0, 100), y = c(0, 25)) + 
-  geom_hline(yintercept = 0) +  # Change axes line color to blue
-  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  coord_cartesian(x = c(0, 100), y = c(0, 10)) + 
+  geom_hline(yintercept = 0) +  
+  geom_vline(xintercept = 0) +  
   theme_minimal() + 
-  theme(panel.grid.major = element_blank(),  # Remove gridlines
+  theme(panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.text = element_text(size = 20),  
         axis.title = element_text(size = 24),
         axis.ticks = element_line(),
-        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  
+
+
+
 
 g
 ggsave(paste0(dir,"PRS.png"),
@@ -630,15 +633,15 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
  
 
  
- a <- 200
- t<-19
- py<-5
+ a <- 400
+ t<-300
+ py<-7.5
  
  # Create a dataframe with x values
- df <- data.frame(px = seq(0, 10, by = 0.1))
+ df <- data.frame(px = seq(1, 10, by = 0.1))
  
  # Define a vector of different values for c
- c_values <- c(1:3)
+ c_values <- c(1)
  
  # Create a list to store ggplot objects
  plots <- list()
@@ -652,6 +655,13 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
 
  }
  
+ df[[paste0("c", 10)]] <- 1000/df$px
+ 
+budget 100 
+optimal 90 .. 1 -> max 200
+optimal 100 .. 0.5 -> max 200
+
+
  
  # Reshape the data from wide to long format for ggplot
  df_long <- reshape2::melt(df, id.vars = "px", variable.name = "c", value.name = "y")
@@ -662,15 +672,16 @@ ggsave(paste0(dir,"FOR.png"), plot = gg, width = 8, height = 4, units = "in")
    labs(title = paste0("Plot of utility ",a,"*x - cx*x + ",t,"y"," by different c"),
         x = "px",
         y = paste0("(",a,"/(2*c)) - (",t,"/(2*c*",py,"))*px)")) +
-   theme_minimal()
+   theme_minimal() +
+   scale_y_continuous(limits = c(0, 250))
   
  c<-1
  
   print(paste0("Plot of utility ",a,"*x - ",c,"x*x + ",t,"y",""))
   
   
-  pjuice<-5
-df <- data.frame(pmilk = seq(1, 10, by = 0.1))
+  pjuice<-2
+df <- data.frame(pmilk = seq(1, 3, by = 0.1))
 df$milk <- 100*pjuice/(df$pmilk*pjuice + df$pmilk*df$pmilk)
 df$line <- "optimal"
 
@@ -693,16 +704,17 @@ ggplot(df, aes(x = pmilk, y = milk, color =line)) +
 df <- data.frame()
 
 # Define a vector of different values for c
-pjuices <- c(3, 5, 7)
+pjuice <- 2
+alphas <- seq(0.1, 1, by=  0.1 )
 
 # Loop through each value of c and create a ggplot object
-for (pjuice in pjuices) {
-  df_tmp <- data.frame(pmilk = seq(1, 10, by = 0.1))
-  df_max <- data.frame(pmilk = seq(1, 10, by = 0.1))
-  df_tmp$pjuice <- pjuice
-  df_max$pjuice <- pjuice
+for (alpha in alphas) {
+  df_tmp <- data.frame(pmilk = seq(0.7, 4, by = 0.1))
+  df_max <- data.frame(pmilk = seq(0.7, 4, by = 0.1))
+  df_tmp$alpha <- alpha
+  df_max$alpha <- alpha
   
-  df_tmp$milk <- 100 * pjuice / (df_tmp$pmilk * pjuice + df_tmp$pmilk * df_tmp$pmilk)
+  df_tmp$milk <- 100 * pjuice * alpha * alpha/ (alpha * alpha * df_tmp$pmilk * pjuice + df_tmp$pmilk * df_tmp$pmilk)
   df_tmp$line <- "optimal"
   df_max$milk <- 100 / df_max$pmilk
   df_max$line <- "max_possible"
@@ -711,7 +723,7 @@ for (pjuice in pjuices) {
 }
 
 # Plot all lines in a single plot
-ggplot(df, aes(x = pmilk, y = milk, color = as.factor(pjuice), linetype = line)) +
+ggplot(df, aes(x = pmilk, y = milk, color = as.factor(alpha), linetype = line)) +
   geom_line() +
   labs(title = "Plot of Milk Production",
        x = "pmilk",
@@ -719,9 +731,50 @@ ggplot(df, aes(x = pmilk, y = milk, color = as.factor(pjuice), linetype = line))
   theme_minimal()
 
 
-c<-1
 
-print(paste0("Plot of utility ",a,"*x - ",c,"x*x + ",t,"y",""))
+# Create a dataframe with x values
+df <- data.frame()
+
+# Define a vector of different values for c
+pjuice <- 2
+alphas <- seq(0.1, 1, by=  0.1 )
+
+# Loop through each value of c and create a ggplot object
+# for (alpha in alphas) {
+#   df_tmp <- data.frame(pmilk = seq(0.7, 4, by = 0.1))
+#   df_max <- data.frame(pmilk = seq(0.7, 4, by = 0.1))
+#   df_tmp$alpha <- toString(alpha)
+#   df_max$alpha <-  toString(alpha)
+#   
+#   df_tmp$milk <- 100 * pjuice * alpha * alpha/ (alpha * alpha * df_tmp$pmilk * pjuice + df_tmp$pmilk * df_tmp$pmilk)
+#   df_tmp$line <- "optimal"
+#   df_max$milk <- 100 / df_max$pmilk
+#   df_max$line <- "max_possible"
+#   df <- rbind(df, rbind(df_tmp, df_max))
+#   
+# }
+
+df_tmp <- data.frame(pmilk = seq(0.7, 5, by = 0.1))
+df_max <- data.frame(pmilk = seq(0.7, 5, by = 0.1))
+df_tmp$alpha <- "Cobb Douglas"
+df_max$alpha <- "Cobb Douglas"
+
+df_tmp$milk <- 100  /df_tmp$pmilk/2
+df_tmp$line <- "optimal"
+df_max$milk <- 100 / df_max$pmilk
+df_max$line <- "max_possible"
+
+df <- rbind(df, rbind(df_tmp, df_max))
+
+
+# Plot all lines in a single plot
+ggplot(df, aes(x = pmilk, y = milk, color = alpha, linetype = line)) +
+  geom_line() +
+  labs(title = "Plot of Milk Production",
+       x = "pmilk",
+       y = "milk") +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, max(df$milk)))
 
 
   
