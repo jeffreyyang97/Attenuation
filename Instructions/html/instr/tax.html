@@ -21,12 +21,11 @@
         padding: 5px 10px 5px 10px;
         border: 1px solid black;
         text-align: center; 
-        font-weight: bold;
     }
 
     
 </style>
-<br> 
+<br>
 <h2>
     <u>Your task:</u>
 </h2>
@@ -35,90 +34,67 @@
     In this study, <b>you will estimate the income taxes owed by a hypothetical taxpayer named Fred.  </b>
     <ul>
     <li>
-        Fred lives in California. His income is subject to two taxes: the <b>U.S. federal tax</b> and <b>California's state tax</b>.
+        Fred’s income is subject to two taxes: a <b>federal tax</b> and <b>a state tax.</b>
     </li>
     <li>
-        As a reminder, the U.S. federal income tax and California's state income tax contain the following tax brackets:
+        The federal income tax contains 5 tax brackets and the state income tax contains 3 tax brackets:
         <div style="display: flex; justify-content: space-evenly; align-items: center;">
+
             <table class="table">
                 <tr class="tr">
-                    <td class="th">Federal Tax Rate</td>
+                    <td class="th"><b>Federal Tax Rate</b></td>
                     <td class="th">Income Bracket</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">0%</td>
-                    <td class="td">$0 to $13,850</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">10%</td>
-                    <td class="td">$13,850 to $24,850</td>
                 </tr>
                 <tr class="tr">
                     <td class="td">12%</td>
-                    <td class="td">$24,850 to $58,575</td>
+                    <td class="td">$0 to $20,000</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">22%</td>
-                    <td class="td">$58,575 to $109225</td>
+                    <td class="td">18%</td>
+                    <td class="td">$20,000 to $50,000</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">24%</td>
-                    <td class="td">$109,225 to $195951</td>
+                    <td class="td">26%</td>
+                    <td class="td">$50,000 to $80,000</td>
                 </tr>
                 <tr class="tr">
                     <td class="td">32%</td>
-                    <td class="td">$195.951 to $245,101</td>
+                    <td class="td">$80,000 to $120,000</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">35%</td>
-                    <td class="td">$245,101 and above</td>
+                    <td class="td">42%</td>
+                    <td class="td">$120,000 and above</td>
                 </tr>
             </table>
+
             <table class="table">
                 <tr class="tr">
-                    <td class="th">State Tax Rate</td>
+                    <td class="th"><b>State Tax Rate</b></td>
                     <td class="th">Income Bracket</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">0%</td>
-                    <td class="td">$0 to $5,363</td>
+                    <td class="td">3%</td>
+                    <td class="td">$0 to $30,000</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">1%</td>
-                    <td class="td">$5,363 to $15,775</td>
+                    <td class="td">7%</td>
+                    <td class="td">$30,000 to $70,000</td>
                 </tr>
                 <tr class="tr">
-                    <td class="td">2%</td>
-                    <td class="td">$15,775 to $30,047</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">4%</td>
-                    <td class="td">$30,047 to $44,322</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">6%</td>
-                    <td class="td">$44,322 to $59,444</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">8%</td>
-                    <td class="td">$59,444 to $73,713</td>
-                </tr>
-                <tr class="tr">
-                    <td class="td">9.30%</td>
-                    <td class="td">$73,713 and above</td>
+                    <td class="td">10%</td>
+                    <td class="td">$70,000 and above</td>
                 </tr>
             </table>
-            <br>
         </div>
     </li>
     <li>
-            Recall how tax brackets work: when Fred’s income jumps to a higher tax bracket, he doesn't pay the higher rate on his entire income. <b>He pays the higher rate only on the portion of his income that's in the new tax bracket.</b>
+            These brackets work just as actual U.S. tax brackets do. Specifically, when Fred’s income jumps to a higher tax bracket, he doesn't pay the higher rate on his entire income. <b>He pays the higher rate only on the portion of his income that's in the new tax bracket.</b>
             <ul>
                 <li>
-                    For instance, if Fred’s income is $27,000, he pays 0% <u>federal taxes</u> on the first $13,850 portion of his income, plus 10% on the $24,850 - $13,850 = $11,000 portion of his income in the second bracket, plus 12% on the $27,000 - $24,850 = $2,150 portion of his income in the third bracket. 
+                    For instance, if Fred’s income is $35,000, he would pay federal taxes equal to 12% on the $20,000 portion of his income in the first bracket, plus 18% on the $15,000 portion of his income in the second bracket. 
                 </li>
-                <li> 
-                    Similarly, in the scenario above Fred would pay 0% <u>state taxes</u> on the first $5,363 portion of his income, plus 1% on the $15,775 - $5,363 = $10,412 portion of his income in the second bracket, plus 2% on the $27,000 - $15,775 = $11,225 portion of his income in the third bracket. 
+                <li>
+                    Similarly, in the scenario above Fred would pay state taxes equal to 3% on the $30,000 portion of his income in the first bracket, plus 7% on the $5,000 portion of his income in the second bracket. 
                 </li>
             </ul>
     </li>
