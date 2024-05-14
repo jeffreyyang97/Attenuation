@@ -67,36 +67,87 @@
     In this study, you will <b>guess a secretly drawn number based on advice from another participant.</b>
         <ul>
             <li>
-                The computer randomly <b>draws a “secret number” between 0 and 20 with equal probability.</b> This means that each of 0, 1, 2, 3, 4, and so on all the way up to 20 are equally likely to come up. You will not see which secret number was drawn. If you guess it well enough, you will receive a bonus of $5.
+                The computer randomly <b>draws a “secret number” between 0 and 100 with equal probability.</b> This means that each of 0, 1, 2, 3, 4, and so on all the way up to 100 are equally likely to come up. You will not see which secret number was drawn. You receive more money the closer your guess is to the secret number. 
+                <ul>
+                    <li>
+                        As you can see in the picture below, the penalty for missing the secret number by a little bit is small, but the penalty becomes increasingly larger the further away your guess is. This means: to increase your own bonus, you should avoid stating a guess far away from the secret number. 
+                        
+                        <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
+                            <div style="width: 1000%; text-align: center;">
+                                <img style=" width: 40%; height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1IyoVQaDZ2Vw6Y7" alt="Plot 2"/>
+                                <div style="width: 100%;">
+                                    <b>
+                                        Payment = $10 –  0.004 &#215; (secret number – your guess)&#178;
+                                    </b>
+                                </div>
+                            </div>  
+            
+                        </div>
+                        Plot: Bonus vs. Distance between guess and secret number 
+                        
+                    </li>
+                </ul>
             </li>
-    <li>
-        Before making your guess, you will receive a message from another participant. This other participant sees the secret number and then chooses which number to report to you. 
-        <ul> 
             <li>
-                The other participant <b>can report the actual secret number to you or a different one.</b>
+                Before making your guess, you will receive a message from another participant. <b>This other participant sees the secret number and then chooses which number to report to you.  </b>
+                <ul> 
+                    <li>
+                        The other participant <b>can report the actual secret number to you or a different one.</b>
+                    </li>
+                </ul>
             </li>
-        </ul>
-    </li>
-    <li>
-        The other participant’s decision about which number to report to you may be influenced by how they get paid: <b>for each unit increment that your guess lies above the secret number, they get an amount <span style="color: blue;">$x</span>.</b> We call this number x the other’s “overestimation premium”.
-        <ul>
-           <li>
-            For example: if the secret number number is 10, your guess is 15 and the other’s overestimation premium is $1.00, the other participant gets 5 &#x2715; $1.00 = $5.00.
-           </li>
-           <li>
-            This means: <b>The higher the overestimation premium, the more the other participant benefits from you guessing a higher number.</b>
-           </li>
-           <li>
-            When choosing which number to report, the other participant knows that you know what their overestimation premium is.
-           </li>
-        </ul>
-    </li>
-    <li>
-        In each round, you will be told <b>the other participant’s overestimation premium before you make your guess.</b>
-    </li>
-    <li>
-        In total, you will complete 11 rounds of this task. Across these rounds, the other participant’s overestimation premium will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
-    </li>
+            <li>
+                The other participant’s decision about which number to report to you may be influenced by how they get paid. The other participant receives two bonuses: an <b>Accuracy Bonus and a High-Guess Bonus.</b>
+            </li>
+            <li>
+                To sum up, the other’s bonus is determined as follows: 
+                <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
+                    <div style="width: 40%; text-align: center;">
+                        <b>      
+                            High-Guess Bonus:
+                        </b>
+                            <br>
+                            Share <b style="color: blue;">x</b>% of:
+                        <img style=" width: 100%; height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_1IyoVQaDZ2Vw6Y7" alt="Plot 2"/>
+                        <div>
+                            <b>
+                                Payment = $10 –  0.004 &#215; (100 – your guess)&#178;
+                            </b>
+                        </div>
+                    </div>  
+                    <div style="width: 40%; text-align: center;">
+                        <b>
+                            Overestimation Bonus: 
+                        </b>
+                            <br>
+                            Share (100 - <b style="color: blue;">x</b>%) of:
+                        <img style="width: 100%;  height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_kVz3z478ew4YbTT" alt="Plot 1"/>
+                        <div>
+                            <b>
+                                Payment = $10 –  0.004 &#215; (secret number  – your guess)&#178;
+                            </b>
+                        </div>
+                    </div>
+                
+                </div>
+                <ul>
+                    <li>
+                        This means: The higher the bonus share for the High-Guess Bonus, the more the other participant benefits from you guessing a higher number, rather than a number close to the secret number. Conversely, the lower the share for the High-Guess Bonus, the more the other participant benefits from you estimating a number close to the secret number.
+                    </li>
+                    <li>
+                        For example, when the other participant receives 100% of the Accuracy Bonus, then they get paid in exactly the same way you are. On the other hand, if the other participant receives 100% of the High-Guess Bonus, then their bonus and your bonus are determined in completely unrelated ways.
+                    </li>
+                    <li>
+                        When choosing which number to report, the other participant knows that you know what their bonus shares are.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                In each round, you will be told both the other participant’s bonus shares and which number they report to you. Then you will make your guess.
+            </li>
+            <li>
+                In total, you will complete 11 rounds of this task. Across these rounds, the other participant’s bonus shares will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+            </li>
 </ul>
 </div>
 <br>
@@ -107,8 +158,13 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will receive $5 if your guess is within +/-1 of the secret number, and nothing otherwise. 
-  
+    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will receive a bonus payment determined by the accuracy of your guess as described above:  
+
+    <center>
+        <div class="formula">
+            Payment = $10 –  0.004 &#215; (secret number – your guess)&#178;
+        </div>
+    </center>
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
@@ -128,10 +184,10 @@
     <br>
     <ul>
         <li>
-            In this example, the other participant’s overestimation premium for your guess was $0.30, and they decided to report to you that the secret number was 8.
+            In this example, the other participant receives 70% of the Accuracy Bonus and 30% of the High-Guess Bonus, and they decided to report to you that the secret number was 74.
         </li>
         <li>
-            You then then make your guess by picking a number between 0 and 20.
+            	You then then make your guess by picking a number between 0 and 100.
         </li>
     </ul>
 </div>  
@@ -150,7 +206,7 @@
         	You will state what you think is the secret number.
     </li>
        <li>
-        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision, given the available information? 
+        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given the information available to you.
     </li>
    </ul>
 </div>
