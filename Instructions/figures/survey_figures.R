@@ -19,7 +19,7 @@ data$happiness <- sqrt(data$gallons_of_milk)
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   geom_line(color = "blue", linewidth=2) +  # Change line color to blue
-  labs(x = "Gallons of milk", y = "Happiness from milk") +  
+  labs(x = "Bottles of milk", y = "Happiness from milk") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
   coord_cartesian(x = c(0, 100), y = c(0, 10)) + 
@@ -44,7 +44,7 @@ ggsave(paste0(dir,"CMA_milk.png"),
 # Create a line plot with blue axes lines and larger axis labeling
 g <- ggplot(data, aes(x = gallons_of_milk, y = happiness)) +
   geom_line(color = "orange", linewidth=2) +  # Change line color to blue
-  labs(x = "Gallons of juice", y = "Happiness from juice") +  
+  labs(x = "Bottles of juice", y = "Happiness from juice") +  
   scale_x_continuous(expand = c(0, 0)) +  
   scale_y_continuous(expand = c(0, 0)) +  
   coord_cartesian(x = c(0, 100), y = c(0, 10)) + 
@@ -133,6 +133,74 @@ ggsave(paste0(dir,"CMA_juice.png"),
 
 
 
+#################################################################################
+#################################PRO######################################
+#################################################################################
+
+
+
+# Create a dataframe with gallons of milk ranging from 0 to 100
+data <- data.frame(distance = 0:1000/10)
+
+# Calculate happiness (square root of gallons of milk)
+data$bonus <- 10 - 0.004 * data$distance * data$distance
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = distance, y = bonus)) +
+  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  labs(x = "Distance between guess and secret number", y = "Your bonus in $") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 50), y = c(0, 10.5)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CHT_self_bonus.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
+
+
+
+
+# Create a dataframe with gallons of milk ranging from 0 to 100
+data <- data.frame(distance = 0:1000/10)
+
+# Calculate happiness (square root of gallons of milk)
+data$bonus <- 10 - 0.004*(100 - data$distance)^2
+
+# Create a line plot with blue axes lines and larger axis labeling
+g <- ggplot(data, aes(x = distance, y = bonus)) +
+  geom_line(color = "blue", linewidth=2) +  # Change line color to blue
+  labs(x = "Your guesss", y = "Other participant's bonus in $") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+  scale_y_continuous(expand = c(0, 0)) +  
+  coord_cartesian(x = c(0, 50), y = c(0, 10.5)) + 
+  geom_hline(yintercept = 0) +  # Change axes line color to blue
+  geom_vline(xintercept = 0) +  # Change axes line color to blue
+  theme_minimal() + 
+  theme(panel.grid.major = element_blank(),  # Remove gridlines
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 20),  # Increase axis text size
+        axis.title = element_text(size = 24),
+        axis.ticks = element_line(),
+        plot.margin = margin(1, 1, 0.1, 0.1, "cm"))  # Increase axis title size
+
+g
+ggsave(paste0(dir,"CHT_other_bonus.png"),
+       g,# File name
+       width = 10,  # Width in inches
+       height = 6,  # Height in inches
+       dpi = 300)   # Resolution in dots per inch
 
 
 
