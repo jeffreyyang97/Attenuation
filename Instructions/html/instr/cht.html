@@ -64,17 +64,21 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, you will <b>guess a secretly drawn number based on advice from another participant.</b>
+    In this study, you will <b>guess a secretly drawn number based on advice from another participant who will partly be paid to make you guess as high as possible.</b>
         <ul>
             <li>
-                The computer randomly <b>draws a “secret number” between 0 and 100 with equal probability.</b> This means that each of 0, 1, 2, 3, 4, and so on all the way up to 100 are equally likely to come up. You will not see which secret number was drawn. You receive more money the closer your guess is to the secret number. 
+                The computer randomly <b>draws a “secret number” between 0 and 100 with equal probability.</b> This means that each of 0, 1, 2, 3, 4, and so on all the way up to 100 are equally likely to come up. You will not see which secret number was drawn. You receive more money the more accurately you guess, i.e. the closer your guess is to the secret number:
+                <center>
+                    <div class="formula" style="font-weight: bold;">
+                        Payment = $10 –  0.001 &#215; (secret number – your guess)&#178;
+                    </div>
+                </center>
                 <ul>
                     <li>
-                        As you can see in the picture below, the penalty for missing the secret number by a little bit is small, but the penalty becomes increasingly larger the further away your guess is. This means: to increase your own bonus, you should avoid stating a guess far away from the secret number. 
-                        
-                        <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
+                        While this formula might look complicated, all it means is that the penalty for missing the secret number by a little bit is small, but the penalty becomes increasingly larger the further away your guess is. 
+                        <div class="plot-container" style="display: none; justify-content: space-evenly; " >
                             <div style="width: 1000%; text-align: center;">
-                                <img style=" width: 40%; height: auto;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_7fpC7cPlLKDmJxs" alt="Plot 2"/>
+                                <img style=" width: 40%; height: auto;" src="" alt="Plot 2"/>
                                 <div style="width: 100%;">
                                     <b>
                                         Payment = $10 –  0.001 &#215; (secret number – your guess)&#178;
@@ -96,13 +100,13 @@
                 </ul>
             </li>
             <li>
-                The other participant’s decision about which number to report to you may be influenced by how they get paid. The other participant receives two bonuses: an  <b>High-Guess Bonus</b> and a <b>Accuracy Bonus</b>.
+                The other participant’s decision about which number to report to you may be influenced by how they get paid. The other participant receives two bonuses: a  <b>High-Guess Bonus</b> and an <b>Accuracy Bonus</b>.
             <ul>
                 <li>
-                    <b>High-Guess Bonus:</b> the other participant’s bonus is partly determined by how high your guess is, i.e. <b>they get paid more if your guess is higher, independent of what the secret number is.</b>
+                    <b>High-Guess Bonus:</b> this bonus is determined by how high your guess is, i.e. <b>the other participant gets paid more if your guess is higher, independent of what the secret number is.</b>
                 </li>
                 <li>
-                    <b>Accuracy Bonus:</b> just like your bonus, the other participant’s bonus is also partly determined by how accurate your guess is (how close your guess is to the secret number)
+                    <b>Accuracy Bonus:</b> just like your bonus, this bonus is also determined by how accurate your guess is (how close your guess is to the secret number)
                 </li>
             </ul>
             </li>
@@ -110,7 +114,7 @@
                 The other participant always receives a certain share (<b>x%</b>) of the High-Guess Bonus and a certain share (100 - <b>x%</b>) of the Accuracy Bonus. For example, it may be that the other participant receives 90% of the High-Guess Bonus and 10% of the Accuracy Bonus, or that they receive 30% of the High-Guess Bonus and 70% of the Accuracy Bonus.
             </li>
             <li>
-                Specifically, the other’s bonus is determined by the following formulas: 
+                Specifically, the other’s bonus is determined as follows: 
                 <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
                     <div style="width: 43%; text-align: center;">
                         <b>      
@@ -139,20 +143,21 @@
                         </div> 
                     </div>               
                 </div>
+                <li>
+                    <b>The higher the share of the High-Guess bonus, the more the other participant benefits from you guessing something high, rather than you guessing accurately. </b>
+                </li>
                 <ul>
+                    
                     <li>
-                        This means: <b>The higher the bonus share for the High-Guess Bonus, the more the other participant benefits from you guessing a higher number, rather than a number close to the secret number.</b> Conversely, <b>the lower the share for the High-Guess Bonus, the more the other participant benefits from you estimating a number close to the secret number.</b>
+                        For example, when the other participant receives 100% of the High-Guess Bonus (and 0% of the Accuracy Bonus), your interests are completely misaligned: their earnings will only depend on how high your guess is.
                     </li>
                     <li>
-                        For example, when the other participant receives 100% of the High-Guess Bonus, then their bonus and your bonus are determined in completely unrelated ways. On the other hand, if the other participant receives 100% of the Accuracy Bonus, then they get paid in exactly the same way you are.
-                    </li>
-                    <li>
-                        When choosing which number to report, the other participant knows that you know what their bonus shares are.
+                        Conversely, the lower the share for the High-Guess Bonus, the more the interests of you and the other participant are aligned, because then they also benefit from you estimating accurately. For example, when the other participant receives 0% of the High-Guess Bonus (and 100% of the Accuracy Bonus), then they get paid in exactly the same way as you are. 
                     </li>
                 </ul>
             </li>
             <li>
-                In each round, you will be told both the other participant’s bonus shares and which number they report to you. Then you will make your guess.
+                In each round, you will be told both the other participant’s bonus shares and which number they report to you. Then you will make your guess. When choosing which number to report to you, the other participant knows that you know what their bonus shares are.
             </li>
             <li>
                 In total, you will complete 11 rounds of this task. Across these rounds, the other participant’s bonus shares will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
@@ -167,7 +172,7 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will receive a bonus payment determined by the accuracy of your guess as described above:  
+    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will receive a bonus payment determined by the accuracy of your guess as described above:
 
     <center>
         <div class="formula">
@@ -193,10 +198,10 @@
     <br>
     <ul>
         <li>
-            In this example, the other participant receives 70% of the High-Guess Bonus and 30% of the Accuracy Bonus, and they decided to report to you that the secret number was 74.
+            In this example, the other participant receives 70% of the High-Guess Bonus and 30% of the Accuracy Bonus, and they decided to report to you that the secret number is 74.
         </li>
         <li>
-            	You then then make your guess by picking a number between 0 and 100.
+            You then then make your guess by picking a number between 0 and 100.
         </li>
     </ul>
 </div>  
@@ -212,7 +217,7 @@
        <br>
    <ul>
        <li>
-        	You will state what you think is the secret number.
+        You will state what you think is the secret number.
     </li>
        <li>
         We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given the information available to you.
