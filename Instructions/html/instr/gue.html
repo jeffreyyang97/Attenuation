@@ -6,30 +6,40 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-        In this study, <b>you will play a game with another participant. You will choose an action ‘Top’ or ‘Bottom’. </b> You will be matched to <b>another participant in the study who will choose ‘Left’ or ‘Right’.</b>  The combinations of your two actions will determine each of your payments.    
+    	In this study, <b>you will participate in a guessing game with another participant.</b> This game works as follows:
     <ul>
     <li>
-        Your earnings from your and the other player's choice will be shown in a payoff matrix like this one:
-                <center>
-            <img style="width: 450px;" src="https://harvard.az1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_VGzOTsBmTmhsB53" alt="">
-        </center>
-        <ul>
-            <li>
-                Your choice determines the row of the matrix determining the payments (top row or bottom row);  the other player's choice determines the column of the matrix (left column or right column).  <b>Together they determine which one cell of the matrix determines both of your payments.</b>
-            </li>
-            <li>
-                In each cell of the table (each combination of your and the other player's choices), the <b>first number (shown in blue) gives the amount you would earn</b> and <b>the second number (shown in red) the amount the other player would earn.</b>
-            </li>
-            <li>
-                The amount '<u><b>X</b></u>', i.e. the payment that occurs if you choose Top and the other player Left,<b> will vary from round to round in the task.</b>
-            </li>
-        </ul>
+        Each player secretly and independently guesses a number between 0 and 100.
     </li>
     <li>
-        In each round, you (and the other player) will be told what X is.   You will then each choose an action, which will determine your payment according to the payoff matrix.
+        The goal of each player is <b>to make a guess that is as close as possible to their so-called target.</b> The tricky part of this game is that <b>each participant’s target depends on the other participant’s guess.</b>
+    <ul>
+        <li>
+            Your target is given by the other participant’s guess, multiplied by a certain number that we will call your <b>MULTIPLIER</b>:
+            <center>
+                <div class="formula_li">
+                    	<b>Your target = Other participant’s guess &#x2715; MULTIPLIER</b>
+                </div>
+            </center>
+        </li>
+        <li>
+            The other participant’s target is given by your guess, multiplied by 0.8:
+            <center>
+                <div class="formula_li">
+                    	<b>Other participant’s target = Your guess &#x2715; 0.8</b>
+                </div>
+            </center>
+        </li>
+    </ul>
     </li>
     <li>
-        In total, you will complete 11 rounds of this task. Across these rounds, the payment X varies.   These rounds are completely independent from one another.  If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
+        For example, if your MULTIPLIER is equal to 1.5 and the other participant guesses 20, then you would maximize your bonus by guessing as closely as possible to 20 &#x2715; 1.5 = 30. However, when you make your own guess, you will not know what the other participant’s guess is.
+    </li>
+    <li>
+        	In each round, you (and the other participant) will be told the MULTIPLER. You will then each make a guess, which will determine your payment according to the payoff formula described below.
+    </li>
+    <li>
+        	In total, you will complete 11 rounds of this task. Across these rounds, <b>the MULTIPLIER  varies.</b> These rounds are completely independent from one another.  If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
     </li>
 </ul>
 </div>
@@ -41,7 +51,20 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions  may affect your bonus payment.  If a decision in this study is selected for payment, you and and the other player will earn the amounts in the matrix shown above that corresponds to your and the other player's choices.
+    Your decisions may affect your bonus payment.  If a decision is selected for payment, you will earn a larger bonus the closer your guess is to the target, up to a maximum of $10. Specifically, your bonus will be equal to 
+
+    
+    <center>
+        <div class="formula">
+            Bonus (in $) = $10 – 1/50 &#x2715; (Distance between your guess and your target)
+        </div>
+    </center>
+
+    This means: <b>you maximize your bonus by guessing as close as possible to your target. </b>
+    <br>
+    The other participant’s bonus will be determined in the same way: their bonus will be equal to $10 – 1/50 x (Distance between their guess and their target). 
+
+
 </div> 
 
 
@@ -63,10 +86,10 @@
     <br>
     <ul> 
         <li>
-            In the example above, X is equal to $3.30.  
+        In the example above, the MULTIPLIER is equal to 1.3.
         </li>
         <li>
-            You then need to decide whether to choose action Top or Bottom.
+            	You then need to guess a number between 0 and 100.
         </li>
     </ul>
 </div>
@@ -83,10 +106,10 @@
     <br>
    <ul>
        <li>
-        You will choose action Top or Bottom.
+        •	You will guess a number.
     </li>
        <li>
-        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that the decision you made is actually your best decision, given your personal preferences and the available information.   
+        We will ask you <b>how certain</b> you are about your guess. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible guess, given the information you have.
     </li>
    </ul>
 </div>
