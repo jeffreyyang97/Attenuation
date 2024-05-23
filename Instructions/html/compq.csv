@@ -176,7 +176,7 @@ VOT,q22a1,"The outcome of the election matters for my earnings (No taxes if A wi
 VOT,q22a2,"The outcome of the election matters for my earnings (No taxes if A wins, taxes of $8 if B wins) only if I submit a vote.",
 VOT,q33,Which one of the following statements is true?,
 VOT,q33a1,"I pay the $1 price for voting, regardless of which option wins.",
-VOT,q33a2,I pay the $1 price for voting only if A wins.,
+VOT,q33a2,I pay the $1 price for voting only if A wins. ,
 VOT,q33a3,I pay the $1 price for voting only if B wins.,
 CHT,q12,Which one of the following statements is true?,
 CHT,q12a1,"When I’m asked to indicate my certainty about my decision, the people running this study are interested in how certain I am that I gave the best possible estimate of the investment quality, given the available information.",
