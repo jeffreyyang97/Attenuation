@@ -390,7 +390,7 @@ GUE,q12a2,"When I’m asked to indicate my certainty about my decision, the peop
 GUE,q23,Which one of the following statements is true?,
 GUE,q23a1,"If my MULTIPLIER is equal to 2 and the other participant guesses 60, then I maximize my bonus by guessing 100.",
 GUE,q23a2,"If my MULTIPLIER is equal to 2 and the other participant guesses 60, then I maximize my bonus by guessing 60.",
-GUE,q33a3,"If my MULTIPLIER is equal to 2 and the other participant guesses 60, then I maximize my bonus by guessing 30.",
+GUE,q23a3,"If my MULTIPLIER is equal to 2 and the other participant guesses 60, then I maximize my bonus by guessing 30.",
 GUE,q33,Which one of the following statements is true?,
 GUE,q33a1,"If my MULTIPLIER is equal to 0.5 and the other participant guesses 40, then I maximize my bonus by guessing 20.",
 GUE,q33a2,"If my MULTIPLIER is equal to 0.5 and the other participant guesses 40, then I maximize my bonus by guessing 40.",
