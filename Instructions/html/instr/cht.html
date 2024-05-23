@@ -64,113 +64,95 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, you will <b>guess a secretly drawn number based on advice from another participant who will partly be paid to make you guess as high as possible.</b>
+    In this study, you will <b>estimate the quality of a hypothetical financial investment product after getting advice from your financial advisor, who might be paid to make you overestimate the investment’s quality.</b> 
         <ul>
             <li>
-                The computer randomly <b>draws a “secret number” between 0 and 100 with equal probability.</b> This means that each of 0, 1, 2, 3, 4, and so on all the way up to 100 are equally likely to come up. You will not see which secret number was drawn. You receive more money the more accurately you guess, i.e. the closer your guess is to the secret number:
+                
+                The investment product’s quality is determined by the computer. Specifically, the computer <b>randomly selects a number between 0 and 100 with equal probability</b>. However, you will not see which quality was selected. Instead, you need to estimate it. You receive more money the more accurate your estimate, i.e. <b>the closer your estimate to the actual investment quality. </b>
 
             </li>
             <li>
-                Before making your guess, you will receive a message from another participant. This other participant does not guess the secret number like you do. Rather, <b>the other participant sees the secret number and then chooses which number to report to you.  </b>
-                <ul> 
-                    <li>
-                        The other participant <b>can report the actual secret number to you or a different one.</b>
-                    </li>
-                </ul>
+                	Before making your estimate, you will receive a message from your financial advisor. Your financial advisor is another participant who was randomly matched to you. The financial advisor does not estimate the investment quality like you do. Rather, the financial advisor knows the investment quality and then chooses which number to report to you. <b>Your advisor can report the actual investment quality to you, but they can also lie.</b> Your advisor’s bonus depends on the estimate you make. 
+
             </li>
             <li>
-                The other participant’s bonus depends on the number you guess. The other participant's total bonus consists of two parts: a  <b>High-Guess Bonus</b> and an <b>Accuracy Bonus</b>.
-                <center>
-                    <div class="formula_li">
-                        Other participant’s total bonus = <b>X</b>% of High-Guess Bonus + (100 - <b>X</b>)% of Accuracy Bonus
-                    </div>
-                </center>
-                
+                There are <b>two types of financial advisors</b> who are paid in different ways.
+                <ul>
+                    <li>
+                        <b>
+                            Unbiased Advisor: 
+                        </b>
+                        This advisor is paid the same way as you. Just like your bonus, their bonus is determined by how accurate your estimate is (how close your guess is to the actual investment quality).
+                    </li>
+                    <li>
+                        <b>
+                            Biased Advisor: 
+                        </b>
+                        This advisor is paid more the higher your estimate is, independent of what the true investment quality is.
+                    </li>
+                </ul>
+
+
                 </li>
+
                 <li>
-                    	These two bonuses both depend on your guess, but in different ways:
-            <ul>
-                <li>
-                    <b>High-Guess Bonus:</b> this bonus is determined by how high your guess is, i.e. <b>the other participant gets paid more if your guess is higher, independent of what the secret number is.</b>
-                </li> 
-                <li>
-                    <b>Accuracy Bonus:</b> just like your bonus, this bonus is also determined by how accurate your guess is (how close your guess is to the secret number)
-                </li>
-                <li>
-                    In case you’re interested in how exactly the Accuracy and High-Guess Bonuses are calculated, please 
-                    <div class="tooltip_ext">
+                    In case you’re interested in how exactly the bonuses of the Unbiased and Biased Advisors are calculated, please   <div class="tooltip_ext">
                         hover here.
                         <span class="tooltiptext">
                             <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
-                                <div style="width: 50%;
-                                text-align: center;
-                                border: 1px solid black;
-                                padding: 10px;
-                                margin: 10px;">
-                                    <b>      
-                                        High-Guess Bonus:
-                                    </b>
-                                        <br>
-                                        Share <b style="">x</b>% of:
-                                        <img style="width: 100%;  height: auto; display: none;" src="" alt="Plot 1"/>
-                                    <div>
-                                        <b>
-                                            $10 –  0.001 &#215; (100 – your guess)&#178;
-                                        </b>
-                                    </div>
-                                </div>  
                                 <div style="    width: 50%;
                                 text-align: center;
                                 border: 1px solid black;
                                 padding: 10px;
                                 margin: 10px; ">
                                     <b>
-                                        Accuracy Bonus  
+                                        Unbiased Advisor:
                                     </b>
                                         <br>
-                                        Share (100 - <b style="">x</b>)% of:
-                                        <img style=" width: 100%; height: auto; display: none;" src="" alt="Plot 2"/>
                                     <div>
                                         <b>
-                                            10 –  0.001 &#215; (secret number  – your guess)&#178;
+                                            10 –  0.001 &#215; (true investment quality – your estimate)&#178;
                                         </b>
                                     </div> 
-                                </div>               
+                                </div>   
+                                <div style="width: 50%;
+                                text-align: center;
+                                border: 1px solid black;
+                                padding: 10px;
+                                margin: 10px;">
+                                    <b>      
+                                        Unbiased Advisor:
+                                    </b>
+                                        <br>
+                                        <img style="width: 100%;  height: auto; display: none;" src="" alt="Plot 1"/>
+                                    <div>
+                                        <b>
+                                            $10 –  0.001 &#215; (100 – your estimate)&#178;
+                                        </b>
+                                    </div>
+                                </div>  
+            
                             </div>    
                         </span>
                     </div>
-
                 </li>
-            </ul>
+                <li>
+                    In each round, there are <b>100 advisors in total</b>. Some of them are Biased and some of them are Unbiased. <b>You will receive advice from only one randomly selected advisor.</b>
             </li>
             <li>
-                Across rounds in this study, sometimes the other participant’s total bonus will mostly be determined by the High-Guess Bonus and sometimes mostly by the Accuracy Bonus. For example, it may be that the other participant receives 90% of the High-Guess Bonus and 10% of the Accuracy Bonus, or that they receive 30% of the High-Guess Bonus and 70% of the Accuracy Bonus.
+                You will be told how many of the 100 advisors are Biased and how many are Unbiased. However, <b>you will not be told whether the Advisor you have been matched with is actually Biased or Unbiased.</b>
             </li>
             <li>
-                <b>The higher the share of the High-Guess bonus, the more the other participant benefits from you guessing something high, rather than you guessing accurately.</b> 
-                <ul>
-                    <li>
-                        For example, when the other participant receives 100% of the High-Guess Bonus (and 0% of the Accuracy Bonus), your interests are completely misaligned: their earnings will only depend on how high your guess is.
-                    </li>
-                </ul>
+               <b> In each round, you will be told how many Biased and Unbiased Advisors there are in total, and which number your matched Advisor reports to you. Then you will make your estimate of the investment quality. </b>
             </li>
             <li>
-                <b>
-                    The higher the share of the Accuracy Bonus, the more the other participant benefits from you guessing accurately.
-                </b>
-                <ul>
-                    <li>
-                        For example, when the other participant receives 0% of the High-Guess Bonus (and 100% of the Accuracy Bonus), then they get paid in exactly the same way as you are. 
-                    </li>
-                </ul>
+                When choosing which number to report to you, your advisor knows that you know how many Biased and Unbiased Advisors there are.
             </li>
 
             <li>
-                In each round, you will be told both the other participant’s bonus shares and which number they report to you. Then you will make your guess. When choosing which number to report to you, the other participant knows that you know what their bonus shares are.
+                In total, you will complete 11 rounds of this task. Across these rounds, the number of Biased and Unbiased Advisors will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
             </li>
-            <li>
-                In total, you will complete 11 rounds of this task. Across these rounds, the other participant’s bonus shares will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
-            </li>
+
 </ul>
 </div>
 <br>
@@ -185,7 +167,7 @@
 
     <center>
         <div class="formula">
-            Payment = $10 –  0.001 &#215; (secret number – your guess)&#178;
+            Payment = $10 –  0.001 &#215; (true investment quality – your estimate)&#178;
         </div>
     </center>
 </div>
@@ -207,10 +189,10 @@
     <br>
     <ul>
         <li>
-            	In this example, the other participant receives 70% of the High-Guess Bonus and 30% of the Accuracy Bonus, and they decided to report to you that the secret number is 74.
+            In this example, there are 70 Biased and 30 Unbiased Advisors. Your randomly selected advisor decided to report to you that the investment quality is 74.
         </li>
         <li>
-            You then then make your guess by picking a number between 0 and 100.
+            You then then make your estimate by picking a number between 0 and 100.
         </li>
     </ul>
 </div>  
@@ -226,7 +208,7 @@
        <br>
    <ul>
        <li>
-        	You will state what you think is the secret number.
+        You will estimate the investment’s quality.
     </li>
        <li>
         We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given the information available to you.
