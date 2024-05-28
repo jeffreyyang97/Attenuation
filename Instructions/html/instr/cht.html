@@ -64,40 +64,40 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    In this study, you will <b>estimate the quality of a hypothetical financial investment product after getting advice from your financial advisor, who might be paid to make you overestimate the investment’s quality.</b> 
+    In this study, you act as a financial advisor <b>who can give advice to a customer on the quality of a hypothetical financial investment product. You are paid more the higher the customer evaluates the investment product’s quality.</b>
         <ul>
             <li>
                 
-                The investment product’s quality is determined by the computer. Specifically, the computer <b>randomly selects a number between 0 and 100 with equal probability</b>. However, you will not see which quality was selected. Instead, you need to estimate it. You receive more money the more accurate your estimate, i.e. <b>the closer your estimate to the actual investment quality. </b>
+                The investment product’s quality is determined by the computer. Specifically, the computer <b>randomly selects a number between 0 and 20 with equal probability.</b> You will see which quality was selected. 
 
             </li>
             <li>
                 	
-                Before making your estimate, you will receive a message from your financial advisor. Your financial advisor is another participant who was randomly matched to you. The financial advisor does not estimate the investment quality like you do. Rather, the financial advisor knows the investment quality and then chooses what to report to you. <b>Your advisor can report the actual investment quality to you, but they can also lie.</b> Your advisor’s bonus depends on the estimate you make. 
+                Your customer is another participant who was randomly matched to you. Your customer <b>does not see the investment quality.</b> Instead, they need to estimate it. Both yours and your customer’s earnings depend on your customer’s estimate. However, you are paid in different ways:
 
-            </li>
-            <li>
-                There are <b>two types of financial advisors</b> who are paid in different ways.
                 <ul>
                     <li>
-                        <b>
-                            Biased Advisor: 
-                        </b>
-                        This advisor is paid more the higher your estimate is, independent of what the true investment quality is.
+                        
+                            <b>Your customer receives more money the more accurate their estimate,</b> i.e. the closer their estimate is to the actual investment quality.  
+                        
+                       
                     </li>
                     <li>
                         <b>
-                            Unbiased Advisor: 
-                        </b>
-                        This advisor is paid the same way as you. Just like your bonus, their bonus is determined by how accurate your estimate is (how close your guess is to the actual investment quality).
+                            You (the advisor) receive more money the higher your customer’s estimate,   
+                          </b>
+                          independent of what the true investment quality is.
                     </li>
                 </ul>
 
 
                 </li>
+                <li>
+                    This means: you get a higher bonus if the other participant’s estimate is higher.
+                </li>
 
                 <li>
-                    In case you’re interested in how exactly the bonuses of the Biased and Unbiased Advisors are calculated, please   <div class="tooltip_ext">
+                    •	In case you’re interested in how exactly your customer’s bonus is calculated, please   <div class="tooltip_ext">
                         hover here.
                         <span class="tooltiptext">
                             <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
@@ -107,10 +107,10 @@
                                 padding: 10px;
                                 margin: 10px;">
                                     <b>      
-                                        Biased Advisor:
+                                        You:
                                     </b>
                                             Bonus (in $) = <br>
-                                            $10 –  0.001 &#215; (100 – your estimate)&#178;
+                                            $10 –  0.001 &#215; (20 – your customer’s estimate)&#178;
                                         
                                 </div>    
              
@@ -121,10 +121,10 @@
                             padding: 10px;
                             margin: 10px; ">
                                 <b>
-                                    Unbiased Advisor:
+                                    Customer 
                                 </b>
                                         Bonus (in $) = <br>
-                                        10 –  0.001 &#215; (true investment quality – your estimate)&#178;
+                                        10 –  0.001 &#215; (true investment quality – your customer’s estimate)&#178;
                                     
                             </div> 
                         </div>    
@@ -132,20 +132,21 @@
                     </div>
                 </li>
                 <li>
-                    In each round, there are <b>many advisors</b>. Some of them are Biased and some of them are Unbiased. <b>You will receive advice from only one randomly selected advisor.</b>
+                    After you see the investment product’s quality and before your customer makes their estimate, you can decide <b>to Reveal the true investment quality to them or to Hide it.</b> 
+                    <ul>
+                        <li>
+                            	If you decide to <b>Reveal</b>, your customer will learn the investment product’s quality. You cannot lie about the quality.
+                        </li>
+                        <li>
+                            	If you decide to <b>Hide</b>, they will not learn the investment product’s quality. 
+                        </li>
+                    </ul>
             </li>
             <li>
-                You will be told what share of all advisors are Biased and what share are Unbiased. However, <b>you will not be told whether the Advisor you have been matched with is actually Biased or Unbiased.</b>
+                Whatever you decide, your customer knows that you had the choice between revealing and hiding the product’s investment quality.
             </li>
             <li>
-               <b> In each round, you will be told what the shares of Biased and Unbiased Advisors are, and which number your matched Advisor reports to you. Then you will make your estimate of the investment quality. </b>
-            </li>
-            <li>
-                When choosing which number to report to you, your advisor knows that you know how what share of advisors are Biased and Unbiased Advisors.
-            </li>
-
-            <li>
-                In total, you will complete 11 rounds of this task. Across these rounds, the shares of Biased and Unbiased Advisors will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+                In total, you will complete 11 rounds of this task. Across these rounds, the investment product’s quality will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
             </li>
 
 </ul>
@@ -158,11 +159,11 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will receive a bonus payment determined by the accuracy of your guess as described above:
+    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will earn a larger bonus the higher your customer’s estimate, up to a maximum of $10. Specifically, your bonus will be equal to
 
     <center>
         <div class="formula">
-            Payment = $10 –  0.001 &#215; (true investment quality – your estimate)&#178;
+            Bonus (in $) = $10 –  0.004 &#215; (20 – your customer’s estimate)&#178;
         </div>
     </center>
 </div>
@@ -184,10 +185,10 @@
     <br>
     <ul>
         <li>
-            In this example, there are 70% Biased and 30% Unbiased Advisors. Your randomly selected advisor decided to report to you that the investment quality is 74.
+            In this example, the investment product’s quality is 13.
         </li>
         <li>
-            You then then make your estimate by picking a number between 0 and 100.
+            	You then then decide to reveal or hide the investment product’s quality from your customer.
         </li> 
     </ul>
 </div>  
@@ -203,10 +204,10 @@
        <br>
    <ul>
        <li>
-        You will estimate the investment’s quality.
+        You will decide to reveal or hide the investment product’s quality.   
     </li>
        <li>
-        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given the information available to you.
+        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given your personal preferences and the available information.
     </li> 
    </ul>
 </div>
