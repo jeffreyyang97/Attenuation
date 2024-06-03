@@ -17,6 +17,15 @@
                 </ul>   
             </li>
     <li>
+        Your score (which determines your bonus) is given by
+<center>
+    <div class="formula_li">
+<b>        Score = Highest chip value drawn - Total cost of drawing chips
+</b>
+        </div>
+</center>
+    </li>
+            <li>
         The computer will <b>repeatedly draw a poker chip from the bag (replacing the chip in the bag after each draw) until it gets one that is higher than some minimum value.</b>  Your job is to tell the computer <b>what you would like this minimum value to be:</b>   
         <b>the first chip that the computer draws that is at least as large as the minimum value will determine your base score.</b>
     </li>
@@ -59,11 +68,11 @@
             choice that leads to the highest score, on average.</b>   
         Specifically, we will have the computer make the full set of draws 1 million times and 
         calculate the average score for every possible minimum value choice you could have made.  
-        If your minimum value choice was within 2 points of the choice that maximized the score in these computer simulations, 
-        you will earn a $10 bonus.
-        This procedure may seem complicated, but it simply means that you should choose the minimum value that you think will earn you the highest average score.
-        
-    <!--
+
+        If your minimum value choice was within +/- 1 point of the choice that maximized the score in these computer simulations, you will earn a $10 bonus.
+
+        This procedure may seem complicated, but it simply means that you should choose the minimum value that you think will earn you the highest score, on average.
+            <!--
 
 
     Your decisions  may affect your bonus payment.  
