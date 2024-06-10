@@ -1,0 +1,215 @@
+<style>
+    .tooltip_ext {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* Add a dotted border bottom */
+        cursor: help; /* Change cursor to a help icon */
+    }
+
+    .tooltip_ext .tooltiptext {
+        visibility: hidden;
+        width: 800px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -700px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip_ext:hover .tooltiptext {
+        visibility: visible; 
+        opacity: 1;
+    }
+
+    .tooltip_ext1 {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* Add a dotted border bottom */
+        cursor: help; /* Change cursor to a help icon */
+    }
+
+    .tooltip_ext1 .tooltiptext1 {
+        visibility: hidden;
+        width: 500px;
+        background-color: #555; 
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -200px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip_ext1:hover .tooltiptext1 {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+<br>
+<h2>
+    <u>Your task:</u>
+</h2>
+<div style="padding-left: 30px;">
+    <br>
+    In this study, you act as a financial advisor <b>who can give advice to a customer on the quality of a hypothetical financial investment product. You are paid more the higher the customer evaluates the investment product’s quality.</b>
+        <ul>
+            <li>
+                
+                The investment product’s quality is determined by the computer. Specifically, the computer <b>selects a number between 0 and 20.</b> You will see which quality was selected. 
+
+            </li>
+            <li>
+                	
+                Your customer is another participant who was randomly matched to you. Your customer <b>does not see the investment quality.</b> Instead, they need to estimate it. Both yours and your customer’s earnings depend on your customer’s estimate. However, you are paid in different ways:
+
+                <ul>
+                    <li>
+                        
+                            <b>Your customer receives more money the more accurate their estimate,</b> i.e. the closer their estimate is to the actual investment quality.  
+                        
+                       
+                    </li>
+                    <li>
+                        <b>
+                            You (the advisor) receive more money the higher your customer’s estimate,   
+                          </b>
+                          independent of what the true investment quality is.
+                    </li>
+                </ul>
+
+
+                </li>
+                <li>
+                    This means: you get a higher bonus if the other participant’s estimate is higher.
+                </li>
+
+                <li>
+                    In case you’re interested in how your as well as your customer's bonuses are calculated, please   <div class="tooltip_ext">
+                        hover here.
+                        <span class="tooltiptext">
+                            <div class="plot-container" style="display: flex; justify-content: space-evenly; " >
+                                <div style="    width: 50%;
+                                text-align: center;
+                                border: 1px solid black;
+                                padding: 10px;
+                                margin: 10px; ">
+                                    <b>
+                                        Your customer:
+                                    </b>
+                                            Bonus (in $) = <br>
+                                            10 –  0.025 &#215; (true investment quality – your customer’s estimate)&#178;
+                                        
+                                </div> 
+
+                                <div style="width: 50%;
+                                text-align: center;
+                                border: 1px solid black;
+                                padding: 10px;
+                                margin: 10px;"> 
+                                    <b>      
+                                        You:
+                                    </b>
+                                            Bonus (in $) = <br>
+                                            $10 –  0.025 &#215; (20 – your customer’s estimate)&#178;
+                                        
+                                </div>    
+             
+                             
+                        </div>    
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    After you see the investment product’s quality and before your customer makes their estimate, you can decide <b>to Reveal the true investment quality to them or to Hide it.</b> 
+                    <ul>
+                        <li>
+                            	If you decide to <b>Reveal</b>, your customer will learn the investment product’s quality. You cannot lie about the quality.
+                        </li>
+                        <li>
+                            	If you decide to <b>Hide</b>, they will not learn the investment product’s quality. 
+                        </li>
+                    </ul>
+            </li>
+            <li>
+                Whatever you decide, your customer knows that you had the choice between revealing and hiding the product’s investment quality.
+            </li>
+            <li>
+                In total, you will complete 11 rounds of this task. Across these rounds, the investment product’s quality will vary. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus. 
+            </li>
+
+</ul>
+</div>
+<br>
+    <hr>   
+    <br>
+<h2>
+<u>Your bonus payment:</u>
+</h2>
+<div style="padding-left: 30px;">
+    <br>
+    Your decisions may affect your bonus payment. If a decision in this study is selected for payment, you will earn a larger bonus the higher your customer’s estimate, up to a maximum of $10. Specifically, your bonus will be equal to
+
+    <center>
+        <div class="formula">
+            Bonus (in $) = $10 –  0.025 &#215; (20 – your customer’s estimate)&#178;
+        </div>
+    </center>
+</div>
+<div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
+    <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
+</div>
+<div class="hidding_div" style="display: none;">
+    <br>
+    <hr>
+ <br>
+ <h2>
+    <u>Example:</u>  
+</h2>
+<br>
+<center>
+    <img class="example_image" style="margin: 5px; border: 2px solid lightgray; width: 75%;" alt="Example image of the decision screen (input later)" src="https://github.com/sebre97/Attenuation/blob/main/Instructions/figures/instr_figures/CHT.png?raw=true">
+</center>
+<div style="padding-left: 30px;">
+    <br>
+    <ul>
+        <li>
+            In this example, the investment product’s quality is 11.
+        </li>
+        <li> 
+            	You then then decide to reveal or hide the investment product’s quality from your customer.
+        </li> 
+    </ul>
+</div>  
+<br>
+<hr>
+<br>
+<h2>
+   <u>Your certainty:</u>
+</h2>
+<div style="padding-left: 30px;">
+   <br>
+   In each round, we will ask you two questions:
+       <br>
+   <ul>
+       <li>
+        You will decide to reveal or hide the investment product’s quality.   
+    </li>
+       <li>
+        We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that yours is actually the best possible decision given your personal preferences and the available information.
+    </li> 
+   </ul>
+</div>
+</div>
