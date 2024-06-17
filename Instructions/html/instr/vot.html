@@ -102,13 +102,13 @@
             margin-bottom: 20px;
         }
   
-        .Skin input[type=checkbox], .Skin input[type=radio]{
+        .Skin .input_instr[type=checkbox], .Skin .input_instr[type=radio]{
             position: relative;
     opacity: 1;
     z-index: 1;
     height: 20px;
     width: 20px;
-    cursor: pointer;
+    cursor: default;
     margin: 10px;
     
     }
@@ -203,14 +203,14 @@
         <div class="input_div">
             <span class="question">Which option do you prefer?</span>
              <center>
-                <form class="radio-inline" id="response">
+                <form class="radio-inline">
                     <div class="radio_container">
                         <div class="radio_div">
-                            <input type="radio" id="accept" name="options" value="1" class="radio_a_r">
+                            <input type="radio" id="accept"  value="1" disabled>
                             <label for="option1">I would like to<br> pay $<span class="incent_treat_2"></span> to vote for A.</label>
                         </div>
                         <div class="radio_div">
-                            <input type="radio" id="reject" name="options" value="0" class="radio_a_r">
+                            <input type="radio" id="reject" value="0" disabled>
                             <label for="option2">I would not like to<br> submit a vote.</label>
                         </div>
                     </div>
