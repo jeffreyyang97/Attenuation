@@ -1,5 +1,136 @@
 
+<head>
 
+    <style>
+    
+    .slidecontainer {
+      width: 100%;
+    }
+    
+    .slider {
+      -webkit-appearance: none;
+      width: 1030px;
+      height: 25px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    
+    .slider:hover {
+      opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      background: blue;
+      opacity: 0;
+      cursor: pointer;
+      border-radius: 50%;
+    
+    }
+    
+    .opacityslider::-webkit-slider-thumb {
+        opacity: 1;
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: blue;
+      cursor: pointer;
+    }
+    
+        .reminder_div{
+            background-color: #F5F5F5;
+            background: ghostwhite; 
+            font-size: 22px; 
+            padding: 10px; 
+            border: 1px solid lightgray; 
+            margin: 10px;
+        }
+        .parameter_div{
+            font-size: 22px;
+            padding: 15px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+    
+        }
+  
+        .input_div {
+            font-size: 22px;
+            padding: 0px;
+            margin-bottom: 0px;
+            margin-top: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+    
+        }
+        .response{
+            height: 35px;
+            width: 80px;
+            font-size: 24px;
+        }
+  
+    .radio-inline input[type="radio"] {
+            display: inline-block;
+        }
+        .radio-inline label {
+            display: inline-block;
+        }
+  
+        .radio_container{
+            display: flex;
+            align-items: flex-start;
+            width: 500px;
+            justify-content: space-around;
+        }
+        .radio_div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .equation{
+            display: flex;
+            justify-content: space-evenly;
+  
+            margin-bottom: 20px;
+        }
+  
+        .Skin input[type=checkbox], .Skin input[type=radio]{
+            position: relative;
+    opacity: 1;
+    z-index: 1;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    margin: 10px;
+    
+    }
+    .par{
+  
+        background-color: #F5F5F5;
+            background: ghostwhite; 
+            font-size: 22px; 
+            padding: 10px; 
+            border: 1px solid lightgray; 
+            width: 350px;
+  text-align: left;
+    }
+  
+  .no-copy {
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari/Chrome */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  }
+    </style>
+    </head>
 <br>
 <h2>
     <u>Your task:</u>
@@ -9,7 +140,7 @@
     In this study <b> you will decide whether or not to submit a vote in an election for option A or option B.</b>
     <ul>
         <li>
-            In each round, you <b>start out with a wealth of $10.</b> If <b>option B wins</b> the election, you <b>must pay $8 in taxes</b>, leaving you with $2.   But if <b>option A</b> wins the election, you won’t be taxed and <b>will keep your entire $10</b>. <b>Submitting a vote (for option A) costs you $1</b>.
+            In each round, you <b>start out with a wealth of $<span class="incent_treat_1"></span>.</b> If <b>option B wins</b> the election, you <b>must pay $<span class="incent_treat_1_aux_1"></span> in taxes</b>, leaving you with $<span class="incent_treat_1_aux_2"></span>.   But if <b>option A</b> wins the election, you won’t be taxed and <b>will keep your entire $<span class="incent_treat_1"></span></b>. <b>Submitting a vote (for option A) costs you $<span class="incent_treat_2"></span></b>.
         
             <ul>
                 <li>
@@ -19,7 +150,7 @@
                     We will add up all of the votes for A and B (including yours if you submit one), and <b>declare A the winner if A receives strictly more votes than B.</b> If both get equally many votes, B is the winner.
                 </li>
                 <li>
-                    Your decision is simply whether to pay $1 to submit a vote for A, or instead to not vote.
+                    Your decision is simply whether to pay $<span class="incent_treat_2"></span> to submit a vote for A, or instead to not vote.
                 </li>
                 <li>
                     The outcome of the election will matter for your earnings, whether or not you decided to vote.
@@ -27,7 +158,7 @@
             </ul>
         </li>
         <li>
-            In each round, you will be told <b>the number of other robot voters.</b> You will then decide <b>whether you would would like to pay $1 to vote for A</b>, or instead not vote.
+            In each round, you will be told <b>the number of other robot voters.</b> You will then decide <b>whether you would would like to pay $<span class="incent_treat_2"></span> to vote for A</b>, or instead not vote.
         </li>
         <li>
             In total, you will complete 11 rounds of this task. Across these rounds, the number of other voters varies. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will influence your bonus.
@@ -42,12 +173,12 @@
 </h2>
 <div style="padding-left: 30px;">
     <br>
-    Your decisions in this part of the study may affect your bonus payment. If a decision in this part is selected for payment, you will start out with $10. You will be taxed $8 if B wins the election and pay $1 if you submitted a vote.
+    Your decisions in this part of the study may affect your bonus payment. If a decision in this part is selected for payment, you will start out with $<span class="incent_treat_1"></span>. You will be taxed $<span class="incent_treat_1_aux"></span> if B wins the election and pay $<span class="incent_treat_2"></span> if you submitted a vote.
 </div>
 <div style="width: 100%; text-align: center; margin-top: 10px" class="instr_button_div">
     <button id="button_instr" class="revealbutton instr_button"><span style="color:#fff;">Next</span></button>
 </div>
-<div class="hidding_div" style="display: none;">
+<div class="hidding_div" style="display: ;">
     <br>
     <hr>
  <br>
@@ -56,7 +187,38 @@
 </h2>
 <br>
 <center>
-    <img class="example_image" style="margin: 5px; border: 2px solid lightgray; width: 75%;" alt="Example image of the decision screen (input later)" src="https://github.com/sebre97/Attenuation/blob/main/Instructions/figures/instr_figures/VOT.png?raw=true">
+    <div class="example_image" style="margin: 5px; border: 2px solid lightgray; width: 75%; text-align: left" alt="Example image of the decision screen (input later)">
+        
+        <div class="reminder_div" style="display:;">
+            <u>Reminder:</u> 
+            You have a wealth of $<span class="incent_treat_1"></span>. Whether or not you vote, <b>you must pay $<span class="incent_treat_1_aux_1"></span> in taxes if B wins</b> the election, but you <b>pay no taxes if A wins the election</b>. 
+            The price of voting is <b>$<span class="incent_treat_2"></span>.</b> 
+            Each one of the other voters randomly votes for A or B with <b>equal probability</b>. A wins the election if it has more votes than B.
+        </div>
+        <div class="parameter_div">
+      In this round:
+            The number of other voters is  <b><u class="">35</u></b>.
+        </div>
+        
+        <div class="input_div">
+            <span class="question">Which option do you prefer?</span>
+             <center>
+                <form class="radio-inline" id="response">
+                    <div class="radio_container">
+                        <div class="radio_div">
+                            <input type="radio" id="accept" name="options" value="1" class="radio_a_r">
+                            <label for="option1">I would like to<br> pay $<span class="incent_treat_2"></span> to vote for A.</label>
+                        </div>
+                        <div class="radio_div">
+                            <input type="radio" id="reject" name="options" value="0" class="radio_a_r">
+                            <label for="option2">I would not like to<br> submit a vote.</label>
+                        </div>
+                    </div>
+                </form>    
+            </center>
+        </div>
+        <br>
+        </div>
 </center>
 <div style="padding-left: 30px;">
     <br>
@@ -65,7 +227,7 @@
             In this example, the number of other voters is 35.
         </li>
         <li>
-            You then need to decide whether to pay $1 to submit a vote for A.
+            You then need to decide whether to pay $<span class="incent_treat_2"></span> to submit a vote for A.
         </li>
     </ul> 
 </div>
@@ -82,7 +244,7 @@
     <br>
    <ul>
        <li>
-        Would you like to pay $1 to submit a vote for A?
+        Would you like to pay $<span class="incent_treat_2"></span> to submit a vote for A?
     </li>
        <li>
         We will ask you <b>how certain</b> you are about your decision. Specifically, we are interested in how likely you think it is (in percentage terms) that the decision you made is actually your best decision, given your personal preferences and the available information.
