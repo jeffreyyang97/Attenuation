@@ -4121,7 +4121,7 @@ abline('h'=0.25,lty=4,col='black')
 plot(t(as.vector(o[1,])),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='')#
 mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin in\n Other 2'),side=1,at=1:4,line=1.5)#
 abline('h'=0.25,lty=4,col='black')
-rm(list = ls())#
+= ls())#
 #
 # -----------------------------------------------------------------------------#
 #
@@ -4147,73 +4147,9 @@ library(paramtest)#
 library(ggplot2)#
 library(modules)#
 library(ellipsis)#
-library(labeling)
-list_interaction <- list()#
-i <- 1#
-for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
-  print(paste0("Current task: ", task_name))#
-  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
-    mutate(FE = as.factor(FE))#
-  FE <- "" #check if task has FE like BEU or PRO #
-  if(length(unique(df_task[["FE"]])) > 1){#
-    FE <- " + factor(FE)"#
-  }#
-  df_atten <- df_task %>% ### attenuation w/o dominance points #
-    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
-    filter((lb_n != par_n) |  (is.na(lb_n))) #
-  df_atten <- df_atten %>%#
-    mutate(#
-      resp_n = scale(resp_n),#
-      par_n = scale(par_n),#
-      high_cu_par = as.numeric(high_cu_par),#
-      cu =scale(cu)#
-    )  #
-  # regression continueous cu#
-  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
-  # regression binary cu#
-  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
-  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
-  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+library(labeling)#
 #
-  # Extract coefficients and p-values#
-  atten_results <- df_atten_test$test %>%#
-    filter(term %in% c("par_n:cu", "par_n")) %>%#
-    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
-    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
-  atten_results_bin <- df_atten_test_bin$test %>%#
-    filter(term %in% c("par_n:high_cu_par"))%>%#
-    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
-    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
-  # Extract confidence intervals#
-  atten_results_ci <- df_atten_test$ci %>%#
-    filter(term %in% c("par_n:cu"))%>%#
-    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
-  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
-    filter(term %in% c("par_n:high_cu_par"))%>%#
-    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
-  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
-  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
-  i<-i+1#
-}#
-#
-df_interaction <- bind_rows(list_interaction) %>% #
-  rename(#
-    "interaction" = "estimate_par_n:cu",#
-    "interaction_lb" = "ciL_par_n:cu",#
-    "interaction_ub" = "ciU_par_n:cu",#
-    "interaction_se" = "std.error_par_n:cu",#
-    "interaction_bin" = "estimate_par_n:high_cu_par",#
-    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
-    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
-    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
-    "par_n_coef" = "estimate_par_n"#
-  ) %>% #
-  mutate(#
-    interaction_n = interaction,# /par_n_coef,#
-    interaction_lb_n = interaction_lb,# /par_n_coef,#
-    interaction_ub_n = interaction_ub ,#/par_n_coef,#
-  )
-install.packages("modules")#
+install.packages("farver")#
 #
 #PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
 # PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
@@ -4320,109 +4256,37 @@ get_reg_result_df_ci <-function(test){#
   return(test$ci %>%#
            pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
 }
-list_interaction <- list()#
-i <- 1#
-for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
-  print(paste0("Current task: ", task_name))#
-  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
-    mutate(FE = as.factor(FE))#
-  FE <- "" #check if task has FE like BEU or PRO #
-  if(length(unique(df_task[["FE"]])) > 1){#
-    FE <- " + factor(FE)"#
-  }#
-  df_atten <- df_task %>% ### attenuation w/o dominance points #
-    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
-    filter((lb_n != par_n) |  (is.na(lb_n))) #
-  df_atten <- df_atten %>%#
-    mutate(#
-      resp_n = scale(resp_n),#
-      par_n = scale(par_n),#
-      high_cu_par = as.numeric(high_cu_par),#
-      cu =scale(cu)#
-    )  #
-  # regression continueous cu#
-  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
-  # regression binary cu#
-  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
-  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
-  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
-#
-  # Extract coefficients and p-values#
-  atten_results <- df_atten_test$test %>%#
-    filter(term %in% c("par_n:cu", "par_n")) %>%#
-    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
-    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
-  atten_results_bin <- df_atten_test_bin$test %>%#
-    filter(term %in% c("par_n:high_cu_par"))%>%#
-    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
-    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
-  # Extract confidence intervals#
-  atten_results_ci <- df_atten_test$ci %>%#
-    filter(term %in% c("par_n:cu"))%>%#
-    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
-  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
-    filter(term %in% c("par_n:high_cu_par"))%>%#
-    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
-  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
-  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
-  i<-i+1#
-}#
-#
-df_interaction <- bind_rows(list_interaction) %>% #
-  rename(#
-    "interaction" = "estimate_par_n:cu",#
-    "interaction_lb" = "ciL_par_n:cu",#
-    "interaction_ub" = "ciU_par_n:cu",#
-    "interaction_se" = "std.error_par_n:cu",#
-    "interaction_bin" = "estimate_par_n:high_cu_par",#
-    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
-    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
-    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
-    "par_n_coef" = "estimate_par_n"#
-  ) %>% #
-  mutate(#
-    interaction_n = interaction,# /par_n_coef,#
-    interaction_lb_n = interaction_lb,# /par_n_coef,#
-    interaction_ub_n = interaction_ub ,#/par_n_coef,#
-  )
-df_interaction <- bind_rows(list_interaction) %>% #
-  rename(#
-    "interaction" = "estimate_par_n:cu",#
-    "interaction_lb" = "ciL_par_n:cu",#
-    "interaction_ub" = "ciU_par_n:cu",#
-    "interaction_se" = "std.error_par_n:cu",#
-    "interaction_bin" = "estimate_par_n:high_cu_par",#
-    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
-    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
-    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
-    "par_n_coef" = "estimate_par_n"#
-  ) %>% #
-  mutate(#
-    interaction_n = interaction,# /par_n_coef,#
-    interaction_lb_n = interaction_lb,# /par_n_coef,#
-    interaction_ub_n = interaction_ub ,#/par_n_coef,#
-  )#
-# ---- plot continueouse cu regression ---- #
-#
-df_interaction$task <- factor(df_interaction$task, #
-                              levels =   df_interaction%>% #
-                                arrange(obj_sol, interaction_ub) %>% #
-                                dplyr::select(task) %>% #
-                                unlist)#
-interaction_plot <- ggplot(df_interaction, aes(x = task, y = interaction)) +#
-  geom_point(size = 1) +#
-  # geom_point(data = df_interaction, aes(x = task, y = - par_n_coef), size = 2) +#
-  geom_errorbar(aes(ymin = interaction_lb, ymax = interaction_ub), width = 0.2) +#
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") + # Add horizontal line at y = 0#
-  geom_vline(xintercept = 22.5, linetype = "dashed", color = "black") + # Add horizontal line at y = 0#
+# Calculate average CU for each task and boundary rank#
+average_cu <- df_ready %>%#
+  group_by(task, boundary_rank) %>%#
+  summarise(avg_rank_cu = mean(cu), .groups = 'drop') %>% #
+  filter(boundary_rank < 6) %>% #
+  filter(task %in%  setdiff(tasks, c("BE1","BE2", "BE3", "BE4", "BE5")))#
+cu_rank <- ggplot() +#
+  geom_point(data = df_ready %>%#
+               filter(boundary_rank < 6)  %>% #
+               filter(task %in%  setdiff(tasks, c("BE1","BE2", "BE3", "BE4", "BE5"))), aes(x = boundary_rank, y = cu, group = task, color = task),#
+             alpha = 0.05, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.7)) +#
+  geom_line(data = average_cu, aes(x = boundary_rank, y = avg_rank_cu, group = task, color = task), size = 1) +#
+  geom_point(data = average_cu, aes(x = boundary_rank, y = avg_rank_cu, color = task), size = 2) +#
   labs(#
-    title = "Par_n:Cu with 95% CI, cu standardized",#dots are paramter coefficient, cu is ratio of 75h percentile cu, \n par_n, resp_n standardized",#
-    x = "Task",#
-    y = "Par_n:Cu"#
+    title = "Average CU per Parameter Rank for each Task",#
+    x = "Rank of Parameter (How far away from the Boundary)",#
+    y = "CU"#
   ) +#
   theme_minimal() +#
   theme(#
-    axis.text.x = element_text(angle = 45, hjust = 1)#
+    axis.text.x = element_text(angle = 45, hjust = 1),#
+    legend.title = element_blank()#
   )#
-#
-interaction_plot
+cu_rank#
+ggsave(filename = paste(path_output_fig, "/cu_par_rank.png", sep = ""),#
+       plot = cu_rank,#
+       width = 2400,#
+       height = 1400,#
+       units = "px")#
+ggsave(filename = paste(path_output_fig_paper, "/cu_par_rank.png", sep = ""),#
+       plot = cu_rank,#
+       width = 2400,#
+       height = 1400,#
+       units = "px")
