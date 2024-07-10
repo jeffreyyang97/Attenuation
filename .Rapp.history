@@ -1,0 +1,4428 @@
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),#
+        # iunique=mean(iunique)#
+        repeat=mean(iunique)<3#
+        )
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),#
+        repeat=mean(iunique)<3#
+        )
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),#
+        # repeat=mean(iunique)<3#
+        )%>%#
+    group_by(whichR)%>%#
+    summarise(#
+        N=length(ID),#
+        unique1=sum(repeat)/mean(N)#
+        )
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        # whichR=mean(whichR),#
+        repeat=mean(iunique)<3#
+        )
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)
+D%>%#
+    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),repeats=mean(iunique)<3#
+        )%>%#
+    group_by(whichR)%>%#
+    summarise(#
+        N=length(ID),#
+        unique1=sum(repeats)/mean(N)#
+        )
+D%>%#
+    filter(asif==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )%>%#
+    group_by(whichR)%>%#
+    summarise(#
+        N=length(ID),#
+        unique1=sum(repeats)/mean(N)#
+        )
+d<-D%>%#
+    filter(asif==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )#
+#
+summary(lm(d$repeats~d$whichR))
+cor.test(d$whichR,d$repeats)
+cor.test(d$whichR,1*d$repeats)
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )#
+#
+o
+# What Was Going On In Initial Heuristic Block Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique==3)
+o
+# What Was Going On In Initial Heuristic Block Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+#
+o
+# By origin block#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    group_by(origin,iunique)%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )
+o
+o%>%#
+    mutate(sums=risk+proper+neither)%>%#
+    group_by(iunique)%>%#
+    summarise(sum(sums))
+# What Was Going On In Initial Heuristic Block Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+#
+o
+# Timing of Risk Block Does Not Predict Use of Heuristic#
+#
+d<-D%>%#
+    filter(asif==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),     #
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )
+d
+cor.test(d$whichProper,1*d$repeats)
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+#
+o
+barplot(t(as.matrix(o)))
+o[1,]
+o[1,]%>%select(-iunique)
+x<-o[1,]%>%select(-iunique)#
+plot(x)
+plot(x[1,])
+x<-as.vector(o[1,]%>%select(-iunique))
+x
+plot(x[1,])
+plot(x)
+x<-t(as.vector(o[1,]%>%select(-iunique)))#
+plot(x)
+x<-t(as.vector(o[1,]%>%select(-iunique)))#
+plot(x,type='h',lend=2,lwd=8)
+x<-t(as.vector(o[1,]%>%select(-iunique)))#
+plot(x,type='h',lend=2,lwd=20)
+plot(x,type='h',lend=2,lwd=20,bty='n')
+x<-t(as.vector(o[1,]%>%select(-iunique)))#
+plot(x,type='h',lend=2,lwd=20,bty='n')#
+abline('h'=0.25,lty=3)
+x<-t(as.vector(o[1,]%>%select(-iunique)))#
+plot(x,type='h',lend=2,lwd=20,bty='n',ylim=c(0,1))#
+abline('h'=0.25,lty=3)
+x
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+#
+o%>%#
+    pivot_wider(names_from=iunique, values_from=c(risk,proper,neither))
+o%>%#
+    pivot_longer(names_from=iunique, values_from=c(risk,proper,neither))
+?pivot_wider
+o%>%#
+    pivot_longer(names_to=iunique, values_to=c(risk,proper,neither))
+o%>%#
+    pivot_longer(names_to=iunique, values_to=c("risk","proper","neither"))
+o%>%pivot_longer(names_to='iunique', values_to=c("risk","proper","neither"))
+o%>%pivot_longer(cols=risk:neither,names_to='iunique', values_to=c("risk","proper","neither"))
+o%>%pivot_longer(cols=risk:neither,names_to='iunique', values_to='a')
+o
+data.frame(t(o))
+?data.frame
+data.frame(t(o),replace=TRUE)
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)%>%#
+    mutate(iunique=string(iunique))#
+#
+data.frame(t(o))
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)%>%#
+    mutate(iunique=as.string(iunique))#
+#
+data.frame(t(o))
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)%>%#
+    mutate(iunique=as.factor(iunique))#
+#
+data.frame(t(o))
+data.frame(t(o%>%select(-iunique)))
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+#
+    %>%#
+    mutate(iunique=as.factor(iunique))#
+#
+data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')
+o
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')
+o
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)
+o
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')
+o
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',ylim=c(0,1))
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',ylim=c(0,0.5))#
+abline('h'=0.25,lty=3)
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray75')#
+abline('h'=0.25,lty=4,col='red')
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+abline('h'=0.25,lty=4,col='red')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+axis(1:4,labels=c('a','b','c','d'))#
+abline('h'=0.25,lty=4,col='black')
+?axis
+axis(1,at=1:4,labels=c('a','b','c','d'))
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+axis(1,at=1:4,labels=c('a','b','c','d'))
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+axis(1,at=1:4,labels=c('a','b','c','d'))#
+abline('h'=0.25,lty=4,col='black')
+o
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+abline('h'=0.25,lty=4,col='black')
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+abline('h'=0.25,lty=4,col='black')
+?mtext
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Risk\nFirst','b','c','d'),side=1,at=1:4)#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Risk\nFirst','b','c','d'),side=1,at=1:4,line=2)#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Risk\nFirst','b','c','d'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Origin in\nRisk','b','c','d'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='')#
+# axis(1,at=1:4,labels=c('Risk\nFirst','b','c','d'))#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))#
+names(o)<-c('u1','u2')#
+#
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+plot(o$u2,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='Twice Repeated')#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')#
+#
+plot(o$u1,type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='Thrice Repeated')#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+# What Was Going On In Initial Heuristic Block, Controlling For Order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    group_by(origin,iunique)%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )#
+o%>%#
+    mutate(sums=risk+proper+neither)%>%#
+    group_by(iunique)%>%#
+    summarise(sum(sums))#
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+x<-o%>%filter(iunique==2)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Twice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)#
+#
+legend("topleft",legend=c("Origin in Optimum",'Origin in Natural','Origin in Other Block'),col=c('blue','red','black'),lty=1,pch=20,cex=0.8,bg=NA,box.lwd=NA)#
+#
+x<-o%>%filter(iunique==1)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Thrice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+x<-o%>%filter(iunique==2)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Twice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)#
+#
+legend("topleft",legend=c("Origin in Optimum",'Origin in Natural','Origin in Other Block'),col=c('blue','red','black'),lty=1,pch=20,cex=0.8,bg=NA,box.lwd=NA)#
+#
+x<-o%>%filter(iunique==1)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Thrice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+x<-o%>%filter(iunique==2)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Twice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)#
+#
+legend("topleft",legend=c("Origin in Optimum",'Origin in Natural','Origin in Either Other Block'),col=c('blue','red','black'),lty=1,pch=20,cex=0.8,bg=NA,box.lwd=NA)#
+#
+x<-o%>%filter(iunique==1)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Thrice Repeated')#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)
+# What Was Going On In Initial Heuristic Block, Controlling For Order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    group_by(origin,iunique)%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )#
+o%>%#
+    mutate(sums=risk+proper+neither)%>%#
+    group_by(iunique)%>%#
+    summarise(sum(sums))#
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+x<-o%>%filter(iunique==2)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Twice Repeated',xaxt='n')#
+axis(1,at=1:3,labels=1:3)#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+x<-o%>%filter(iunique==2)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Twice Repeated',xaxt='n')#
+axis(1,at=1:3,labels=1:3)#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)#
+#
+legend("topleft",legend=c("Origin in Optimum",'Origin in Natural','Origin in Either Other Block'),col=c('blue','red','black'),lty=1,pch=20,cex=0.8,bg=NA,box.lwd=NA)#
+#
+x<-o%>%filter(iunique==1)#
+plot(x$origin,x$proper,type='o',pch=20,xlim=c(1,3),ylim=c(0,0.5),col='blue',xlab='Initial Heuristic Block',ylab='Proportion',main='Thrice Repeated',xaxt='n')#
+axis(1,at=1:3,labels=1:3)#
+lines(x$origin,x$risk,type='o',pch=20,col='red')#
+lines(x$origin,x$neither/2,type='o',pch=20)
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(nonparametricCCEI>0.8792)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+library("tidyverse"); library("scales"); #
+library("Hmisc"); #
+library('jsonlite');#
+library('stringr');#
+D<-read_csv("~/Library/CloudStorage/Dropbox/@Projects/As If/Replication files/archetypesplusbasicdata.csv")#
+# D<-read_csv("~/Library/CloudStorage/Dropbox/@Projects/As If/oprea analysis/variables.csv")#
+conversion<-function(x){#
+    case_match(#
+        x,#
+        2 ~ "MIN",#
+        3 ~ "MEAN",#
+        4 ~ "MULT",#
+        5 ~ "X",#
+        6 ~ "Y",#
+        7 ~ "rMEAN",#
+        8 ~ "RAND"#
+        )#
+}#
+#
+conversion(c(1,2,3))#
+#
+D<-D%>%#
+    group_by(treatment)%>%#
+    mutate(#
+        RCCEI=ifelse(treatment=='MIN',MINCCEI,#
+                ifelse(treatment=='MEAN',MEANCCEI,#
+                    ifelse(treatment=='MULT',#
+                        MULTCCEI,nonparametricCCEI#
+                        )#
+                    )#
+            )#
+        )%>%#
+    filter(!is.na(agg_closest_t1))%>%#
+    mutate(Rtype=conversion(agg_closest_t1),MINtype=conversion(agg_closest_t2),MEANtype=conversion(agg_closest_t3),MULTtype=conversion(agg_closest_t4),#
+        type=ifelse(treatment=='R',Rtype,#
+                ifelse(treatment=="MIN",MINtype,#
+                    ifelse(treatment=='MEAN',MEANtype,MULTtype)#
+                    )#
+            ),#
+        block=(order - 1) %/% 30 + 1#
+        )%>%#
+    group_by(ID)%>%#
+    mutate(#
+        whichR=mean(block[treatment=='R'])#
+        )#
+# x<-D[D$whichR==1,c('ID','order','block','treatment')]#
+#
+# data.frame(x[x$ID==1,])#
+#
+G<-D%>%filter(treatmentnum!=1)%>%mutate(CCEI=nonparametricCCEI,horse=count_correct_winners,subst=(horse==3))#
+# summary(D[D$asif==1,]$nonparametricCCEI)#
+most_common <- function(vec) {#
+  most_common_value <- names(which.max(table(vec)))#
+  return(most_common_value)#
+}#
+#
+common_count <- function(vec) {#
+  most_common_count <- max(table(vec))#
+  return(most_common_count)#
+}#
+uniq <- function(vec) {#
+  unique_count <- length(unique(vec))#
+  return(unique_count)#
+}#
+length(D$ID)#
+D<-D%>%group_by(ID,order)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    mutate(#
+        repeats=common_count(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        irepeats=common_count(c(MINtype,MEANtype,MULTtype)),#
+        unique=uniq(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        iunique=uniq(c(MINtype,MEANtype,MULTtype)),     #
+        repeated=most_common(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        extend=repeats-irepeats#
+        )#
+#
+length(D$ID)#
+#
+#-----------------------------#
+# Revealing block analysis#
+#
+D%>%ungroup()%>%#
+    # filter(nonparametricCCEI<0.8792)%>%#
+    # filter(count_correct_winners==3)%>%filter(nonparametricCCEI>0.8792)%>%#
+    filter(count_correct_winners!=3)%>%#
+    # filter(nonparametricCCEI>0.8792)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%summarise(iunique=mean(iunique))%>%#
+    ungroup()%>%mutate(N=length(ID))%>%#
+    group_by(iunique)%>%#
+    summarise(#
+        CCEI=length(ID)/mean(N)#
+        )#
+#-----------------------------#
+# Which Blocks and Which Heuristics?#
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(nonparametricCCEI>0.8792)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+B<-D%>%#
+    # filter(count_correct_winners!=3)%>%filter(nonparametricCCEI>0.8792)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','darkgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0))#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0)),#
+    xaxt='n'#
+    )
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+# names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0)),#
+    xaxt='n'#
+    )
+# Which Blocks and Which Heuristics?#
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','PS','PC','CD','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0)),#
+    xaxt='n'#
+    )
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Subst','Comp','Cobb-Doug','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0)),#
+    xaxt='n'#
+    )
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.25, 0)),#
+    xaxt='n'#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.3, 0)),#
+    xaxt='n'#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=1:4,line=1.5)
+par(mar = c(5.1, 4.1, 4.1, 8))#
+barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5)
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','green','black'))
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('lightred','lightblue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('pink','lightblue','lightgreen','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,iunique,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(iunique,treatment)%>%mutate(N=length(N))%>%#
+    group_by(iunique,treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,iunique,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(iunique,treatment)%>%mutate(N=length(N))%>%#
+    group_by(iunique,treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+#
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B%>%filter(iunique==2))),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B%>%filter(iunique==3))),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,iunique,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(iunique,treatment)%>%mutate(N=length(N))%>%#
+    group_by(iunique,treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+#
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B%>%filter(iunique==2))),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+g<-barplot(t(as.matrix(B%>%filter(iunique==3))),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=g,line=1.5,col=c('red','blue','darkgreen','black'))
+b
+g
+B
+B<-D%>%#
+    filter(iunique==2)#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(iunique,ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    filter(iunique==2)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(iunique,ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    filter(iunique==2)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(iunique,ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')
+B
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(iunique,ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    # filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(iunique,ID,treatment)%>%#
+    summarise(type=type[1])
+B
+B$iunique
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+D$treatment
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])
+B
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )
+B
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+df[is.na(df)]<-0
+df[df==NA]]<-0
+df[df==NA]<-0
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )
+B
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)
+B
+B<-D%>%#
+    # filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==3)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )
+B
+data.frame(B)
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='topright', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='top', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, 0)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 8))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.4)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.4)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.4),horiz=TRUE),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.4),horiz=TRUE,xpd=TRUE),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.4)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=fill_cols, legend=c('A', 'B', 'C', 'D', 'E', 'F'),#
+        horiz=TRUE, inset=c(0, -.1), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=fill_cols, legend=c('A', 'B', 'C', 'D', 'E', 'F'),#
+        horiz=TRUE, inset=c(0, -.1), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=fc('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.1), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=fc('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.1), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=fc('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.3), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.3), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(8.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.2), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(5.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.3), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(6.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.3), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.3), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.2), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated'#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+#
+fill_cols <- c('red', 'pink', 'blue', 'green', 'purple', 'brown')#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    # ylab='Percentage',#
+    # legend=c('Other','CD','PC','PS'),#
+    # args.legend=list(x='bottom', bty = "n", inset=c(-0.35, -0.3)),#
+    xaxt='n'#
+    )#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+# axis(1,at=1:4, labels=c('Substitutes','Complements','Cobb-Douglas','Risk'))#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+g<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=g,line=1.5,col=c('red','blue','darkgreen','black'))
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+g<-barplot(t(as.matrix(B)),#
+    main='Thrice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=g,line=1.5,col=c('red','blue','darkgreen','black'))
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))
+layout(matrix(1:2,1,2,byrow=TRUE))#
+#
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+b<-barplot(t(as.matrix(B)),#
+    main='Twice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=b,line=1.5,col=c('red','blue','darkgreen','black'))#
+B<-D%>%#
+    filter(iunique==1)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    # filter(iunique==1)%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%ungroup()%>%#
+    group_by(treatment)%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+#
+B[is.na(B)]<-0#
+# B$treatment#
+B<-B%>%select(-treatment)#
+par(mar = c(7.1, 4.1, 4.1, 5.1))#
+g<-barplot(t(as.matrix(B)),#
+    main='Thrice Repeated',#
+    # legend=TRUE,#
+    col=c('red','blue','green','white'),#
+    xaxt='n'#
+    )#
+#
+legend('bottom', fill=c('red','blue','green','white'), legend=c('Substitutes', 'Complements', 'Cobb-Douglas', 'Other'),#
+        horiz=TRUE, inset=c(0, -.25), xpd=TRUE)#
+#
+mtext(c('Substitutes','Complements','Cobb-Douglas','Risk'),side=1,at=g,line=1.5,col=c('red','blue','darkgreen','black'))
+# What Was Going On In Initial Heuristic Block, Controlling For Order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    group_by(origin,iunique)%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither=sum(neither)/mean(N),#
+        )#
+o%>%#
+    mutate(sums=risk+proper+neither)%>%#
+    group_by(iunique)%>%#
+    summarise(sum(sums))
+o
+o%>%arrange(unique)
+o%>%arrange(iunique)
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)
+B
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+#
+library('stargazer')#
+stargazer(B)
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)#
+B<-as.data.frame(B)#
+row.names(B)<-c('PS','PC','CD','Risk')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+library('stargazer')#
+stargazer(B)
+B
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)%>%#
+    filter(treatment!='R')#
+B<-as.data.frame(B)#
+row.names(B)<-c('Substitutes','Complements','CD')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+library('stargazer')#
+stargazer(B)
+stargazer(B, type = "text",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(df) - 1)),#
+          column.separate = c(1, ncol(df) - 1),#
+          header = FALSE)
+stargazer(B, type = "text",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+library('stargazer')#
+# stargazer(B)#
+stargazer(B, type = "latex",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+# Create the LaTeX table with stargazer#
+latex_table <- stargazer(df, type = "latex",#
+                         summary = FALSE,#
+                         header = FALSE)#
+#
+# Add custom header for "Archetype"#
+header <- "\\multicolumn{1}{c}{} & \\multicolumn{3}{c}{Archetype} \\\\"#
+#
+# Combine the custom header with the stargazer table#
+output <- gsub("(\\hline)", paste(header, "\\1", sep = "\n"), latex_table, fixed = TRUE)#
+#
+# Print the final LaTeX table#
+cat(output)
+# Create the LaTeX table with stargazer#
+latex_table <- stargazer(B, type = "latex",#
+                         summary = FALSE,#
+                         header = FALSE)#
+#
+# Add custom header for "Archetype"#
+header <- "\\multicolumn{1}{c}{} & \\multicolumn{3}{c}{Archetype} \\\\"#
+#
+# Combine the custom header with the stargazer table#
+output <- gsub("(\\hline)", paste(header, "\\1", sep = "\n"), latex_table, fixed = TRUE)#
+#
+# Print the final LaTeX table#
+cat(output)
+stargazer(B type = "latex",#
+          summary = FALSE,#
+          header = FALSE,#
+          add.lines = list(c("", "\\multicolumn{3}{c}{Archetype}")),#
+          column.sep.width = "0pt", # Adjust column separation if necessary#
+          label = "table:my_label",#
+          title = "Table Title",#
+          font.size = "scriptsize")
+stargazer(B ,type = "latex",#
+          summary = FALSE,#
+          header = FALSE,#
+          add.lines = list(c("", "\\multicolumn{3}{c}{Archetype}")),#
+          column.sep.width = "0pt", # Adjust column separation if necessary#
+          label = "table:my_label",#
+          title = "Table Title",#
+          font.size = "scriptsize")
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+B<-as.data.frame(B)#
+row.names(B)<-c('Substitutes','Complements','Cobb-Douglas')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          digits=1,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+D$CU
+names(D)
+library("tidyverse"); library("scales"); #
+library("Hmisc"); #
+library('jsonlite');#
+library('stringr');#
+D<-read_csv("~/Library/CloudStorage/Dropbox/@Projects/As If/Replication files/archetypesplusbasicdata.csv")#
+# D<-read_csv("~/Library/CloudStorage/Dropbox/@Projects/As If/oprea analysis/variables.csv")#
+conversion<-function(x){#
+    case_match(#
+        x,#
+        2 ~ "MIN",#
+        3 ~ "MEAN",#
+        4 ~ "MULT",#
+        5 ~ "X",#
+        6 ~ "Y",#
+        7 ~ "rMEAN",#
+        8 ~ "RAND"#
+        )#
+}#
+#
+conversion(c(1,2,3))#
+#
+D<-D%>%#
+    group_by(treatment)%>%#
+    mutate(#
+        RCCEI=ifelse(treatment=='MIN',MINCCEI,#
+                ifelse(treatment=='MEAN',MEANCCEI,#
+                    ifelse(treatment=='MULT',#
+                        MULTCCEI,nonparametricCCEI#
+                        )#
+                    )#
+            ),#
+        cu=ifelse(treatment=='MIN',cu_min,#
+                ifelse(treatment=='MEAN',cu_mean,#
+                    ifelse(treatment=='MULT',#
+                        cu_mult,cu_r#
+                        )#
+                    )#
+            )       #
+        )%>%#
+    filter(!is.na(agg_closest_t1))%>%#
+    mutate(Rtype=conversion(agg_closest_t1),MINtype=conversion(agg_closest_t2),MEANtype=conversion(agg_closest_t3),MULTtype=conversion(agg_closest_t4),#
+        type=ifelse(treatment=='R',Rtype,#
+                ifelse(treatment=="MIN",MINtype,#
+                    ifelse(treatment=='MEAN',MEANtype,MULTtype)#
+                    )#
+            ),#
+        block=(order - 1) %/% 30 + 1#
+        )%>%#
+    group_by(ID)%>%#
+    mutate(#
+        whichR=mean(block[treatment=='R'])#
+        )#
+# x<-D[D$whichR==1,c('ID','order','block','treatment')]#
+#
+# data.frame(x[x$ID==1,])#
+#
+G<-D%>%filter(treatmentnum!=1)%>%mutate(CCEI=nonparametricCCEI,horse=count_correct_winners,subst=(horse==3))#
+# summary(D[D$asif==1,]$nonparametricCCEI)#
+most_common <- function(vec) {#
+  most_common_value <- names(which.max(table(vec)))#
+  return(most_common_value)#
+}#
+#
+common_count <- function(vec) {#
+  most_common_count <- max(table(vec))#
+  return(most_common_count)#
+}#
+uniq <- function(vec) {#
+  unique_count <- length(unique(vec))#
+  return(unique_count)#
+}#
+length(D$ID)#
+D<-D%>%group_by(ID,order)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    mutate(#
+        repeats=common_count(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        irepeats=common_count(c(MINtype,MEANtype,MULTtype)),#
+        unique=uniq(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        iunique=uniq(c(MINtype,MEANtype,MULTtype)),     #
+        repeated=most_common(c(Rtype,MINtype,MEANtype,MULTtype)),#
+        extend=repeats-irepeats#
+        )#
+#
+length(D$ID)#
+#
+#-----------------------------#
+# Revealing block analysis#
+#
+D%>%ungroup()%>%#
+    # filter(nonparametricCCEI<0.8792)%>%#
+    # filter(count_correct_winners==3)%>%filter(nonparametricCCEI>0.8792)%>%#
+    filter(count_correct_winners!=3)%>%#
+    # filter(nonparametricCCEI>0.8792)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%summarise(iunique=mean(iunique))%>%#
+    ungroup()%>%mutate(N=length(ID))%>%#
+    group_by(iunique)%>%#
+    summarise(#
+        CCEI=length(ID)/mean(N)#
+        )#
+#-----------------------------#
+# Which Blocks and Which Heuristics?#
+B<-D%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)%>%#
+    filter(treatment!='R')#
+B<-as.data.frame(B)#
+row.names(B)<-c('Substitutes','Complements','Cobb-Douglas')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          digits=1,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+D%>%group_by(treatment)%>%summarise(cu=mean(cu))
+D%>%group_by(treatment)%>%summarise(cu=median(cu))
+B<-D%>%#
+    filter(iunique==2)%>%#
+    filter(count_correct_winners!=3)%>%filter(asif==1)%>%#
+    group_by(ID,treatment)%>%#
+    summarise(type=type[1])%>%#
+    ungroup()%>%#
+    mutate(#
+        N=length(ID),#
+        type=ifelse(type%in%c('MEAN','MIN','MULT'),type,'OTHER')#
+        )%>%#
+    group_by(treatment)%>%mutate(N=length(N))%>%#
+    group_by(treatment,type)%>%#
+    summarise(#
+        len=100*length(ID)/mean(N)#
+        )%>%#
+    pivot_wider(names_from=type,values_from=len)%>%#
+    filter(treatment!='R')#
+#
+B<-as.data.frame(B)#
+row.names(B)<-c('Substitutes','Complements','Cobb-Douglas')#
+names(B)<-c('treatment','Substitutes','Complements','Cobb-Douglas','Other')#
+library('stargazer')#
+# stargazer(B)#
+stargazer(B%>%select(-treatment), type = "latex",#
+          summary = FALSE,#
+          digits=1,#
+          title = "Archetype",#
+          column.labels = c("", rep("Archetype", ncol(B) - 1)),#
+          column.separate = c(1, ncol(B) - 1),#
+          header = FALSE)
+# Timing of Risk Block Does Not Predict Use of Heuristic#
+d<-D%>%#
+    filter(asif==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),     #
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )#
+#
+summary(lm(d$repeats~d$whichR))#
+cor.test(d$whichR,1*d$repeats)
+D$excess
+D$extend
+# Timing of Risk Block Does Not Predict Use of Heuristic#
+d<-D%>%#
+    filter(asif==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),     #
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )#
+#
+summary(lm(d$repeats~d$whichR))#
+cor.test(d$whichR,1*d$repeats)
+# Timing of Risk Block Does Not Predict Use of Heuristic, including when it is extended to Risk#
+d<-D%>%#
+    filter(asif==1)%>%#
+    filter(extend==1)%>%#
+    # filter(count_correct_winners!=3)%>%#
+    group_by(ID)%>%#
+    summarise(#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),     #
+        whichR=mean(whichR),#
+        repeats=mean(iunique)<3#
+        )#
+#
+summary(lm(d$repeats~d$whichR))#
+cor.test(d$whichR,1*d$repeats)
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    # group_by(iunique)%>%#
+    ungroup()#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    # group_by(iunique)%>%#
+    ungroup()%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    # group_by(iunique)%>%#
+    ungroup()%>%#
+    filter(iunique!=3)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )
+o
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    group_by(iunique)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )%>%filter(iunique!=3)#
+    # mutate(iunique=as.factor(iunique))#
+#
+o<-data.frame(t(o%>%select(-iunique)))
+o
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    # group_by(iunique)%>%#
+    ungroup()%>%#
+    filter(iunique!=3)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )
+o[1,]
+as.vector(o[1,])
+plot(as.vector(o[1,]),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='Twice Repeated')#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+plot(t(as.vector(o[1,])),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='Twice Repeated')
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+# What Was Going On In Initial Heuristic Block, Ignoring order#
+o<-D%>%#
+    # filter(irepeats>1)%>%#
+    filter(asif==1)%>%#
+    group_by(ID)%>%#
+    mutate(#
+        origin=min(block[repeated==type]),#
+        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
+        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
+        risk=mean(origin==whichR,na.rm=TRUE),#
+        proper=mean(origin==whichProper,na.rm=TRUE),#
+        neither=ifelse(risk==0 & proper==0, 1, 0)#
+        )%>%#
+    summarise(#
+        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
+        count_correct_winners=mean(count_correct_winners),#
+        asif=mean(nonparametricCCEI),#
+        iunique=mean(iunique)#
+        )%>%    #
+    # group_by(iunique)%>%#
+    # group_by(iunique)%>%#
+    ungroup()%>%#
+    filter(iunique!=3)%>%#
+    mutate(N=length(ID))%>%#
+    summarise(#
+        risk=sum(risk)/mean(N),#
+        proper=sum(proper)/mean(N),#
+        neither1=(sum(neither)/mean(N))/2,#
+        neither2=(sum(neither)/mean(N))/2,#
+        )#
+#
+plot(t(as.vector(o[1,])),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='')#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin\n in Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+plot(t(as.vector(o[1,])),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='')#
+mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin in\n Other 2'),side=1,at=1:4,line=1.5)#
+abline('h'=0.25,lty=4,col='black')
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )
+install.packages("modules")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+#
+se_tables <- function(model, cluster, se_list, p_list){#
+  output <- list()#
+  test_se <- coeftest(model, vcov = vcovCL, type = "HC1", cluster = cluster)#
+  print(test_se)#
+  output$se_list <- append(se_list,list(test_se[,2]))#
+  output$p_list <- append(p_list,list(test_se[,4]))#
+  return(output)#
+}#
+se_figures <- function(fit, cluster){#
+  output <- list()#
+  coefs <- c()#
+  if (missing(cluster)){#
+    coefs <- coeftest(fit, vcov = vcovHC, type = "HC0")#
+  } else {#
+    coefs <- coeftest(fit, vcov = vcovCL, type = "HC1", cluster = cluster)#
+  }#
+  output$test <- tidy(coefs)#
+  # Extract confidence intervals as a dataframe with 'term', 'estimate', 'ciL', and 'ciU' columns#
+  ci <- confint(coefs)#
+  ci_df <- as.data.frame(ci)#
+  ci_df$term <- rownames(ci)#
+  ci_df <- ci_df %>%#
+    pivot_longer(cols = -term, names_to = "bound", values_to = "value") %>%#
+    pivot_wider(names_from = bound, values_from = value) %>%#
+    rename(ciL = `2.5 %`, ciU = `97.5 %`) %>%#
+    dplyr::select(term, ciL, ciU)#
+  output$ci <- ci_df#
+  return(output)#
+}#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+interaction_plot <- ggplot(df_interaction, aes(x = task, y = interaction)) +#
+  geom_point(size = 1) +#
+  # geom_point(data = df_interaction, aes(x = task, y = - par_n_coef), size = 2) +#
+  geom_errorbar(aes(ymin = interaction_lb, ymax = interaction_ub), width = 0.2) +#
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") + # Add horizontal line at y = 0#
+  geom_vline(xintercept = 22.5, linetype = "dashed", color = "black") + # Add horizontal line at y = 0#
+  labs(#
+    title = "Par_n:Cu with 95% CI, cu standardized",#dots are paramter coefficient, cu is ratio of 75h percentile cu, \n par_n, resp_n standardized",#
+    x = "Task",#
+    y = "Par_n:Cu"#
+  ) +#
+  theme_minimal() +#
+  theme(#
+    axis.text.x = element_text(angle = 45, hjust = 1)#
+  )#
+#
+interaction_plot
