@@ -1,236 +1,3 @@
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),#
-        # iunique=mean(iunique)#
-        repeat=mean(iunique)<3#
-        )
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),#
-        repeat=mean(iunique)<3#
-        )
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),#
-        # repeat=mean(iunique)<3#
-        )%>%#
-    group_by(whichR)%>%#
-    summarise(#
-        N=length(ID),#
-        unique1=sum(repeat)/mean(N)#
-        )
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        # whichR=mean(whichR),#
-        repeat=mean(iunique)<3#
-        )
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)
-D%>%#
-    filter(asif==1)%>%filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),repeats=mean(iunique)<3#
-        )%>%#
-    group_by(whichR)%>%#
-    summarise(#
-        N=length(ID),#
-        unique1=sum(repeats)/mean(N)#
-        )
-D%>%#
-    filter(asif==1)%>%#
-    # filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),#
-        repeats=mean(iunique)<3#
-        )%>%#
-    group_by(whichR)%>%#
-    summarise(#
-        N=length(ID),#
-        unique1=sum(repeats)/mean(N)#
-        )
-d<-D%>%#
-    filter(asif==1)%>%#
-    # filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichR=mean(whichR),#
-        repeats=mean(iunique)<3#
-        )#
-#
-summary(lm(d$repeats~d$whichR))
-cor.test(d$whichR,d$repeats)
-cor.test(d$whichR,1*d$repeats)
-o<-D%>%#
-    # filter(irepeats>1)%>%#
-    filter(asif==1)%>%#
-    group_by(ID)%>%#
-    mutate(#
-        origin=min(block[repeated==type]),#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
-        risk=mean(origin==whichR,na.rm=TRUE),#
-        proper=mean(origin==whichProper,na.rm=TRUE),#
-        neither=ifelse(risk==0 & proper==0, 1, 0)#
-        )%>%#
-    summarise(#
-        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
-        count_correct_winners=mean(count_correct_winners),#
-        asif=mean(nonparametricCCEI),#
-        iunique=mean(iunique)#
-        )%>%    #
-    # group_by(iunique)%>%#
-    group_by(iunique)%>%#
-    mutate(N=length(ID))%>%#
-    summarise(#
-        risk=sum(risk)/mean(N),#
-        proper=sum(proper)/mean(N),#
-        neither=sum(neither)/mean(N),#
-        )#
-#
-o
-# What Was Going On In Initial Heuristic Block Ignoring order#
-o<-D%>%#
-    # filter(irepeats>1)%>%#
-    filter(asif==1)%>%#
-    group_by(ID)%>%#
-    mutate(#
-        origin=min(block[repeated==type]),#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
-        risk=mean(origin==whichR,na.rm=TRUE),#
-        proper=mean(origin==whichProper,na.rm=TRUE),#
-        neither=ifelse(risk==0 & proper==0, 1, 0)#
-        )%>%#
-    summarise(#
-        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
-        count_correct_winners=mean(count_correct_winners),#
-        asif=mean(nonparametricCCEI),#
-        iunique=mean(iunique)#
-        )%>%    #
-    # group_by(iunique)%>%#
-    group_by(iunique)%>%#
-    mutate(N=length(ID))%>%#
-    summarise(#
-        risk=sum(risk)/mean(N),#
-        proper=sum(proper)/mean(N),#
-        neither=sum(neither)/mean(N),#
-        )%>%filter(iunique==3)
-o
-# What Was Going On In Initial Heuristic Block Ignoring order#
-o<-D%>%#
-    # filter(irepeats>1)%>%#
-    filter(asif==1)%>%#
-    group_by(ID)%>%#
-    mutate(#
-        origin=min(block[repeated==type]),#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
-        risk=mean(origin==whichR,na.rm=TRUE),#
-        proper=mean(origin==whichProper,na.rm=TRUE),#
-        neither=ifelse(risk==0 & proper==0, 1, 0)#
-        )%>%#
-    summarise(#
-        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
-        count_correct_winners=mean(count_correct_winners),#
-        asif=mean(nonparametricCCEI),#
-        iunique=mean(iunique)#
-        )%>%    #
-    # group_by(iunique)%>%#
-    group_by(iunique)%>%#
-    mutate(N=length(ID))%>%#
-    summarise(#
-        risk=sum(risk)/mean(N),#
-        proper=sum(proper)/mean(N),#
-        neither=sum(neither)/mean(N),#
-        )%>%filter(iunique!=3)#
-#
-o
-# By origin block#
-o<-D%>%#
-    # filter(irepeats>1)%>%#
-    filter(asif==1)%>%#
-    group_by(ID)%>%#
-    mutate(#
-        origin=min(block[repeated==type]),#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
-        risk=mean(origin==whichR,na.rm=TRUE),#
-        proper=mean(origin==whichProper,na.rm=TRUE),#
-        neither=ifelse(risk==0 & proper==0, 1, 0)#
-        )%>%#
-    summarise(#
-        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
-        count_correct_winners=mean(count_correct_winners),#
-        asif=mean(nonparametricCCEI),#
-        iunique=mean(iunique)#
-        )%>%    #
-    group_by(iunique)%>%#
-    mutate(N=length(ID))%>%#
-    group_by(origin,iunique)%>%#
-    summarise(#
-        risk=sum(risk)/mean(N),#
-        proper=sum(proper)/mean(N),#
-        neither=sum(neither)/mean(N),#
-        )
-o
-o%>%#
-    mutate(sums=risk+proper+neither)%>%#
-    group_by(iunique)%>%#
-    summarise(sum(sums))
-# What Was Going On In Initial Heuristic Block Ignoring order#
-o<-D%>%#
-    # filter(irepeats>1)%>%#
-    filter(asif==1)%>%#
-    group_by(ID)%>%#
-    mutate(#
-        origin=min(block[repeated==type]),#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),#
-        risk=mean(origin==whichR,na.rm=TRUE),#
-        proper=mean(origin==whichProper,na.rm=TRUE),#
-        neither=ifelse(risk==0 & proper==0, 1, 0)#
-        )%>%#
-    summarise(#
-        origin=mean(origin), risk=mean(risk), proper=mean(proper),neither=mean(neither),#
-        count_correct_winners=mean(count_correct_winners),#
-        asif=mean(nonparametricCCEI),#
-        iunique=mean(iunique)#
-        )%>%    #
-    # group_by(iunique)%>%#
-    group_by(iunique)%>%#
-    mutate(N=length(ID))%>%#
-    summarise(#
-        risk=sum(risk)/mean(N),#
-        proper=sum(proper)/mean(N),#
-        neither=sum(neither)/mean(N),#
-        )%>%filter(iunique!=3)#
-#
-o
-# Timing of Risk Block Does Not Predict Use of Heuristic#
-#
-d<-D%>%#
-    filter(asif==1)%>%#
-    # filter(count_correct_winners!=3)%>%#
-    group_by(ID)%>%#
-    summarise(#
-        whichProper=mean(block[repeated==treatment],na.rm=TRUE),#
-        whichProper=ifelse(is.na(whichProper), 0, whichProper),     #
-        whichR=mean(whichR),#
-        repeats=mean(iunique)<3#
-        )
-d
-cor.test(d$whichProper,1*d$repeats)
 # What Was Going On In Initial Heuristic Block, Ignoring order#
 o<-D%>%#
     # filter(irepeats>1)%>%#
@@ -4121,7 +3888,7 @@ abline('h'=0.25,lty=4,col='black')
 plot(t(as.vector(o[1,])),type='h',lend=2,lwd=20,bty='n',xlim=c(0.5,4.5),ylim=c(0,0.5),xaxt='n',ylab='Proportion',col='gray35',xlab='',main='')#
 mtext(c('Origin in\nRisk','Origin in\nOptimal','Origin in\n Other 1','Origin in\n Other 2'),side=1,at=1:4,line=1.5)#
 abline('h'=0.25,lty=4,col='black')
-= ls())#
+rm(list = ls())#
 #
 # -----------------------------------------------------------------------------#
 #
@@ -4149,7 +3916,702 @@ library(modules)#
 library(ellipsis)#
 library(labeling)#
 #
-install.packages("farver")#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+se_figures <- function(fit, data, cluster1, cluster2, n_bootstrap = 1000) {#
+  library(dplyr)#
+  library(broom)#
+  library(lmtest)#
+  library(sandwich)#
+  library(tidyr)#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output <- list()#
+  output$test <- tidy(coefs)#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+# Example usage with a linear model#
+# Assuming your data frame is named 'df' and you have two clustering variables 'cluster1' and 'cluster2'#
+# and a linear model named 'lm_model'#
+# output <- clustered_bootstrap_se_figures(lm_model, df, 'cluster1', 'cluster2', n_bootstrap = 1000)#
+# print(output$test)#
+# print(output$ci)#
+list_interaction <- list()#
+i <- 1#
+# remove the tasks we don't want#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  # create fixed effects#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  # remove dominance points#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]],df_atten[["par_n"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]],df_atten[["par_n"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+se_figures <- function(fit, data, cluster1, cluster2, n_bootstrap = 1000) {#
+  library(dplyr)#
+  library(broom)#
+  library(lmtest)#
+  library(sandwich)#
+  library(tidyr)#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output <- list()#
+  output$test <- tidy(coefs)#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+# Example usage with a linear model#
+# Assuming your data frame is named 'df' and you have two clustering variables 'cluster1' and 'cluster2'#
+# and a linear model named 'lm_model'#
+# output <- clustered_bootstrap_se_figures(lm_model, df, 'cluster1', 'cluster2', n_bootstrap = 1000)#
+# print(output$test)#
+# print(output$ci)#
+list_interaction <- list()#
+i <- 1#
+# remove the tasks we don't want#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  # create fixed effects#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  # remove dominance points#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]],df_atten[["par_n"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]],df_atten[["par_n"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+list_interaction
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    data <- fit$model#
+    data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(fit$model) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# install.packages("farver")#
 #
 #PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
 # PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
@@ -4256,37 +4718,4148 @@ get_reg_result_df_ci <-function(test){#
   return(test$ci %>%#
            pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
 }
-# Calculate average CU for each task and boundary rank#
-average_cu <- df_ready %>%#
-  group_by(task, boundary_rank) %>%#
-  summarise(avg_rank_cu = mean(cu), .groups = 'drop') %>% #
-  filter(boundary_rank < 6) %>% #
-  filter(task %in%  setdiff(tasks, c("BE1","BE2", "BE3", "BE4", "BE5")))#
-cu_rank <- ggplot() +#
-  geom_point(data = df_ready %>%#
-               filter(boundary_rank < 6)  %>% #
-               filter(task %in%  setdiff(tasks, c("BE1","BE2", "BE3", "BE4", "BE5"))), aes(x = boundary_rank, y = cu, group = task, color = task),#
-             alpha = 0.05, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.7)) +#
-  geom_line(data = average_cu, aes(x = boundary_rank, y = avg_rank_cu, group = task, color = task), size = 1) +#
-  geom_point(data = average_cu, aes(x = boundary_rank, y = avg_rank_cu, color = task), size = 2) +#
-  labs(#
-    title = "Average CU per Parameter Rank for each Task",#
-    x = "Rank of Parameter (How far away from the Boundary)",#
-    y = "CU"#
-  ) +#
-  theme_minimal() +#
-  theme(#
-    axis.text.x = element_text(angle = 45, hjust = 1),#
-    legend.title = element_blank()#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
   )#
-cu_rank#
-ggsave(filename = paste(path_output_fig, "/cu_par_rank.png", sep = ""),#
-       plot = cu_rank,#
-       width = 2400,#
-       height = 1400,#
-       units = "px")#
-ggsave(filename = paste(path_output_fig_paper, "/cu_par_rank.png", sep = ""),#
-       plot = cu_rank,#
-       width = 2400,#
-       height = 1400,#
-       units = "px")
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    data <- fit$model#
+    data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(fit$model) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Extract the data used in the model#
+  model_data <- fit$model#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    model_data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(model_data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Extract the data used in the model#
+  model_data <- fit$model#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    model_data %>%#
+      group_by(!!sym(cluster1), !!sym(cluster2)) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(model_data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Extract the data used in the model#
+  model_data <- fit$model#
+  # Ensure the clustering variables are present in the model data#
+  if (!all(c(cluster1, cluster2) %in% colnames(model_data))) {#
+    stop("Clustering variables are not present in the model data.")#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    model_data %>%#
+      group_by(.data[[cluster1]], .data[[cluster2]]) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(model_data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data, paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data, paste0(analysis_name, "_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures#
+path_output_fig_paper <- file.path("paper", "figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+#
+# ============= functions =============#
+#
+se_figures <- function(fit, cluster1, cluster2, n_bootstrap = 1000) {#
+  output <- list()#
+  # Function to refit the model and extract coefficients#
+  get_coefs <- function(data) {#
+    fit <- update(fit, data = data)#
+    return(coef(fit))#
+  }#
+  # Extract the data used in the model#
+  model_data <- fit$model#
+  # Ensure the clustering variables are present in the model data#
+  if (!all(c(cluster1, cluster2) %in% colnames(model_data))) {#
+    stop("Clustering variables are not present in the model data.")#
+  }#
+  # Generate bootstrap samples#
+  boot_samples <- lapply(1:n_bootstrap, function(i) {#
+    model_data %>%#
+      group_by(.data[[cluster1]], .data[[cluster2]]) %>%#
+      sample_frac(replace = TRUE) %>%#
+      ungroup()#
+  })#
+  # Get coefficients for each bootstrap sample#
+  boot_coefs <- do.call(rbind, lapply(boot_samples, get_coefs))#
+  # Calculate standard errors#
+  boot_se <- apply(boot_coefs, 2, sd)#
+  # Create coeftest output with clustered standard errors#
+  coef_estimates <- coef(fit)#
+  names(boot_se) <- names(coef_estimates)#
+  coefs <- cbind(Estimate = coef_estimates, "Std. Error" = boot_se)#
+  coefs <- as.data.frame(coefs)#
+  coefs$t.value <- coefs$Estimate / coefs$`Std. Error`#
+  coefs$p.value <- 2 * pt(-abs(coefs$t.value), df = nrow(model_data) - length(coef_estimates))#
+  # Extract confidence intervals#
+  boot_ci <- t(apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975)))#
+  colnames(boot_ci) <- c("ciL", "ciU")#
+  boot_ci <- as.data.frame(boot_ci)#
+  boot_ci$term <- rownames(boot_ci)#
+  # Create output list#
+  output$test <- coefs %>%#
+    rownames_to_column("term") %>%#
+    as_tibble()#
+  output$ci <- boot_ci %>%#
+    dplyr::select(term, ciL, ciU)#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test) {#
+  return(test$test %>%#
+           dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <- function(test) {#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL", "ciU")))#
+}#
+#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))) {#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" # check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1) {#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) | (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  # regression continuous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  # df_atten_test <- se_figures(model_atten, "id", "par_n")#
+  # df_atten_test_bin <- se_figures(model_atten_bin, "id", "par_n")#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]],df_atten[["par_n"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]],df_atten[["par_n"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    dplyr::select(term, Estimate, `Std. Error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(Estimate, `Std. Error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par")) %>%#
+    pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+  list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+  i <- i + 1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "Estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "Std. Error_par_n:cu",#
+    "interaction_bin" = "Estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "Std. Error_par_n:high_cu_par",#
+    "par_n_coef" = "Estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# ---- plot continuous cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels = df_interaction %>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction <- df_interaction %>% arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction <- df_interaction %>% arrange(interaction)#
+plot(df_interaction$interaction, pch=20, ylim=c(-0.3, 0.1), ylab="CU/Coefficient Interaction", xlab='', bty='n', xaxt='n')#
+a <- 1:length(df_interaction$interaction)#
+b <- df_interaction$interaction_lb#
+c <- df_interaction$interaction_ub#
+arrows(a, b, a, c, angle=90, length=0.035, col='gray', code=3)#
+abline(h=0, lty=4, col='red')#
+text(df_interaction$interaction, labels=df_interaction$task, cex=0.5, pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  # Bootstrap function#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  # Perform bootstrap#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Calculate standard errors and confidence intervals#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  # Prepare output#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = coef(fit) / se,#
+    p.value = 2 * (1 - pnorm(abs(coef(fit) / se)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+library(boot)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+library(boot)#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  # Bootstrap function#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  # Perform bootstrap#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Calculate standard errors and confidence intervals#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  # Prepare output#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = coef(fit) / se,#
+    p.value = 2 * (1 - pnorm(abs(coef(fit) / se)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster){#
+  output <- list()#
+  coefs <- c()#
+  if (missing(cluster)){#
+    coefs <- coeftest(fit, vcov = vcovHC, type = "HC0")#
+  } else {#
+    coefs <- coeftest(fit, vcov = vcovCL, type = "HC1", cluster = cluster)#
+  }#
+  output$test <- tidy(coefs)#
+  # Extract confidence intervals as a dataframe with 'term', 'estimate', 'ciL', and 'ciU' columns#
+  ci <- confint(coefs)#
+  ci_df <- as.data.frame(ci)#
+  ci_df$term <- rownames(ci)#
+  ci_df <- ci_df %>%#
+    pivot_longer(cols = -term, names_to = "bound", values_to = "value") %>%#
+    pivot_wider(names_from = bound, values_from = value) %>%#
+    rename(ciL = `2.5 %`, ciU = `97.5 %`) %>%#
+    dplyr::select(term, ciL, ciU)#
+  output$ci <- ci_df#
+  return(output)#
+}#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu =scale(cu)#
+    )  #
+  # regression continueous cu#
+  model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+  # regression binary cu#
+  model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+  df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+library(boot)#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  # Bootstrap function#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  # Perform bootstrap#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Calculate standard errors and confidence intervals#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  # Prepare output#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = coef(fit) / se,#
+    p.value = 2 * (1 - pnorm(abs(coef(fit) / se)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+ffor(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  # regression continueous cu#
+  tryCatch({#
+    model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  # regression binary cu#
+  tryCatch({#
+    model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+library(boot)#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  # Bootstrap function#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  # Perform bootstrap#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Calculate standard errors and confidence intervals#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  # Prepare output#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = coef(fit) / se,#
+    p.value = 2 * (1 - pnorm(abs(coef(fit) / se)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  # regression continueous cu#
+  tryCatch({#
+    model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  # regression binary cu#
+  tryCatch({#
+    model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+library(boot)#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  # Print debugging information#
+  print("Debug info for se_figures:")#
+  print(paste("Number of rows in model frame:", nrow(fit$model)))#
+  print(paste("Number of rows in cluster1:", length(cluster1)))#
+  print(paste("Number of rows in cluster2:", length(cluster2)))#
+  # Check if lengths match#
+  if(nrow(fit$model) != length(cluster1) || nrow(fit$model) != length(cluster2)) {#
+    stop("Mismatch in lengths of model frame and clustering variables")#
+  }#
+  # Rest of the function remains the same#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = coef(fit) / se,#
+    p.value = 2 * (1 - pnorm(abs(coef(fit) / se)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  # regression continueous cu#
+  tryCatch({#
+    model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  # regression binary cu#
+  tryCatch({#
+    model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+#
+  # df_atten_test <- se_figures(model_atten , df_atten[["id"]])#
+  # df_atten_test_bin <- se_figures(model_atten_bin , df_atten[["id"]])#
+#
+tryCatch({#
+  print("Attempting to call se_figures for continuous model")#
+  df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+  print("se_figures successful for continuous model")#
+}, error = function(e) {#
+  print(paste("Error in se_figures for continuous model:", e$message))#
+})#
+#
+tryCatch({#
+  print("Attempting to call se_figures for binary model")#
+  df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  print("se_figures successful for binary model")#
+}, error = function(e) {#
+  print(paste("Error in se_figures for binary model:", e$message))#
+})#
+#
+  # Extract coefficients and p-values#
+  atten_results <- df_atten_test$test %>%#
+    filter(term %in% c("par_n:cu", "par_n")) %>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)) #
+  atten_results_bin <- df_atten_test_bin$test %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+    pivot_wider(names_from = term, values_from = c(estimate,`std.error`, `p.value`))#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,# /par_n_coef,#
+    interaction_lb_n = interaction_lb,# /par_n_coef,#
+    interaction_ub_n = interaction_ub ,#/par_n_coef,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+df_interaction
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+df_interaction$task
+unique(df_interaction$task)
+length(unique(df_interaction$task))
+rm(list = ls())#
+#
+# -----------------------------------------------------------------------------#
+#
+detach()#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+#
+library(boot)#
+# install.packages("farver")#
+#
+#PATH <- "/Users/vincentmarohl/Dropbox/Attenuation" # Vincent path#
+# PATH <- "/Users/sebastianredl/Dropbox (Harvard University)/Attenuation" # Sebastian Path#
+PATH<-"~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data<- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name) # output figures #
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot=plot_funs$by_plot#
+plot_png=plot_funs$plot_png#
+resp_plot=plot_funs$resp_plot#
+resp_plot_hor=plot_funs$resp_plot_hor#
+df_all <- read.csv(path_input_analysis,  header = TRUE)#
+#
+#for the main analysis, we have to exclude data from the policy treatment#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+# all tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# tasks for diminishing sensitivity analysis #
+tasks_dimin <- df_ready %>% #
+  filter(!is.na(lb) | !is.na(ub)) %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# objective tasks#
+tasks_obj <- df_ready %>% #
+  filter(obj_sol == TRUE) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# policy treat tasks#
+tasks_policy_treat <- df_ready %>% #
+  filter(policy_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# incentiv treat tasks#
+tasks_incent_treat <- df_ready %>% #
+  filter(incentive_treat > 0) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# task for the regression  table#
+tasks_table <- df_ready %>% #
+  arrange(task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+tasks_binary <- c("RIA",  "PRD",  "VOT", "CHT")#
+# ============= functions =============#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+# In the loop where se_figures is called:#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, `std.error`, `p.value`) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, `std.error`, `p.value`)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) #
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  # regression continueous cu#
+  tryCatch({#
+    model_atten <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*cu", FE))#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  # regression binary cu#
+  tryCatch({#
+    model_atten_bin <- lm(data = df_atten, formula = paste0("resp_n ~ par_n*high_cu_par", FE))#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+#
+df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+  # Extract coefficients and p-values#
+atten_results <- df_atten_test$test %>%#
+  filter(term %in% c("par_n:cu", "par_n")) %>%#
+  dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+  pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+#
+atten_results_bin <- df_atten_test_bin$test %>%#
+  filter(term %in% c("par_n:high_cu_par"))%>%#
+  dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+  pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+#
+  # Extract confidence intervals#
+  atten_results_ci <- df_atten_test$ci %>%#
+    filter(term %in% c("par_n:cu"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))  ##
+  atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+    filter(term %in% c("par_n:high_cu_par"))%>%#
+    pivot_wider(names_from = term, values_from = c("ciL",  "ciU"))#
+  results_atten <- bind_cols(atten_results, atten_results_ci,atten_results_bin, atten_results_ci_bin) #
+  list_interaction[[i]] <-  bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]],results_atten)#
+  i<-i+1#
+}#
+#
+# When creating the final df_interaction dataframe:#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",  # Add this line#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",  # Add this line#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub,#
+  )#
+# ---- plot continueouse cu regression ---- #
+#
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print(str(df_atten))#
+  print(summary(df_atten))#
+  model_env <- environment()#
+  model_env$resp_n <- df_atten$resp_n#
+  model_env$par_n <- df_atten$par_n#
+  model_env$cu <- df_atten$cu#
+  model_env$high_cu_par <- df_atten$high_cu_par#
+  model_env$FE <- df_atten$FE#
+  tryCatch({#
+    model_atten <- lm(formula = as.formula(paste0("resp_n ~ par_n*cu", FE)), data = df_atten, env = model_env)#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+    model_atten <- NULL#
+  })#
+  tryCatch({#
+    model_atten_bin <- lm(formula = as.formula(paste0("resp_n ~ par_n*high_cu_par", FE)), data = df_atten, env = model_env)#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+    model_atten_bin <- NULL#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# The rest of your code for plotting and further analysis...
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print("Variable names in df_atten:")#
+  print(names(df_atten))#
+  print(paste("Number of NA values in cu:", sum(is.na(df_atten$cu))))#
+  print(paste("Number of NA values in high_cu_par:", sum(is.na(df_atten$high_cu_par))))#
+  model_env <- environment()#
+  model_env$resp_n <- df_atten$resp_n#
+  model_env$par_n <- df_atten$par_n#
+  model_env$cu <- df_atten$cu#
+  model_env$high_cu_par <- df_atten$high_cu_par#
+  model_env$FE <- df_atten$FE#
+  tryCatch({#
+    model_atten <- lm(formula = as.formula(paste("resp_n ~ par_n*cu", FE)), data = df_atten, env = model_env)#
+    print("Continuous model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+    model_atten <- NULL#
+  })#
+  tryCatch({#
+    model_atten_bin <- lm(formula = as.formula(paste("resp_n ~ par_n*high_cu_par", FE)), data = df_atten, env = model_env)#
+    print("Binary model fitted successfully")#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+    model_atten_bin <- NULL#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# The rest of your code for plotting and further analysis...
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("Current task: ", task_name))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  } else {#
+    FE <- ""#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print("Variable names in df_atten:")#
+  print(names(df_atten))#
+  print(paste("Number of NA values in cu:", sum(is.na(df_atten$cu))))#
+  print(paste("Number of NA values in high_cu_par:", sum(is.na(df_atten$high_cu_par))))#
+  tryCatch({#
+    formula_continuous <- as.formula(paste("resp_n ~ par_n*cu", FE))#
+    model_atten <- lm(formula = formula_continuous, data = df_atten)#
+    print("Continuous model fitted successfully")#
+    print(summary(model_atten))#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+    model_atten <- NULL#
+  })#
+  tryCatch({#
+    formula_binary <- as.formula(paste("resp_n ~ par_n*high_cu_par", FE))#
+    model_atten_bin <- lm(formula = formula_binary, data = df_atten)#
+    print("Binary model fitted successfully")#
+    print(summary(model_atten_bin))#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+    model_atten_bin <- NULL#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+}#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+# The rest of your code for plotting and further analysis...
+df_interaction
+df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+length(unique(df_interaction$task))
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    boot_fit <- update(fit, data = boot_data)#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  se <- apply(boot_results$t, 2, sd)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975)))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("================ Processing task: ", task_name, " ================"))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  } else {#
+    FE <- ""#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print("Variable names in df_atten:")#
+  print(names(df_atten))#
+  print(paste("Number of NA values in cu:", sum(is.na(df_atten$cu))))#
+  print(paste("Number of NA values in high_cu_par:", sum(is.na(df_atten$high_cu_par))))#
+  model_atten <- NULL#
+  model_atten_bin <- NULL#
+  tryCatch({#
+    formula_continuous <- as.formula(paste("resp_n ~ par_n*cu", FE))#
+    model_atten <- lm(formula = formula_continuous, data = df_atten)#
+    print("Continuous model fitted successfully")#
+    print(summary(model_atten))#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  tryCatch({#
+    formula_binary <- as.formula(paste("resp_n ~ par_n*high_cu_par", FE))#
+    model_atten_bin <- lm(formula = formula_binary, data = df_atten)#
+    print("Binary model fitted successfully")#
+    print(summary(model_atten_bin))#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      print("Calculating bootstrap standard errors...")#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      print("Processing results...")#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+      print(paste("Task", task_name, "processed successfully and added to list_interaction"))#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+  print(paste("================ Finished processing task:", task_name, "================"))#
+  print("")#
+}#
+#
+print("Final number of tasks processed:")#
+print(length(list_interaction))#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+print("Number of tasks in final df_interaction:")#
+print(nrow(df_interaction))#
+print("Tasks in final df_interaction:")#
+print(df_interaction$task)#
+#
+# The rest of your code for plotting and further analysis...#
+#
+  df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    # Ensure all levels of factor variables are present in the bootstrap sample#
+    for (var in names(data)) {#
+      if (is.factor(data[[var]])) {#
+        boot_data[[var]] <- factor(boot_data[[var]], levels = levels(data[[var]]))#
+      }#
+    }#
+    boot_fit <- try(update(fit, data = boot_data), silent = TRUE)#
+    if (inherits(boot_fit, "try-error")) {#
+      return(rep(NA, length(coef(fit))))#
+    }#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Remove any NA results#
+  boot_results$t <- boot_results$t[complete.cases(boot_results$t), ]#
+  se <- apply(boot_results$t, 2, sd, na.rm = TRUE)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975), na.rm = TRUE))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("================ Processing task: ", task_name, " ================"))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  } else {#
+    FE <- ""#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print("Variable names in df_atten:")#
+  print(names(df_atten))#
+  print(paste("Number of NA values in cu:", sum(is.na(df_atten$cu))))#
+  print(paste("Number of NA values in high_cu_par:", sum(is.na(df_atten$high_cu_par))))#
+  model_atten <- NULL#
+  model_atten_bin <- NULL#
+  tryCatch({#
+    formula_continuous <- as.formula(paste("resp_n ~ par_n*cu", FE))#
+    model_atten <- lm(formula = formula_continuous, data = df_atten)#
+    print("Continuous model fitted successfully")#
+    print(summary(model_atten))#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  tryCatch({#
+    formula_binary <- as.formula(paste("resp_n ~ par_n*high_cu_par", FE))#
+    model_atten_bin <- lm(formula = formula_binary, data = df_atten)#
+    print("Binary model fitted successfully")#
+    print(summary(model_atten_bin))#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      print("Calculating bootstrap standard errors...")#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      print("Processing results...")#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+      print(paste("Task", task_name, "processed successfully and added to list_interaction"))#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+  print(paste("================ Finished processing task:", task_name, "================"))#
+  print("")#
+}#
+#
+print("Final number of tasks processed:")#
+print(length(list_interaction))#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+print("Number of tasks in final df_interaction:")#
+print(nrow(df_interaction))#
+print("Tasks in final df_interaction:")#
+print(df_interaction$task)#
+#
+# The rest of your code for plotting and further analysis...#
+#
+  df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+data.frame(df_interaction)
+rm(list = ls())#
+#
+# Libraries -------------------------------------------------------------------#
+library(tidyr)#
+library(readr)#
+library(data.table)#
+library(stringr)#
+library(purrr)#
+library(jsonlite)#
+library(dplyr)#
+library(sandwich)#
+library(lmtest)#
+library(xtable)#
+library(broom)#
+library(snow)#
+#library(plm)#
+library(texreg)#
+library(reshape2)#
+library(MASS)#
+library(paramtest)#
+library(ggplot2)#
+library(modules)#
+library(ellipsis)#
+library(labeling)#
+library(boot)#
+#
+# Path settings (keep your original path settings)#
+PATH <- "~/Library/CloudStorage/Dropbox/@Projects/Attenuation"#
+setwd(PATH)#
+path_data <- "Analyses/Data"#
+analysis_name <- "main_run"#
+path_input <- file.path(path_data,paste0(analysis_name, ".csv"))#
+path_input_analysis <- file.path(path_data,paste0(analysis_name,"_analysis", ".csv"))#
+path_output_fig <- file.path("Analyses/Results", analysis_name)#
+path_output_fig_paper <- file.path("paper","figures")#
+plot_funs <- modules::use("Analyses/R Code/lib/plot_funs.R")#
+by_plot <- plot_funs$by_plot#
+plot_png <- plot_funs$plot_png#
+resp_plot <- plot_funs$resp_plot#
+resp_plot_hor <- plot_funs$resp_plot_hor#
+#
+# Load data#
+df_all <- read.csv(path_input_analysis, header = TRUE)#
+#
+# Filter data#
+df_ready <- df_all %>% #
+  filter(policy_treat == 0)#
+#
+# Define tasks#
+tasks <- df_ready %>% #
+  arrange(obj_sol, task) %>% #
+  dplyr::select(task) %>% #
+  distinct() %>% #
+  unlist()#
+#
+# Other task definitions (keep as in your original code)#
+#
+# Functions#
+se_figures <- function(fit, cluster1, cluster2) {#
+  output <- list()#
+  boot_fun <- function(data, indices) {#
+    boot_data <- data[indices, ]#
+    # Ensure all levels of factor variables are present in the bootstrap sample#
+    for (var in names(data)) {#
+      if (is.factor(data[[var]])) {#
+        boot_data[[var]] <- factor(boot_data[[var]], levels = levels(data[[var]]))#
+      }#
+    }#
+    boot_fit <- try(update(fit, data = boot_data), silent = TRUE)#
+    if (inherits(boot_fit, "try-error")) {#
+      return(rep(NA, length(coef(fit))))#
+    }#
+    return(coef(boot_fit))#
+  }#
+  boot_results <- boot(data = fit$model, statistic = boot_fun, R = 1000)#
+  # Remove any NA results#
+  boot_results$t <- boot_results$t[complete.cases(boot_results$t), ]#
+  se <- apply(boot_results$t, 2, sd, na.rm = TRUE)#
+  ci <- t(apply(boot_results$t, 2, quantile, probs = c(0.025, 0.975), na.rm = TRUE))#
+  tstat <- coef(fit) / se#
+  output$test <- data.frame(#
+    term = names(coef(fit)),#
+    estimate = coef(fit),#
+    std.error = se,#
+    statistic = tstat,#
+    p.value = 2 * (1 - pnorm(abs(tstat)))#
+  )#
+  output$ci <- data.frame(#
+    term = names(coef(fit)),#
+    ciL = ci[, 1],#
+    ciU = ci[, 2]#
+  )#
+  return(output)#
+}#
+#
+get_reg_result_df <- function(test){#
+  return(test$test %>%#
+           dplyr::select(term, estimate, std.error, p.value) %>%#
+           pivot_wider(names_from = term, values_from = c(estimate, std.error, p.value)))#
+}#
+#
+get_reg_result_df_ci <-function(test){#
+  return(test$ci %>%#
+           pivot_wider(names_from = term, values_from = c("ciL",  "ciU")))#
+}#
+#
+# Main loop#
+list_interaction <- list()#
+i <- 1#
+for(task_name in setdiff(tasks, c("BE1","BE2","BE3","BE4","BE5", "RIA"))){#
+  print(paste0("================ Processing task: ", task_name, " ================"))#
+  df_task <- df_ready[df_ready$task == task_name,] %>% # get data of task#
+    mutate(FE = as.factor(FE))#
+  FE <- "" #check if task has FE like BEU or PRO #
+  if(length(unique(df_task[["FE"]])) > 1){#
+    FE <- " + factor(FE)"#
+  } else {#
+    FE <- ""#
+  }#
+  print(paste("FE term:", FE))#
+  df_atten <- df_task %>% ### attenuation w/o dominance points #
+    filter((ub_n != par_n) | (is.na(ub_n))) %>% #
+    filter((lb_n != par_n) |  (is.na(lb_n))) %>%#
+    filter(!is.na(resp_n) & !is.na(par_n) & !is.na(cu) & !is.na(high_cu_par) & !is.na(FE))#
+  df_atten <- df_atten %>%#
+    mutate(#
+      resp_n = scale(resp_n),#
+      par_n = scale(par_n),#
+      high_cu_par = as.numeric(high_cu_par),#
+      cu = scale(cu),#
+      FE = factor(FE)#
+    )  #
+  print(paste("Number of rows in df_atten:", nrow(df_atten)))#
+  print(paste("Number of unique FE values:", length(unique(df_atten$FE))))#
+  print("Variable names in df_atten:")#
+  print(names(df_atten))#
+  print(paste("Number of NA values in cu:", sum(is.na(df_atten$cu))))#
+  print(paste("Number of NA values in high_cu_par:", sum(is.na(df_atten$high_cu_par))))#
+  model_atten <- NULL#
+  model_atten_bin <- NULL#
+  tryCatch({#
+    formula_continuous <- as.formula(paste("resp_n ~ par_n*cu", FE))#
+    model_atten <- lm(formula = formula_continuous, data = df_atten)#
+    print("Continuous model fitted successfully")#
+    print(summary(model_atten))#
+  }, error = function(e) {#
+    print(paste("Error in continuous model:", e$message))#
+  })#
+  tryCatch({#
+    formula_binary <- as.formula(paste("resp_n ~ par_n*high_cu_par", FE))#
+    model_atten_bin <- lm(formula = formula_binary, data = df_atten)#
+    print("Binary model fitted successfully")#
+    print(summary(model_atten_bin))#
+  }, error = function(e) {#
+    print(paste("Error in binary model:", e$message))#
+  })#
+  if (!is.null(model_atten) && !is.null(model_atten_bin)) {#
+    tryCatch({#
+      print("Calculating bootstrap standard errors...")#
+      df_atten_test <- se_figures(model_atten, df_atten[["id"]], df_atten[["par_n"]])#
+      df_atten_test_bin <- se_figures(model_atten_bin, df_atten[["id"]], df_atten[["par_n"]])#
+      print("Processing results...")#
+      atten_results <- df_atten_test$test %>%#
+        filter(term %in% c("par_n:cu", "par_n")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_bin <- df_atten_test_bin$test %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        dplyr::select(term, estimate, std.error, statistic, p.value) %>%#
+        pivot_wider(names_from = term, values_from = c(estimate, std.error, statistic, p.value))#
+      atten_results_ci <- df_atten_test$ci %>%#
+        filter(term %in% c("par_n:cu")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      atten_results_ci_bin <- df_atten_test_bin$ci %>%#
+        filter(term %in% c("par_n:high_cu_par")) %>%#
+        pivot_wider(names_from = term, values_from = c("ciL", "ciU"))#
+      results_atten <- bind_cols(atten_results, atten_results_ci, atten_results_bin, atten_results_ci_bin)#
+      list_interaction[[i]] <- bind_cols(task = task_name, obj_sol = df_atten[[1, "obj_sol"]], results_atten)#
+      i <- i + 1#
+      print(paste("Task", task_name, "processed successfully and added to list_interaction"))#
+    }, error = function(e) {#
+      print(paste("Error in se_figures or results processing:", e$message))#
+    })#
+  } else {#
+    print("Skipping se_figures due to model fitting errors")#
+  }#
+  print(paste("================ Finished processing task:", task_name, "================"))#
+  print("")#
+}#
+#
+print("Final number of tasks processed:")#
+print(length(list_interaction))#
+#
+df_interaction <- bind_rows(list_interaction) %>% #
+  rename(#
+    "interaction" = "estimate_par_n:cu",#
+    "interaction_lb" = "ciL_par_n:cu",#
+    "interaction_ub" = "ciU_par_n:cu",#
+    "interaction_se" = "std.error_par_n:cu",#
+    "interaction_tstat" = "statistic_par_n:cu",#
+    "interaction_bin" = "estimate_par_n:high_cu_par",#
+    "interaction_bin_lb" = "ciL_par_n:high_cu_par",#
+    "interaction_bin_ub" = "ciU_par_n:high_cu_par",#
+    "interaction_bin_se" = "std.error_par_n:high_cu_par",#
+    "interaction_bin_tstat" = "statistic_par_n:high_cu_par",#
+    "par_n_coef" = "estimate_par_n"#
+  ) %>% #
+  mutate(#
+    interaction_n = interaction,#
+    interaction_lb_n = interaction_lb,#
+    interaction_ub_n = interaction_ub#
+  )#
+#
+print("Number of tasks in final df_interaction:")#
+print(nrow(df_interaction))#
+print("Tasks in final df_interaction:")#
+print(df_interaction$task)#
+#
+# The rest of your code for plotting and further analysis...#
+#
+  df_interaction$task <- factor(df_interaction$task, #
+                              levels =   df_interaction%>% #
+                                arrange(obj_sol, interaction_ub) %>% #
+                                dplyr::select(task) %>% #
+                                unlist)#
+#
+df_interaction<-df_interaction%>%arrange(interaction_ub)#
+#
+# ---- RO ---- #
+# df_interaction<-df_interaction%>%arrange(interaction)#
+plot(df_interaction$interaction,pch=20,ylim=c(-0.3,0.1),ylab="CU/Coefficient Interaction",xlab='',bty='n',xaxt='n')#
+a<-1:length(df_interaction$interaction); b<-df_interaction$interaction_lb;c<-df_interaction$interaction_ub#
+arrows(a,b,a,c,angle=90,length=0.035,col='gray',code=3)#
+abline('h'=0,lty=4,col='red')#
+text(df_interaction$interaction,labels=df_interaction$task,cex=0.5,pos=1)
+data.frame(df_interaction)
