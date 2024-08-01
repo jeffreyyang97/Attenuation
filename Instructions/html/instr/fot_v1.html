@@ -9,32 +9,36 @@
     In this  study, <b>your task is to forecast the end-of-year earnings of a fictional firm</b> for the year 2024, based on the firm’s earnings over the previous two years.
     <ul>
     <li>
-        The 2024 earnings of the firm are predictable based on two components. 
+        The 2024 earnings of the firm are partly predictable. 
         Specifically, the change in the firm’s earnings from 2023 to 2024 is determined by two components:
         <ul>
             <li>
-                A <b>firm trend</b> equal to the previous change in the firm’s earnings from 2022 to 2023.
+                A <b>predictable component</b> equal to the previous change in the firm’s earnings from 2022 to 2023.
             </li>
             <li>
-                A <b>market trend</b> equal to <b>five</b> in every year.
+                A <b>yearly luck component</b> that will be a random draw from the numbers 
+                <center>
+                    (-8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8),
+                </center>
+                where each number is <b>equally likely to be drawn.</b> This means that <b>on average, the yearly luck component is zero.</b>
             </li>
         </ul>
     </li>
     <li>
-        The relative importance of these two components is given by P, a share between 0 and 100%. In particular, the earnings change is given by the formula
+        The relative importance of these two components is given by the predictability level  P, a fraction between 0 and 1. In particular, the earnings change is given by the formula
         <center>
             <div class="formula">
                 2024 earnings – 2023 earnings  = 
                     <br>
-                    <b>P</b>% &#x2715; (Firm trend) +  (100 – <b>P</b>)% &#x2715; (Market trend).
+                    <b>P</b> &#x2715; (Predictable component) +  (1 – <b>P</b>) &#x2715; (Yearly luck component).
             </div>
         </center>
     </li>
     <li>
-        In each round, you will be given a different firm to forecast. You will be told the earnings of that firm over the last two years, as well as the relative importance of each component, P. Your task is to <b>forecast the earnings of the firm in 2024.</b>
+        In each round, you will be given a different firm to forecast. You will be told the earnings of that firm over the last two years, as well as the predictability level P. Your task is to <b>forecast the earnings of the firm in 2024.</b>
     </li>
     <li>
-        In total, you will complete 11 rounds of this task. Across these rounds, the relative importance P will vary. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
+        In total, you will complete 11 rounds of this task. Across these rounds, the predictability level P will vary. These rounds are completely independent from one another. If one of the rounds of this task is selected to determine your bonus, only your decision in this one round will determine your bonus.
     </li>
     </ul>
 </div>
@@ -67,7 +71,7 @@
     <br>
     <ul>
         <li>
-            In this example, the relative importance level is 80%, and the firm’s earnings over the last two years (2022 and 2023) are $109 and $127, respectively. 
+            In this example, the predictability level is 0.8, and the firm’s earnings over the last two years (2022 and 2023) are $109 and $127, respectively. 
         </li>
         <li>
             You would give your forecast of the 2024 earnings of this firm, based on the information provided.
